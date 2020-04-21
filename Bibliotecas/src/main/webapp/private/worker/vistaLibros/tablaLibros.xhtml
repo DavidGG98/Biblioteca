@@ -12,6 +12,7 @@
 
             <ui:define name="content">
                 <h1> Lista de libros </h1>
+                <h:link outcome="altaLibro" value="Nuevo libro"/> 
                 <p:dataTable var="libro" value="#{libroControl.listaLibros}">
                     <f:facet name="header">
                         Lista de libros
@@ -26,24 +27,19 @@
 
                     
                     <p:column headerText="Acción">
-                        <h:outputText value=" Eliminar " />
+                        <h:outputText value=" Eliminar / Más detalles (Se podrá eliminar y editar desde ahi tambien" />
                     </p:column>
 
                 </p:dataTable>
                 
-                <p:selectOneMenu value="#{libroControl.libro.idLibro}"> 
-                        
-                    <f:selectItems value="#{libroControl.listaLibros}"
-                                       var="c" itemLabel="#{c.titulo}" 
-                                       itemValue="#{c.idLibro}"/>
-                </p:selectOneMenu>
+              
                 <p:separator/>
                 
                 <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
                 
                  <p:separator/>
                 
-                <h:link outcome="altaLibro" value="Nuevo libro"/> 
+               
                 
             </ui:define>
             
