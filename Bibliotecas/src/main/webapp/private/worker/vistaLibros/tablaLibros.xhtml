@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
+
+            <ui:define name="content">
+                <h1> Lista de libros </h1>
+                <p:dataTable var="libro" value="#{libroControl.listaLibros}">
+                    <f:facet name="header">
+                        Lista de libros
+                    </f:facet>
+                    <p:column headerText="Id">
+                        <h:outputText value="#{libro.idLibro}" />
+                    </p:column>
+
+                    <p:column headerText="Titulo">
+                        <h:outputText value="#{libro.titulo}" />
+                    </p:column>
+
+                    
+                    <p:column headerText="Acción">
+                        <h:outputText value=" Eliminar " />
+                    </p:column>
+
+                </p:dataTable>
+                
+                <p:selectOneMenu value="#{libroControl.libro.idLibro}"> 
+                        
+                    <f:selectItems value="#{libroControl.listaLibros}"
+                                       var="c" itemLabel="#{c.titulo}" 
+                                       itemValue="#{c.idLibro}"/>
+                </p:selectOneMenu>
+                <p:separator/>
+                
+                <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
+                
+                 <p:separator/>
+                
+                <h:link outcome="altaLibro" value="Nuevo libro"/> 
+                
+            </ui:define>
+            
+        </ui:composition>
+
+    </body>
+</html>
