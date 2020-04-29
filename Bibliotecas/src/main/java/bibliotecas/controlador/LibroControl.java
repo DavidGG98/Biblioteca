@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 /**
@@ -38,13 +38,9 @@ public class LibroControl implements Serializable {
     public void reserva() {
         libro=new Libro(); //reserva la memoria
         listaLibros = libroEJB.findAll();
-        System.out.println("Nuevo controlador de libros activado");
-        for (Libro l:listaLibros) {
-            System.out.println(l.toString());
-        }
     }
     
-        public void insertar() { //Inserta en la base de datos
+    public void insertar() { //Inserta en la base de datos
         try {
             libroEJB.create(libro);
             System.out.println("Insertando libro...");

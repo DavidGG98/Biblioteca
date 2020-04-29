@@ -8,6 +8,7 @@ bibliotecas\EJB\EditorialFacade.class
 bibliotecas\modelo\Libro_.class
 bibliotecas\modelo\Libro.class
 bibliotecas\modelo\Prestamo_.class
+bibliotecas\controlador\PlantillaControl.class
 bibliotecas\modelo\Editorial_.class
 bibliotecas\EJB\TrabajadorFacadeLocal.class
 bibliotecas\modelo\Biblioteca_.class
@@ -21,6 +22,7 @@ bibliotecas\EJB\AbstractFacade.class
 bibliotecas\EJB\LibroFacade.class
 bibliotecas\EJB\TrabajadorFacade.class
 bibliotecas\EJB\UsuarioFacadeLocal.class
+bibliotecas\EJB\Query.class
 bibliotecas\modelo\Rol.class
 bibliotecas\modelo\Rol_.class
 bibliotecas\modelo\Biblioteca.class
@@ -35,7 +37,9 @@ bibliotecas\modelo\Usuario_.class
 bibliotecas\controlador\BibliotecaControl.class
 bibliotecas\EJB\RolFacadeLocal.class
 bibliotecas\modelo\Prestamo.class
+bibliotecas\controlador\LoginUsuarioControl.class
 bibliotecas\EJB\PrestamoFacade.class
 bibliotecas\controlador\PrestamoControl.class
 bibliotecas\modelo\Trabajador_.class
+bibliotecas\controlador\LoginTrabajadorControl.class
 bibliotecas\modelo\Editorial.class

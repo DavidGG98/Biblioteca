@@ -30,4 +30,5 @@ public interface TrabajadorFacadeLocal {
 
     int count();
     
+    Trabajador verificarTrabajador(Trabajador t);
 }

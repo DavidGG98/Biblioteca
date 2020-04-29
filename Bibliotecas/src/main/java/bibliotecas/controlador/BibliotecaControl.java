@@ -5,10 +5,17 @@
  */
 package bibliotecas.controlador;
 
+import java.io.Serializable;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+
 /**
  *
  * @author david
  */
-public class BibliotecaControl {
+@Named
+@ViewScoped
+
+public class BibliotecaControl implements Serializable{
     
 }

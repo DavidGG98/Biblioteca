@@ -5,10 +5,16 @@
  */
 package bibliotecas.controlador;
 
+import java.io.Serializable;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+
 /**
  *
  * @author david
  */
-public class TrabajadorControl {
+@Named
+@ViewScoped
+public class TrabajadorControl implements Serializable{
     
 }

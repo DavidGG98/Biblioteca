@@ -1,5 +1,6 @@
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\controlador\EditorialControl.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\modelo\Biblioteca.java
+C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\controlador\LoginTrabajadorControl.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\EJB\UsuarioFacadeLocal.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\EJB\TrabajadorFacade.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\modelo\Libro.java
@@ -13,6 +14,7 @@ C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\EJB\AutorFacade.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\controlador\UsuarioControl.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\controlador\TrabajadorControl.java
+C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\EJB\Query.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\modelo\Editorial.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\EJB\LibroFacadeLocal.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\EJB\RolFacade.java
@@ -23,9 +25,11 @@ C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\controlador\AutorControl.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\modelo\Rol.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\controlador\BibliotecaControl.java
+C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\controlador\LoginUsuarioControl.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\modelo\Prestamo.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\EJB\PrestamoFacade.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\controlador\LibroControl.java
+C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\controlador\PlantillaControl.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\EJB\EditorialFacade.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\EJB\TrabajadorFacadeLocal.java
 C:\Users\david\Documents\NetBeansProjects\Bibliotecas\src\main\java\bibliotecas\modelo\Trabajador.java

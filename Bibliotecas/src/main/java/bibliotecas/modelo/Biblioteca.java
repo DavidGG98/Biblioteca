@@ -36,7 +36,7 @@ public class Biblioteca implements Serializable {
     private int idBiblioteca;
     
     
-    @Column(name="nombre")
+    @Column(name="nombreBiblio")
     @NotNull
     private String nombre;
     
