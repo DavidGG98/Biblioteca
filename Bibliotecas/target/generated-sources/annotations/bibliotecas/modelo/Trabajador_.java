@@ -1,17 +1,17 @@
 package bibliotecas.modelo;
 
-import bibliotecas.modelo.Editorial;
+import bibliotecas.modelo.Biblioteca;
 import bibliotecas.modelo.Rol;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-04-24T16:50:43")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-04-29T17:10:35")
 @StaticMetamodel(Trabajador.class)
 public class Trabajador_ { 
 
     public static volatile SingularAttribute<Trabajador, String> apellidos;
-    public static volatile SingularAttribute<Trabajador, Editorial> editorial;
+    public static volatile SingularAttribute<Trabajador, Biblioteca> biblioteca;
     public static volatile SingularAttribute<Trabajador, Integer> idTrabajador;
     public static volatile SingularAttribute<Trabajador, String> contrasena;
     public static volatile SingularAttribute<Trabajador, String> nombre;

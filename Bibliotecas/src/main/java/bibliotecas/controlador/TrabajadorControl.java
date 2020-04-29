@@ -19,7 +19,7 @@ import javax.inject.Named;
  *
  * @author david, alex
  */
-@Named
+@Named ("dtTrabajador")
 @ViewScoped
 public class TrabajadorControl implements Serializable{
     
@@ -81,7 +81,7 @@ public class TrabajadorControl implements Serializable{
         return trabajadorEJB;
     }
 
-    public List<Trabajador> getListaTrabajadors() {
+    public List<Trabajador> getListaTrabajadores() {
         return listaTrabajadores;
     }
 
@@ -93,8 +93,8 @@ public class TrabajadorControl implements Serializable{
         this.trabajadorEJB = TrabajadorEJB;
     }
 
-    public void setListaTrabajadors(List<Trabajador> listaTrabajadors) {
-        this.listaTrabajadores = listaTrabajadors;
+    public void setListaTrabajadores(List<Trabajador> listaTrabajadores) {
+        this.listaTrabajadores = listaTrabajadores;
     }
 
     public Biblioteca getBiblioteca() {
