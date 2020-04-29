@@ -7,6 +7,7 @@ package bibliotecas.controlador;
 
 import bibliotecas.EJB.TrabajadorFacadeLocal;
 import bibliotecas.modelo.Biblioteca;
+import bibliotecas.modelo.Rol;
 import bibliotecas.modelo.Trabajador;
 import java.io.Serializable;
 import java.util.List;
@@ -29,6 +30,8 @@ public class TrabajadorControl implements Serializable{
     TrabajadorFacadeLocal trabajadorEJB;
     List <Trabajador> listaTrabajadores;
     private Biblioteca biblioteca;
+    private Rol rol;
+    
     
     @PostConstruct
     public void reserva(){
@@ -104,6 +107,15 @@ public class TrabajadorControl implements Serializable{
 
     public void setBiblioteca(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
+    }
+    
+    public Rol getRol() {
+        return rol;
+    }
+
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
 }
