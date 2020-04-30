@@ -10,42 +10,39 @@ and open the template in the editor.
     xmlns:p="http://primefaces.org/ui"
     xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
-        <title>Lista Bibliotecas</title>
+        <title>Lista Roles</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <p:linkButton outcome="altaBiblioteca" value="Añadir" style="margin-right:20px;">
-            <f:param name="Añadir Biblioteca"/>
+        <p:linkButton outcome="altaRoles" value="Añadir" style="margin-right:20px;">
+            <f:param name="Añadir Rol"/>
         </p:linkButton>
-        <p:dataTable id="datos" widgetVar="dtVar"  var="biblioteca" value="#{bibliotecaControl.listaBiblioteca}">
+        <p:dataTable id="datos" widgetVar="dtVar"  var="rol" value="#{rolControl.listaRoles}">
             <f:facet name="header">
-                Bibliotecas
+                Roles
             </f:facet>
             <p:column headerText="ID">
-                <h:outputText value="#{biblioteca.idBiblioteca}"></h:outputText>
+                <h:outputText value="#{rol.idRol}"></h:outputText>
             </p:column>
             
             <p:column headerText="Nombre">
-                <h:outputText value="#{biblioteca.nombre}"></h:outputText>
+                <h:outputText value="#{rol.nombre}"></h:outputText>
                 
             </p:column>
             
-            <p:column headerText="Direccion">
-                <h:outputText value="#{biblioteca.direccion}"></h:outputText>
+            <p:column headerText="Descripcion">
+                <h:outputText value="#{rol.descripcion}"></h:outputText>
                 
             </p:column>
             
-            <p:column headerText="Localidad">
-                <h:outputText value="#{biblioteca.localidad}"></h:outputText>
+            
                 
             </p:column>
             
-
             <p:column headerText="Acciones">
                 
                 <h:form id="acc">
-                    <p:commandLink 
-                        <p:commandButton value="Editar" style="margin-right:20px;"/> 
+                    <p:commandButton value="Editar" style="margin-right:20px;" />
                     <p:commandButton value="Borrar" style="margin-right:20px;"/>
                         
                     

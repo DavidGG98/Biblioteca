@@ -76,12 +76,12 @@ public class BibliotecaControl implements Serializable{
             System.out.println("Error al añadir la biblioteca "+ e.getMessage());
         }
     }
-    public void eliminar(Biblioteca bb){
+    public void eliminar(){
         try{
             System.out.println("");
             System.out.println("borrando ");
             for(Biblioteca b:listaBiblioteca){
-                if(bb.getIdBiblioteca()==b.getIdBiblioteca()){
+                if(biblioteca.getIdBiblioteca()==b.getIdBiblioteca()){
                     biblioteca=b;
                     break;
                 }
@@ -91,13 +91,8 @@ public class BibliotecaControl implements Serializable{
             System.out.println("Error al eliminar la biblioteca "+ e.getMessage());
         }
     }
-    private int idMod;
-    public void setIdMod(int id){
-        this.idMod=id;
-    }
-    public int getIdMod(){
-        return this.idMod;
-    }
+    
+    
     public void modificar(){
         try {
             String nomnbre = biblioteca.getNombre();

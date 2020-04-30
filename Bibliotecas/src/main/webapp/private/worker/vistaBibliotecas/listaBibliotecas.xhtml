@@ -45,11 +45,9 @@ and open the template in the editor.
                 
                 <h:form id="acc">
                     <p:commandLink 
-                    <p:commandButton value="Editar" style="margin-right:20px;" action="#{bibliotecaControl.setIdMod(biblioteca.idBiblioteca)}" 
-                    <p:commandButton value="Borrar" style="margin-right:20px;"
-                                     onclick="#{bibliotecaControl.eliminar(biblioteca)}">
+                        <p:commandButton value="Editar" style="margin-right:20px;"/> 
+                    <p:commandButton value="Borrar" style="margin-right:20px;"/>
                         
-                    </p:commandButton>
                     
                 </h:form>
                 
@@ -62,12 +60,6 @@ and open the template in the editor.
             <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
                 
         <p:separator/>
-        <p:dialog id="dialogo" widgetVar="wdialogo" header="Confirmación borrar" modal="true" resizable="false"
-                        closeOnEscape="true" >
-                    <h:form>
-                        <p:commandButton value="Si"/>          
-                        <p:commandButton value="No" immediate="true" onclick="PF('wdialogo').hide();"/>                          
-                    </h:form>
-                </p:dialog>
+        
     </body>
 </html>

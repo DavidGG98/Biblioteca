@@ -10,11 +10,16 @@
         <h1> Panel de administracion para trabajadores </h1>
         <h:form>
             <p:panelGrid columns="1">
-                //cambiar por botones
+                <!--
+                cambiar por botones
+                -->
                 <h:link outcome="vistaLibros/tablaLibros" value="Libros"/> 
-                 <h:link outcome="vistaRoles/altaRoles" value="Roles"/> 
+                 <h:link outcome="vistaRoles/vistaRoles" value="Roles"/> 
                  <h:link outcome="vistaBibliotecas/listaBibliotecas" value="Bibliotecas"/> 
-                 <h:link outcome="vistaTrabajadores/listaTrabajadores" value="Trabajadores"/> 
+                 <h:link outcome="vistaTrabajadores/listaTrabajadores" value="Trabajadores"/>
+                 <h:link outcome="vistaUsuarios/listaUsuarios" value="Usuarios"/>
+                 <h:link outcome="vistaPrestamos/listaPrestamos" value="Prestamos"/>
+                 <h:link outcome="vistaAutores/listaAutores" value="Autores"/>
                  
                 
             </p:panelGrid>
