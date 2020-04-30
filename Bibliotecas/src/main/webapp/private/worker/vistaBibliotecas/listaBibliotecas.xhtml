@@ -10,34 +10,49 @@ and open the template in the editor.
     xmlns:p="http://primefaces.org/ui"
     xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
-        <title>TODO supply a title</title>
+        <title>Lista Bibliotecas</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <p:linkButton outcome="AñadirBiblioteca" value="Añadir" style="margin-right:20px;">
+        <p:linkButton outcome="altaBiblioteca" value="Añadir" style="margin-right:20px;">
             <f:param name="Añadir Biblioteca"/>
         </p:linkButton>
-        <p:dataTable var="biblioteca" value="#{bibliotecaControl.listaBiblioteca}">
+        <p:dataTable id="datos" widgetVar="dtVar"  var="biblioteca" value="#{bibliotecaControl.listaBiblioteca}">
+            <f:facet name="header">
+                Bibliotecas
+            </f:facet>
             <p:column headerText="ID">
-                <h:outputText value="#{biblioteca.idBiblioteca}"
+                <h:outputText value="#{biblioteca.idBiblioteca}"></h:outputText>
             </p:column>
+            
             <p:column headerText="Nombre">
-                <h:outputText value="#{biblioteca.nombre}"
+                <h:outputText value="#{biblioteca.nombre}"></h:outputText>
+                
             </p:column>
+            
             <p:column headerText="Direccion">
-                <h:outputText value="#{biblioteca.direccion}"
+                <h:outputText value="#{biblioteca.direccion}"></h:outputText>
+                
             </p:column>
+            
             <p:column headerText="Localidad">
-                <h:outputText value="#{biblioteca.localidad}"
+                <h:outputText value="#{biblioteca.localidad}"></h:outputText>
+                
             </p:column>
+            
 
             <p:column headerText="Acciones">
-                <p:linkButton outcome="editarBiblioteca" value="Editar" style="margin-right:20px;">
-                    <f:param name="editar Biblioteca"/>
-                </p:linkButton>
-                <p:linkButton outcome="borrarBiblioteca" value="Borrar" style="margin-right:20px;">
-                    <f:param name="borrar Biblioteca"/>
-                </p:linkButton>
+                
+                <h:form id="acc">
+                    <p:commandLink 
+                    <p:commandButton value="Editar" style="margin-right:20px;" action="#{bibliotecaControl.setIdMod(biblioteca.idBiblioteca)}" 
+                    <p:commandButton value="Borrar" style="margin-right:20px;"
+                                     onclick="#{bibliotecaControl.eliminar(biblioteca)}">
+                        
+                    </p:commandButton>
+                    
+                </h:form>
+                
             </p:column>
             
         </p:dataTable>
@@ -47,5 +62,12 @@ and open the template in the editor.
             <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
                 
         <p:separator/>
+        <p:dialog id="dialogo" widgetVar="wdialogo" header="Confirmación borrar" modal="true" resizable="false"
+                        closeOnEscape="true" >
+                    <h:form>
+                        <p:commandButton value="Si"/>          
+                        <p:commandButton value="No" immediate="true" onclick="PF('wdialogo').hide();"/>                          
+                    </h:form>
+                </p:dialog>
     </body>
 </html>

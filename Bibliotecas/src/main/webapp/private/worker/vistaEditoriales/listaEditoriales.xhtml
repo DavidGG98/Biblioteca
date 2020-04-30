@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Lista Editoriales</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <p:linkButton outcome="altaEditorial" value="Añadir" style="margin-right:20px;">
+            <f:param name="Añadir editorial"/>
+        </p:linkButton>
+        <p:dataTable id="datos" widgetVar="dtVar"  var="editorial" value="#{editorialControl.listaEditoriales}">
+            <f:facet name="header">
+                editoriales
+            </f:facet>
+            <p:column headerText="ID">
+                <h:outputText value="#{editorial.idEditorial}"></h:outputText>
+            </p:column>
+            
+            <p:column headerText="Nombre">
+                <h:outputText value="#{editorial.nombre}"></h:outputText>
+                
+            </p:column>
+            
+            <p:column headerText="CIF">
+                <h:outputText value="#{editorial.cif}"></h:outputText>
+                
+            </p:column>
+            
+            <p:column headerText="Email">
+                <h:outputText value="#{editorial.email}"></h:outputText>
+                
+            </p:column>
+            
+            <p:column headerText="Telefono">
+                <h:outputText value="#{editorial.telefono}"></h:outputText>
+                
+            </p:column>
+            
+
+            <p:column headerText="Acciones">
+                
+                <h:form id="acc">
+                    <p:commandButton value="Editar" style="margin-right:20px;"/>
+                    <p:commandButton value="Borrar" style="margin-right:20px;"/>
+                        
+                    
+                </h:form>
+                
+            </p:column>
+            
+        </p:dataTable>
+        
+        <p:separator/>
+                
+            <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
+                
+        <p:separator/>
+        
+    </body>
+</html>

@@ -20,30 +20,30 @@ and open the template in the editor.
         </p:linkButton>
         <p:dataTable var="trabajador" value="#{dtTrabajador.listaTrabajadores}">
             <p:column headerText="ID">
-                <h:outputText value="#{trabajador.idTrabajador}"
+                <h:outputText value="#{trabajador.idTrabajador}"></h:outputText>
             </p:column>
             <p:column headerText="Nombre">
-                <h:outputText value="#{trabajador.nombre}"
+                <h:outputText value="#{trabajador.nombre}"></h:outputText>
             </p:column>
             <p:column headerText="Apellidos">
-                <h:outputText value="#{trabajador.apellidos}"
+                <h:outputText value="#{trabajador.apellidos}"></h:outputText>
             </p:column>
             <p:column headerText="DNI">
-                <h:outputText value="#{trabajador.dni}"
+                <h:outputText value="#{trabajador.dni}"></h:outputText>
             </p:column>
             <p:column headerText="Rol">
-                <h:outputText value="#{trabajador.rol}"
+                <h:outputText value="#{trabajador.rol}"></h:outputText>
             </p:column>
             <p:column headerText="Biblioteca">
-                <h:outputText value="#{trabajador.biblioteca}"
+                <h:outputText value="#{trabajador.biblioteca}"></h:outputText>
             </p:column>
             <p:column headerText="Acciones">
-                <p:linkButton outcome="editarTrabajador" value="Editar" style="margin-right:20px;">
-                    <f:param name="editar Trabajador"/>
-                </p:linkButton>
-                <p:linkButton outcome="borrarTrabajador" value="Borrar" style="margin-right:20px;">
-                    <f:param name="borrar Trabajador"/>
-                </p:linkButton>
+                <h:form id="acc">
+                    <p:commandButton value="Editar" style="margin-right:20px;" />
+                    <p:commandButton value="Borrar" style="margin-right:20px;"/>
+                        
+                    
+                </h:form>
             </p:column>
             
         </p:dataTable>

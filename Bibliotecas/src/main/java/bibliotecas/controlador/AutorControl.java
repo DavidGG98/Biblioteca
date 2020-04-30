@@ -38,6 +38,43 @@ public class AutorControl implements Serializable {
         listaAutores = autorEJB.findAll();
 
     }
+    public void insertar(){
+        try{
+          autorEJB.create(autor);
+            System.out.println("Anadiendo Autor...");
+        } catch (Exception e) {
+            System.out.println("Error al anadir el Autor "+ e.getMessage());
+        }
+    }
+    public void eliminar(){
+        try{
+            System.out.println("");
+            for(Autor t:listaAutores){
+                if(t.getIdAutor()==(autor.getIdAutor())){
+                    autor=t;
+                    break;
+                }
+            autorEJB.remove(autor);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al eliminar el Autor "+ e.getMessage());
+        }
+    }
+    public void modificar() {
+        try {
+            String n=autor.getNombre();
+            for (Autor c:listaAutores) {
+                if(c.getIdAutor()== autor.getIdAutor()) {
+                    autor=c; //Recuperamos el objeto al completo, no solo su id
+                    break; //Sale del bucle
+                }
+            }
+            autor.setNombre(n); //Actualizamos el nombre que hemos puesto y lo guardamos
+            autorEJB.edit(autor);
+        } catch (Exception e) {
+            System.out.println("Error al modificar el Autor"+ e.getMessage());
+        }
+    }
 
     public Autor getAutor() {
         return autor;

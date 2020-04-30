@@ -11,8 +11,12 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
 
 /**
  *
@@ -46,7 +50,11 @@ public class BibliotecaControl implements Serializable{
     public void setListaBiblioteca(List<Biblioteca> listaBiblioteca) {
         this.listaBiblioteca = listaBiblioteca;
     }
+    
+    
+    
     private Biblioteca biblioteca;
+    
     
     @EJB
     BibliotecaFacadeLocal bibliotecaEJB;
@@ -68,18 +76,27 @@ public class BibliotecaControl implements Serializable{
             System.out.println("Error al añadir la biblioteca "+ e.getMessage());
         }
     }
-    public void eliminar(){
+    public void eliminar(Biblioteca bb){
         try{
             System.out.println("");
+            System.out.println("borrando ");
             for(Biblioteca b:listaBiblioteca){
-                if(b.getIdBiblioteca()==biblioteca.getIdBiblioteca()){
+                if(bb.getIdBiblioteca()==b.getIdBiblioteca()){
                     biblioteca=b;
                     break;
                 }
             }
+            bibliotecaEJB.remove(biblioteca);
         } catch (Exception e){
             System.out.println("Error al eliminar la biblioteca "+ e.getMessage());
         }
+    }
+    private int idMod;
+    public void setIdMod(int id){
+        this.idMod=id;
+    }
+    public int getIdMod(){
+        return this.idMod;
     }
     public void modificar(){
         try {
@@ -94,6 +111,18 @@ public class BibliotecaControl implements Serializable{
             bibliotecaEJB.edit(biblioteca);
         } catch (Exception e) {
             System.out.println("Error al modificar la biblioteca"+ e.getMessage());
+        }
+    }
+    
+    
+    public void onCellEdit(CellEditEvent event) {
+        Object oldValue = event.getOldValue();
+        Object newValue = event.getNewValue();
+         
+        if(newValue != null && !newValue.equals(oldValue)) {
+            modificar();
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
 }

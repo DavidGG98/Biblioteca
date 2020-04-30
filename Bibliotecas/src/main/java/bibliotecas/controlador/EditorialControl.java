@@ -61,5 +61,41 @@ public class EditorialControl implements Serializable{
     public void setListaEditoriales(List<Editorial> listaEditoriales) {
         this.listaEditoriales = listaEditoriales;
     }
-    
+  public void insertar(){
+        try{
+          editorialEJB.create(editorial);
+            System.out.println("Anadiendo editorial...");
+        } catch (Exception e) {
+            System.out.println("Error al anadir el editorial "+ e.getMessage());
+        }
+    }
+    public void eliminar(){
+        try{
+            System.out.println("");
+            for(Editorial t:listaEditoriales){
+                if(t.getIdEditorial()==(editorial.getIdEditorial())){
+                    editorial=t;
+                    break;
+                }
+            editorialEJB.remove(editorial);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al eliminar el editorial "+ e.getMessage());
+        }
+    }
+    public void modificar() {
+        try {
+            String n=editorial.getNombre();
+            for (Editorial c:listaEditoriales) {
+                if(c.getIdEditorial()== editorial.getIdEditorial()) {
+                    editorial=c; //Recuperamos el objeto al completo, no solo su id
+                    break; //Sale del bucle
+                }
+            }
+            editorial.setNombre(n); //Actualizamos el nombre que hemos puesto y lo guardamos
+            editorialEJB.edit(editorial);
+        } catch (Exception e) {
+            System.out.println("Error al modificar el editorial"+ e.getMessage());
+        }
+    }  
 }
