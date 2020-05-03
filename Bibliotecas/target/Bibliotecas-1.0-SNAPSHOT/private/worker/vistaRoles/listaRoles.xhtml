@@ -17,6 +17,7 @@ and open the template in the editor.
         <p:linkButton outcome="altaRoles" value="Añadir" style="margin-right:20px;">
             <f:param name="Añadir Rol"/>
         </p:linkButton>
+        <h:form id="acc">
         <p:dataTable id="datos" widgetVar="dtVar"  var="rol" value="#{rolControl.listaRoles}">
             <f:facet name="header">
                 Roles
@@ -41,21 +42,20 @@ and open the template in the editor.
             
             <p:column headerText="Acciones">
                 
-                <h:form id="acc">
-                    <p:commandButton value="Editar" style="margin-right:20px;" />
-                    <p:commandButton value="Borrar" style="margin-right:20px;"/>
-                        
-                    
-                </h:form>
+                
+                <p:commandButton value="Editar" style="margin-right:20px;"  update=":acc:datos" action="#{rolControl.modificar(rol.idRol)}"/>
+                <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{rolControl.eliminar(rol.idRol)}"/>
+                  
+                
                 
             </p:column>
             
         </p:dataTable>
-        
+        </h:form>
         <p:separator/>
                 
             <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
-                
+            <p:link href="./index.xhtml" value="Inicio"/>    
         <p:separator/>
         
     </body>

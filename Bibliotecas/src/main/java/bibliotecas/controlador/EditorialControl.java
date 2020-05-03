@@ -69,11 +69,11 @@ public class EditorialControl implements Serializable{
             System.out.println("Error al anadir el editorial "+ e.getMessage());
         }
     }
-    public void eliminar(){
+    public void eliminar(int id){
         try{
             System.out.println("");
             for(Editorial t:listaEditoriales){
-                if(t.getIdEditorial()==(editorial.getIdEditorial())){
+                if(t.getIdEditorial()== id){
                     editorial=t;
                     break;
                 }
@@ -83,11 +83,11 @@ public class EditorialControl implements Serializable{
             System.out.println("Error al eliminar el editorial "+ e.getMessage());
         }
     }
-    public void modificar() {
+    public void modificar(int id) {
         try {
             String n=editorial.getNombre();
             for (Editorial c:listaEditoriales) {
-                if(c.getIdEditorial()== editorial.getIdEditorial()) {
+                if(c.getIdEditorial()== id) {
                     editorial=c; //Recuperamos el objeto al completo, no solo su id
                     break; //Sale del bucle
                 }

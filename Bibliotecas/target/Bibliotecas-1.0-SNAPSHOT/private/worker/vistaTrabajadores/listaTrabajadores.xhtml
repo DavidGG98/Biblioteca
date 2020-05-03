@@ -18,6 +18,7 @@ and open the template in the editor.
         <p:linkButton outcome="AñadirTrabajador" value="Borrar" style="margin-right:20px;">
             <f:param name="Añadir Trabajador"/>
         </p:linkButton>
+        <h:form id="acc">
         <p:dataTable var="trabajador" value="#{dtTrabajador.listaTrabajadores}">
             <p:column headerText="ID">
                 <h:outputText value="#{trabajador.idTrabajador}"></h:outputText>
@@ -38,19 +39,20 @@ and open the template in the editor.
                 <h:outputText value="#{trabajador.biblioteca}"></h:outputText>
             </p:column>
             <p:column headerText="Acciones">
-                <h:form id="acc">
-                    <p:commandButton value="Editar" style="margin-right:20px;" />
-                    <p:commandButton value="Borrar" style="margin-right:20px;"/>
+                
+                <p:commandButton value="Editar" style="margin-right:20px;"  update=":acc:datos" action="#{dtTrabajador.modificar(trabajador.idTrabajador)}"/>
+                <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{dtTrabajador.eliminar(trabajador.idTrabajador)}"/>
                         
                     
-                </h:form>
+                
             </p:column>
             
         </p:dataTable>
+            </h:form>
         <p:separator/>
                 
             <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
-                
+            <p:link href="./index.xhtml" value="Inicio"/>    
         <p:separator/>
     </body>
 </html>

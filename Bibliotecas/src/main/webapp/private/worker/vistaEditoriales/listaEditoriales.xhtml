@@ -17,6 +17,8 @@ and open the template in the editor.
         <p:linkButton outcome="altaEditorial" value="Añadir" style="margin-right:20px;">
             <f:param name="Añadir editorial"/>
         </p:linkButton>
+        <h:form id="acc">
+
         <p:dataTable id="datos" widgetVar="dtVar"  var="editorial" value="#{editorialControl.listaEditoriales}">
             <f:facet name="header">
                 editoriales
@@ -48,21 +50,19 @@ and open the template in the editor.
 
             <p:column headerText="Acciones">
                 
-                <h:form id="acc">
-                    <p:commandButton value="Editar" style="margin-right:20px;"/>
-                    <p:commandButton value="Borrar" style="margin-right:20px;"/>
+                <p:commandButton value="Editar" style="margin-right:20px;"  update=":acc:datos" action="#{editorialControl.modificar(editorial.idEditorial)}"/>
+                <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{editorialControl.eliminar(editorial.idEditorial)}"/>  
                         
                     
-                </h:form>
                 
             </p:column>
             
         </p:dataTable>
-        
+        </h:form>
         <p:separator/>
                 
             <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
-                
+            <p:link href="./index.xhtml" value="Inicio"/>    
         <p:separator/>
         
     </body>

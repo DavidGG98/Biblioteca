@@ -47,11 +47,11 @@ public class TrabajadorControl implements Serializable{
             System.out.println("Error al anadir el Trabajador "+ e.getMessage());
         }
     }
-    public void eliminar(){
+    public void eliminar(int id){
         try{
             System.out.println("");
             for(Trabajador t:listaTrabajadores){
-                if(t.getIdTrabajador()==(trabajador.getIdTrabajador())){
+                if(t.getIdTrabajador()==id){
                     trabajador=t;
                     break;
                 }
@@ -61,11 +61,11 @@ public class TrabajadorControl implements Serializable{
             System.out.println("Error al eliminar el trabajador "+ e.getMessage());
         }
     }
-    public void modificar() {
+    public void modificar(int id) {
         try {
             String n=trabajador.getNombre();
             for (Trabajador c:listaTrabajadores) {
-                if(c.getIdTrabajador()== trabajador.getIdTrabajador()) {
+                if(c.getIdTrabajador()== id) {
                     trabajador=c; //Recuperamos el objeto al completo, no solo su id
                     break; //Sale del bucle
                 }

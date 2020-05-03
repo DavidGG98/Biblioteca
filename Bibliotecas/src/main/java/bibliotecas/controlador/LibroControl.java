@@ -49,11 +49,11 @@ public class LibroControl implements Serializable {
         }
     }
     
-    public void eliminar() {
+    public void eliminar(int id) {
         try {
             System.out.println();
             for (Libro l:listaLibros) {
-                if(l.getIdLibro() == libro.getIdLibro()) {
+                if(l.getIdLibro() == id) {
                     libro=l; //Recuperamos la categoria al completo, no solo su id
                     break; //Sale del bucle
                 }
@@ -64,11 +64,11 @@ public class LibroControl implements Serializable {
         }
     }
     
-    public void modificar() {
+    public void modificar(int id) {
         try {
             String n=libro.getTitulo();
             for (Libro c:listaLibros) {
-                if(c.getIdLibro() == libro.getIdLibro()) {
+                if(c.getIdLibro() == id) {
                     libro=c; //Recuperamos el objeto al completo, no solo su id
                     break; //Sale del bucle
                 }

@@ -46,19 +46,13 @@ public class RolControl implements Serializable {
         }
     }
     
-    public String holaMundo () {
-        return "hola mundo";
-        
-    }
-    public void holaMundo2 () {
-       System.out.println("Hola mundo");        
-    }
+  
     
-    public void eliminar() {
+    public void eliminar(int id) {
         try {
             System.out.println();
             for (Rol r:listaRoles) {
-                if(r.getIdRol() == rol.getIdRol()) {
+                if(r.getIdRol() == id) {
                     rol=r; //Recuperamos la categoria al completo, no solo su id
                     break; //Sale del bucle
                 }
@@ -69,12 +63,12 @@ public class RolControl implements Serializable {
         }
     }
     
-    public void modificar() {
+    public void modificar(int id) {
         try {
             String n=rol.getNombre();
             String d=rol.getDescripcion();
             for (Rol r:listaRoles) {
-                if(r.getIdRol() == rol.getIdRol()) {
+                if(r.getIdRol() == id) {
                     rol=r; //Recuperamos el objeto al completo, no solo su id
                     break; //Sale del bucle
                 }

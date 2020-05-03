@@ -17,6 +17,7 @@ and open the template in the editor.
         <p:linkButton outcome="altaUsuario" value="Añadir" style="margin-right:20px;">
             <f:param name="Añadir Usuario"/>
         </p:linkButton>
+        <h:form id="acc">
         <p:dataTable id="datos" widgetVar="dtVar"  var="usuario" value="#{usuarioControl.listaUsuarios}">
             <f:facet name="header">
                 Usuarios
@@ -47,17 +48,17 @@ and open the template in the editor.
             
             <p:column headerText="Acciones">
                 
-                <h:form id="acc">
-                    <p:commandButton value="Editar" style="margin-right:20px;" />
-                    <p:commandButton value="Borrar" style="margin-right:20px;"/>
+                
+                    <p:commandButton value="Editar" style="margin-right:20px;"  update=":acc:datos" action="#{usuarioControl.modificar(usuario.idUsuario)}"/>
+                    <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{usuarioControl.eliminar(usuario.idUsuario)}"/>
                         
                     
-                </h:form>
                 
             </p:column>
             
         </p:dataTable>
-        
+        </h:form>
+
         <p:separator/>
                 
             <p:link href="./../workerHome.xhtml" value="Retroceder"/> 

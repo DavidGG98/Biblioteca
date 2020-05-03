@@ -17,6 +17,7 @@ and open the template in the editor.
         <p:linkButton outcome="altaAutor" value="Añadir" style="margin-right:20px;">
             <f:param name="Añadir autor"/>
         </p:linkButton>
+        <h:form id="acc">
         <p:dataTable id="datos" widgetVar="dtVar"  var="autor" value="#{autorControl.listaAutores}">
             <f:facet name="header">
                 autors
@@ -48,21 +49,20 @@ and open the template in the editor.
 
             <p:column headerText="Acciones">
                 
-                <h:form id="acc">
-                    <p:commandButton value="Editar" style="margin-right:20px;"/>
-                    <p:commandButton value="Borrar" style="margin-right:20px;"/>
-                        
+                
+                <p:commandButton value="Editar" style="margin-right:20px;"  update=":acc:datos" action="#{autorControl.modificar(autor.idAutor)}"/>
+                <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{autorControl.eliminar(autor.idAutor)}"/>  
                     
-                </h:form>
+                
                 
             </p:column>
             
         </p:dataTable>
-        
+        </h:form>
         <p:separator/>
                 
             <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
-                
+            <p:link href="./index.xhtml" value="Inicio"/>    
         <p:separator/>
         
     </body>

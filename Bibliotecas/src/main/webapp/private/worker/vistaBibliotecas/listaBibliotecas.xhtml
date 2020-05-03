@@ -14,29 +14,35 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
+        <h:form id="form">
+                <p:growl id="msgs" showDetail="true"  />
+
+        
         <p:linkButton outcome="altaBiblioteca" value="Añadir" style="margin-right:20px;">
             <f:param name="Añadir Biblioteca"/>
         </p:linkButton>
-        <p:dataTable id="datos" widgetVar="dtVar"  var="biblioteca" value="#{bibliotecaControl.listaBiblioteca}">
+        <p:dataTable id="datos" widgetVar="dtVar"  var="bibliotecas" value="#{bibliotecaControl.listaBiblioteca}" 
+                     selectionMode="single" rowKey="#{bibliotecas.idBiblioteca}" >
             <f:facet name="header">
                 Bibliotecas
             </f:facet>
+            
             <p:column headerText="ID">
-                <h:outputText value="#{biblioteca.idBiblioteca}"></h:outputText>
+                <h:outputText value="#{bibliotecas.idBiblioteca}"></h:outputText>
             </p:column>
             
             <p:column headerText="Nombre">
-                <h:outputText value="#{biblioteca.nombre}"></h:outputText>
+                <h:outputText value="#{bibliotecas.nombre}"></h:outputText>
                 
             </p:column>
             
             <p:column headerText="Direccion">
-                <h:outputText value="#{biblioteca.direccion}"></h:outputText>
+                <h:outputText value="#{bibliotecas.direccion}"></h:outputText>
                 
             </p:column>
             
             <p:column headerText="Localidad">
-                <h:outputText value="#{biblioteca.localidad}"></h:outputText>
+                <h:outputText value="#{bibliotecas.localidad}"></h:outputText>
                 
             </p:column>
             
@@ -44,9 +50,8 @@ and open the template in the editor.
             <p:column headerText="Acciones">
                 
                 <h:form id="acc">
-                    <p:commandLink 
-                        <p:commandButton value="Editar" style="margin-right:20px;"/> 
-                    <p:commandButton value="Borrar" style="margin-right:20px;"/>
+                    <p:commandButton value="Editar" style="margin-right:20px;"  update=":form:datos" action="#{bibliotecaControl.modificar(bibliotecas.idBiblioteca)}"/>
+                    <p:commandButton value="Borrar" style="margin-right:20px;" update=":form:datos" action="#{bibliotecaControl.eliminar(bibliotecas.idBiblioteca)}"/>
                         
                     
                 </h:form>
@@ -54,11 +59,11 @@ and open the template in the editor.
             </p:column>
             
         </p:dataTable>
-        
+        </h:form>
         <p:separator/>
                 
-            <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
-                
+            <p:link href="./../workerHome.xhtml" value="Inicio"/> 
+            <p:link href="./index.xhtml" value="Inicio"/>
         <p:separator/>
         
     </body>

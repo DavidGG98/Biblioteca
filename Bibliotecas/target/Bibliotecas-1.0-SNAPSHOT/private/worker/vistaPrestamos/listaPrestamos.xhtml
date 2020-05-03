@@ -17,6 +17,7 @@ and open the template in the editor.
         <p:linkButton outcome="altaBiblioteca" value="Añadir" style="margin-right:20px;">
             <f:param name="Añadir Biblioteca"/>
         </p:linkButton>
+        <h:form id="acc">
         <p:dataTable id="datos" widgetVar="dtVar"  var="biblioteca" value="#{bibliotecaControl.listaBiblioteca}">
             <f:facet name="header">
                 Bibliotecas
@@ -43,30 +44,21 @@ and open the template in the editor.
 
             <p:column headerText="Acciones">
                 
-                <h:form id="acc">
-                    <p:commandButton value="Editar" style="margin-right:20px;" action="#{bibliotecaControl.setIdMod(biblioteca.idBiblioteca)}"
-                    <p:commandButton value="Borrar" style="margin-right:20px;"
-                                     onclick="#{bibliotecaControl.eliminar(biblioteca)}">
-                        
-                    </p:commandButton>
-                    
-                </h:form>
+                
+                    <p:commandButton value="Editar" style="margin-right:20px;"  update=":acc:datos" action="#{rolControl.modificar(rol.idRol)}"/>
+                <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{rolControl.eliminar(rol.idRol)}"/>
+                 
+                
                 
             </p:column>
             
         </p:dataTable>
-        
+        </h:form>
         <p:separator/>
                 
             <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
-                
+            <p:link href="./index.xhtml" value="Inicio"/>    
         <p:separator/>
-        <p:dialog id="dialogo" widgetVar="wdialogo" header="Confirmación borrar" modal="true" resizable="false"
-                        closeOnEscape="true" >
-                    <h:form>
-                        <p:commandButton value="Si"/>          
-                        <p:commandButton value="No" immediate="true" onclick="PF('wdialogo').hide();"/>                          
-                    </h:form>
-                </p:dialog>
+        
     </body>
 </html>

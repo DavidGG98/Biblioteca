@@ -16,7 +16,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.event.CellEditEvent;
-import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 
 /**
  *
@@ -50,7 +51,7 @@ public class BibliotecaControl implements Serializable{
     public void setListaBiblioteca(List<Biblioteca> listaBiblioteca) {
         this.listaBiblioteca = listaBiblioteca;
     }
-    
+   
     
     
     private Biblioteca biblioteca;
@@ -76,28 +77,32 @@ public class BibliotecaControl implements Serializable{
             System.out.println("Error al añadir la biblioteca "+ e.getMessage());
         }
     }
-    public void eliminar(){
+    public void eliminar(int id){
         try{
-            System.out.println("");
+            Biblioteca aux = new Biblioteca();
+            System.out.println(id);
             System.out.println("borrando ");
             for(Biblioteca b:listaBiblioteca){
-                if(biblioteca.getIdBiblioteca()==b.getIdBiblioteca()){
-                    biblioteca=b;
+                if(b.getIdBiblioteca()==id){
+                    aux=b;
                     break;
                 }
             }
-            bibliotecaEJB.remove(biblioteca);
+            bibliotecaEJB.remove(aux);
         } catch (Exception e){
             System.out.println("Error al eliminar la biblioteca "+ e.getMessage());
         }
     }
     
     
-    public void modificar(){
+    
+    public void modificar(int id){
         try {
+                        System.out.println(id);
+
             String nomnbre = biblioteca.getNombre();
             for (Biblioteca bbb:listaBiblioteca){
-                if (bbb.getIdBiblioteca()==biblioteca.getIdBiblioteca()) {
+                if (bbb.getIdBiblioteca()==id) {
                     biblioteca=bbb;
                     break;
                 }
@@ -110,14 +115,5 @@ public class BibliotecaControl implements Serializable{
     }
     
     
-    public void onCellEdit(CellEditEvent event) {
-        Object oldValue = event.getOldValue();
-        Object newValue = event.getNewValue();
-         
-        if(newValue != null && !newValue.equals(oldValue)) {
-            modificar();
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
-    }
+    
 }

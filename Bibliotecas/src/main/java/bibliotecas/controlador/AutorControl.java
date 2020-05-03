@@ -46,11 +46,11 @@ public class AutorControl implements Serializable {
             System.out.println("Error al anadir el Autor "+ e.getMessage());
         }
     }
-    public void eliminar(){
+    public void eliminar(int id){
         try{
             System.out.println("");
             for(Autor t:listaAutores){
-                if(t.getIdAutor()==(autor.getIdAutor())){
+                if((id)==t.getIdAutor()){
                     autor=t;
                     break;
                 }
@@ -60,11 +60,11 @@ public class AutorControl implements Serializable {
             System.out.println("Error al eliminar el Autor "+ e.getMessage());
         }
     }
-    public void modificar() {
+    public void modificar(int id) {
         try {
             String n=autor.getNombre();
             for (Autor c:listaAutores) {
-                if(c.getIdAutor()== autor.getIdAutor()) {
+                if(id== c.getIdAutor()) {
                     autor=c; //Recuperamos el objeto al completo, no solo su id
                     break; //Sale del bucle
                 }

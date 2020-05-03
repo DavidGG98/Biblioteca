@@ -40,11 +40,11 @@ public class UsuarioControl implements Serializable {
             System.out.println("Error al anadir el Usuario "+ e.getMessage());
         }
     }
-    public void eliminar(){
+    public void eliminar(int id){
         try{
             System.out.println("");
             for(Usuario t:listaUsuarios){
-                if(t.getIdUsuario()==(usuario.getIdUsuario())){
+                if(id==t.getIdUsuario()){
                     usuario=t;
                     break;
                 }
@@ -54,12 +54,12 @@ public class UsuarioControl implements Serializable {
             System.out.println("Error al eliminar el usuario "+ e.getMessage());
         }
     }
-    public void modificar() {
+    public void modificar(int id) {
         try {
             String n=usuario.getNombre();
             for (Usuario c:listaUsuarios) {
-                if(c.getIdUsuario()== usuario.getIdUsuario()) {
-                    usuario=c; //Recuperamos el objeto al completo, no solo su id
+                if(id== c.getIdUsuario()) {
+                    usuario=c; //Recupideramos el objeto al completo, no solo su id
                     break; //Sale del bucle
                 }
             }

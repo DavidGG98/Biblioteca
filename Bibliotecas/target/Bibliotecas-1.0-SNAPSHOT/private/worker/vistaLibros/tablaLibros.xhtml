@@ -12,8 +12,9 @@
 
             <ui:define name="content">
                 <h1> Lista de libros </h1>
-                <h:link outcome="altaLibro" value="Nuevo libro"/> 
-                <p:dataTable var="libro" value="#{libroControl.listaLibros}">
+                <h:link outcome="altaLibro" value="Nuevo libro"/>
+                <h:form id="acc">
+                <p:dataTable id="datos" var="libro" value="#{libroControl.listaLibros}">
                     <f:facet name="header">
                         Lista de libros
                     </f:facet>
@@ -27,16 +28,17 @@
 
                     
                     <p:column headerText="Acción">
-                        <h:outputText value=" Eliminar / Más detalles (Se podrá eliminar y editar desde ahi tambien" />
-                    </p:column>
+                        <p:commandButton value="Editar" style="margin-right:20px;"  update=":acc:datos" action="#{libroControl.modificar(libro.idLibro)}"/>
+                        <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{libroControl.eliminar(libro.idLibro)}"/>
+                 </p:column>
 
                 </p:dataTable>
-                
+                </h:form>
               
                 <p:separator/>
                 
                 <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
-                
+                <p:link href="./index.xhtml" value="Inicio"/>
                  <p:separator/>
                 
                
