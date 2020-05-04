@@ -32,7 +32,24 @@ public class LibroControl implements Serializable {
     List <Libro> listaLibros;
     private Autor autor;
     private Editorial editorial;
-    
+   public Libro getLibro(int id){
+        
+        try{
+            System.out.println(id);
+            System.out.println("Seleccionado "+ id);
+            for(Libro b:listaLibros){
+                if(b.getIdLibro()==id){
+                    System.out.println("Libro "+ b.getTitulo()+" tiene el mismo id");
+                    libro=b;
+                    break;
+                }
+            }
+            return libro;
+        } catch (Exception e){
+            System.out.println("Error al seleccionar el Libro "+ e.getMessage());
+        }
+        return null;
+    } 
     
     @PostConstruct //le mandamos ejecutarse antes, ya que el constructor debe estar vacio
     public void reserva() {

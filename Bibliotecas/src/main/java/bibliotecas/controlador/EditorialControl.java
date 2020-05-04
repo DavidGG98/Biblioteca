@@ -30,7 +30,23 @@ public class EditorialControl implements Serializable{
     @EJB
     EditorialFacadeLocal editorialEJB;
     List <Editorial> listaEditoriales;
- 
+  public Editorial getEditorial(int id){
+        try{
+            System.out.println(id);
+            System.out.println("Seleccionado "+ id);
+            for(Editorial b:listaEditoriales){
+                if(b.getIdEditorial()==id){
+                    System.out.println("Editorial "+ b.getNombre()+" tiene el mismo id");
+                    editorial=b;
+                    break;
+                }
+            }
+            return editorial;
+        } catch (Exception e){
+            System.out.println("Error al seleccionar el Editorial "+ e.getMessage());
+        }
+        return null;
+    }
     @PostConstruct //le mandamos ejecutarse antes, ya que el constructor debe estar vacio
     public void reserva() {
         editorial=new Editorial(); //reserva la memoria

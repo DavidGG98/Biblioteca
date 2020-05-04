@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        
+         <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form id="grid">
+                    <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
+                        <p:panelGrid columns="3" styleClass="ui-noborder">
+                            <p:outputLabel for="txtNombre" value="Nombre: " /> 
+                            <p:inputText value="#{usuarioControl.getUsuario(param['id']).nombre}" 
+                                         required="true" id="txtNombre" 
+                                         requiredMessage="El nombre es un campo oblifatorio" />
+                            <p:message for="txtNombre"/>
+
+                            <p:outputLabel for="txtApellidos" value="Apellidos: " /> 
+                            <p:inputText value="#{usuarioControl.usuarios.apellidos}" 
+                                         required="true" id="txtDireccion" 
+                                         requiredMessage="Apellidos es un campo oblifatorio" />
+                            <p:message for="txtApellidos"/>
+                            
+                            <p:outputLabel for="txtEmail" value="Email: " /> 
+                            <p:inputText value="#{usuarioControl.usuarios.email}" 
+                                         required="true" id="txtEmail" 
+                                         requiredMessage="La email es un campo oblifatorio" />
+                            <p:message for="txtEmail"/>
+                            <p:outputLabel for="txtnum" value="Numero de Carnet " /> 
+                            <p:inputText value="#{usuarioControl.usuarios.numeroCarnet}" 
+                                         required="true" id="txtEmail" 
+                                         requiredMessage="El Numero de Carnet es un campo oblifatorio" />
+                            <p:message for="txtnum"/>
+
+                            
+                        </p:panelGrid>
+                    </p:fieldset>
+                    
+                    
+                    <p:separator/>
+                    <p:commandButton value="Modificar" actionListener="#{usuarioControl.modificar(usuarioControl.usuarios)}" 
+                                     update="grid"/>
+                </h:form>
+                <p:separator/>
+                    <p:link href="listaUsuarios.xhtml" value="Retroceder"/> 
+                    <p:link href="./index.xhtml" value="Inicio"/> 
+                <p:separator/>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

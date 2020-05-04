@@ -28,7 +28,23 @@ public class RolControl implements Serializable {
     RolFacadeLocal RolEJB;
     List <Rol> listaRoles;
 
-    
+    public Rol getRol(int id){
+        try{
+            System.out.println(id);
+            System.out.println("Seleccionado "+ id);
+            for(Rol b:listaRoles){
+                if(b.getIdRol()==id){
+                    System.out.println("Rol "+ b.getNombre()+" tiene el mismo id");
+                    rol=b;
+                    break;
+                }
+            }
+            return rol;
+        } catch (Exception e){
+            System.out.println("Error al seleccionar el Rol "+ e.getMessage());
+        }
+        return null;
+    }
     
     @PostConstruct //le mandamos ejecutarse antes, ya que el constructor debe estar vacio
     public void reserva() {

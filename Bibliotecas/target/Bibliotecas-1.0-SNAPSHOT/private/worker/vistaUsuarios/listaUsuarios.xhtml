@@ -14,7 +14,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <p:linkButton outcome="altaUsuario" value="Añadir" style="margin-right:20px;">
+        <p:linkButton outcome="altaUsuarios" value="Añadir" style="margin-right:20px;">
             <f:param name="Añadir Usuario"/>
         </p:linkButton>
         <h:form id="acc">
@@ -49,7 +49,9 @@ and open the template in the editor.
             <p:column headerText="Acciones">
                 
                 
-                    <p:commandButton value="Editar" style="margin-right:20px;"  update=":acc:datos" action="#{usuarioControl.modificar(usuario.idUsuario)}"/>
+                    <p:linkButton outcome="editarUsuario" value="Editar" style="margin-right:20px;" >
+                        <f:param name="id" value="#{usuario.idUsuario}"/>
+                    </p:linkButton>
                     <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{usuarioControl.eliminar(usuario.idUsuario)}"/>
                         
                     

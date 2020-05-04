@@ -10,43 +10,53 @@ and open the template in the editor.
     xmlns:p="http://primefaces.org/ui"
     xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
-        <title>Lista Bibliotecas</title>
+        <title>Lista Prestamos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <p:linkButton outcome="altaBiblioteca" value="Añadir" style="margin-right:20px;">
-            <f:param name="Añadir Biblioteca"/>
+        <p:linkButton outcome="altaPrestamos" value="Añadir" style="margin-right:20px;">
+            <f:param name="Añadir Prestamo"/>
         </p:linkButton>
         <h:form id="acc">
-        <p:dataTable id="datos" widgetVar="dtVar"  var="biblioteca" value="#{bibliotecaControl.listaBiblioteca}">
+            <p:dataTable id="datos" widgetVar="dtVar"  var="prestamo" value="#{prestamoControl.listaPrestamoes}">
             <f:facet name="header">
-                Bibliotecas
+                Prestamos
             </f:facet>
             <p:column headerText="ID">
-                <h:outputText value="#{biblioteca.idBiblioteca}"></h:outputText>
+                <h:outputText value="#{prestamo.idPrestamo}"></h:outputText>
             </p:column>
             
-            <p:column headerText="Nombre">
-                <h:outputText value="#{biblioteca.nombre}"></h:outputText>
+            <p:column headerText="Fecha de devolucion">
+                <h:outputText value="#{prestamo.fechaDevolucion}"></h:outputText>
                 
             </p:column>
             
-            <p:column headerText="Direccion">
-                <h:outputText value="#{biblioteca.direccion}"></h:outputText>
+            <p:column headerText="Fecha de finalizacion">
+                <h:outputText value="#{prestamo.fechaFin}"></h:outputText>
                 
             </p:column>
             
-            <p:column headerText="Localidad">
-                <h:outputText value="#{biblioteca.localidad}"></h:outputText>
+            <p:column headerText="Fecha de inicio">
+                <h:outputText value="#{prestamo.fechaInicio}"></h:outputText>
+                
+            </p:column>
+                
+            <p:column headerText="Libro">
+                    <h:outputText value="#{prestamo.libro}"></h:outputText>
                 
             </p:column>
             
-
+            <p:column headerText="Usuario">
+                <h:outputText value="#{prestamo.usuario}"></h:outputText>
+                
+            </p:column>
             <p:column headerText="Acciones">
                 
                 
-                    <p:commandButton value="Editar" style="margin-right:20px;"  update=":acc:datos" action="#{rolControl.modificar(rol.idRol)}"/>
-                <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{rolControl.eliminar(rol.idRol)}"/>
+                    <p:linkButton outcome="editarPrestamo" value="Editar" style="margin-right:20px;" >
+                        <f:param name="id" value="#{prestamo.idPrestamo}"/>
+                    </p:linkButton>
+                <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{prestamoControl.eliminar(prestamo.idPrestamo)}"/>
                  
                 
                 

@@ -26,7 +26,24 @@ public class UsuarioControl implements Serializable {
     @EJB
     UsuarioFacadeLocal usuarioEJB;
     List<Usuario> listaUsuarios;
-    
+    public Usuario getUsuario(int id){
+        
+        try{
+            System.out.println(id);
+            System.out.println("Seleccionado "+ id);
+            for(Usuario b:listaUsuarios){
+                if(b.getIdUsuario()==id){
+                    System.out.println("Usuario "+ b.getNombre()+" tiene el mismo id");
+                    usuario=b;
+                    break;
+                }
+            }
+            return usuario;
+        } catch (Exception e){
+            System.out.println("Error al seleccionar el usuario "+ e.getMessage());
+        }
+        return null;
+    }
     @PostConstruct
     public void reserva(){
         usuario= new Usuario();

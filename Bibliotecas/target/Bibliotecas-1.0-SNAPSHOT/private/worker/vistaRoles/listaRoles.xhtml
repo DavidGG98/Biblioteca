@@ -38,12 +38,12 @@ and open the template in the editor.
             
             
                 
-            </p:column>
-            
             <p:column headerText="Acciones">
                 
                 
-                <p:commandButton value="Editar" style="margin-right:20px;"  update=":acc:datos" action="#{rolControl.modificar(rol.idRol)}"/>
+                <p:linkButton outcome="editarRol" value="Editar" style="margin-right:20px;" >
+                    <f:param name="id" value="#{rol.idRol}"/>
+                    </p:linkButton>
                 <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{rolControl.eliminar(rol.idRol)}"/>
                   
                 

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        
+         <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form id="grid">
+                    <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
+                        <p:panelGrid columns="3" styleClass="ui-noborder">
+                                                <h:outputText value="#{param['id']}"/>
+
+                            <p:outputLabel for="txtlibro" value="Libro: " /> 
+                            <p:inputText value="#{prestamoControl.getPrestamo(param['id']).libro}" 
+                                         required="true" id="txtNombre" 
+                                         requiredMessage="El libro es un campo oblifatorio" />
+                            <p:message for="txtlibro"/>
+
+                            <p:outputLabel for="txtdev" value="Fechad de Devolucion " /> 
+                            <p:inputText value="#{prestamoControl.prestamo.fechaDevolucion}" 
+                                         required="true" id="txtDireccion" 
+                                         requiredMessage="La fecha de devolucion es un campo oblifatorio" />
+                            <p:message for="txtdev"/>
+                            
+                            <p:outputLabel for="txtfechaini" value="Fecha de inico: " /> 
+                            <p:inputText value="#{prestamoControl.prestamo.fechaInicio}" 
+                                         required="true" id="txtLocalidad" 
+                                         requiredMessage="La fecha de inicio es un campo oblifatorio" />
+                            <p:message for="txtfechaini"/>
+                            
+                           <p:outputLabel for="txtfechafin" value="Fecha de finalizacion: " /> 
+                            <p:inputText value="#{prestamoControl.prestamo.fechaFin}" 
+                                         required="true" id="txtLocalidad" 
+                                         requiredMessage="La fecha de finalizacion es un campo oblifatorio" />
+                            <p:message for="txtfechafin"/>
+                            <p:outputLabel for="tstusu" value="Usuario: " /> 
+                            <p:inputText value="#{prestamoControl.prestamo.usuario}" 
+                                         required="true" id="txtLocalidad" 
+                                         requiredMessage="El usuario es un campo oblifatorio" />
+                            <p:message for="tstusu"/>
+                        </p:panelGrid>
+                    </p:fieldset>
+                    
+                    
+                    <p:separator/>
+                    <p:commandButton value="Modificar" actionListener="#{prestamoControl.modificar(prestamoControl.prestamo)}" 
+                                     update="grid"/>
+                </h:form>
+                <p:separator/>
+                    <p:link href="listaPrestamos.xhtml" value="Retroceder"/> 
+                    <p:link href="./index.xhtml" value="Inicio"/> 
+                <p:separator/>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

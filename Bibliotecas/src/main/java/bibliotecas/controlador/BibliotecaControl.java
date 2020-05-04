@@ -11,13 +11,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import org.primefaces.event.CellEditEvent;
-import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
 
 /**
  *
@@ -53,8 +48,31 @@ public class BibliotecaControl implements Serializable{
     }
    
     
-    
     private Biblioteca biblioteca;
+    private int sele;
+    public int getsele(){
+        return sele;
+    }
+    public Biblioteca getBiblioteca(int id){
+        sele=id;
+        try{
+            System.out.println(id);
+            System.out.println("Seleccionado "+ id);
+            for(Biblioteca b:listaBiblioteca){
+                if(b.getIdBiblioteca()==id){
+                    System.out.println("Biblioteca "+ b.getNombre()+" tiene el mismo id");
+                    biblioteca=b;
+                    break;
+                }
+            }
+            return biblioteca;
+        } catch (Exception e){
+            System.out.println("Error al seleccionar la biblioteca "+ e.getMessage());
+        }
+        return null;
+    }
+    
+    
     
     
     @EJB
@@ -98,16 +116,21 @@ public class BibliotecaControl implements Serializable{
     
     public void modificar(int id){
         try {
-                        System.out.println(id);
-
-            String nomnbre = biblioteca.getNombre();
+            System.out.println("modifico "+ id+","+biblioteca.getNombre());
+            System.out.println("modifico "+ biblioteca.getIdBiblioteca()+","+biblioteca.getNombre());
+            Biblioteca aux = new Biblioteca();
+            
             for (Biblioteca bbb:listaBiblioteca){
                 if (bbb.getIdBiblioteca()==id) {
-                    biblioteca=bbb;
+                    aux=bbb;
                     break;
                 }
             }
-            biblioteca.setNombre(nomnbre);
+            aux.setIdBiblioteca(biblioteca.getIdBiblioteca());
+            aux.setNombre(biblioteca.getNombre());
+            aux.setDireccion(biblioteca.getDireccion());
+            aux.setLocalidad(biblioteca.getLocalidad());
+            
             bibliotecaEJB.edit(biblioteca);
         } catch (Exception e) {
             System.out.println("Error al modificar la biblioteca"+ e.getMessage());

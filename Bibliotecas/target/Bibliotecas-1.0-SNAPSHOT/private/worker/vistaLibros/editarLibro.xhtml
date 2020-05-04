@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        
+         <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form id="grid">
+                    <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
+                        <p:panelGrid columns="3" styleClass="ui-noborder">
+                                                <h:outputText value="#{param['id']}"/>
+
+                            <p:outputLabel for="txtTitulo" value="Titulo: " /> 
+                            <p:inputText value="#{libroControl.getLibro(param['id']).titulo}" 
+                                         required="true" id="txtTitulo" 
+                                         requiredMessage="El titulo es un campo oblifatorio" />
+                            <p:message for="txtTitulo"/>
+
+                            <p:outputLabel for="txtAutor" value="Autor: "/> 
+                            <p:selectOneMenu value="#{libroControl.libro.autor}" 
+                                             required="true" id="txtAutor" 
+                                             requiredMessage="Hay que seleccionar una autor">
+                            <f:selectItems value="#{autorControl.listaAutores}"
+                                           var="c" itemLabel="#{c.nombre}" itemValue="#{c.idAutor}"/>
+                            </p:selectOneMenu>
+                            <p:message for="txtAutor"/>
+                            
+                            <p:outputLabel for="txtEditorial" value="Editorial: "/> 
+                            <p:selectOneMenu value="#{libroControl.libro.editorial}" 
+                                             required="true" id="txtEditorial" 
+                                             requiredMessage="Hay que seleccionar una autor">
+                            <f:selectItems value="#{editorialControl.listaEditoriales}"
+                                           var="c" itemLabel="#{c.nombre}" itemValue="#{c.idEditorial}"/>
+                            </p:selectOneMenu>
+                            <p:message for="txtEditorial"/>
+
+                            
+                        </p:panelGrid>
+                    </p:fieldset>
+                    
+                    
+                    <p:separator/>
+                    <p:commandButton value="Modificar" actionListener="#{libroControl.modificar(libroControl.libro)}" 
+                                     update="grid"/>
+                </h:form>
+                <p:separator/>
+                    <p:link href="listaLibros.xhtml" value="Retroceder"/> 
+                    <p:link href="./index.xhtml" value="Inicio"/> 
+                <p:separator/>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -12,36 +12,40 @@
 
             <ui:define name="content">
                 <h:form id="grid">
-
                     <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
+                        <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
                         <p:panelGrid columns="3" styleClass="ui-noborder">
                             <p:outputLabel for="txtNombre" value="Nombre: " /> 
-                            <p:inputText value="#{bibliotecaControl.biblioteca.nombre}" 
+                            <p:inputText value="#{autorControl.getAutor(param['id']).nombre}" 
                                          required="true" id="txtNombre" 
                                          requiredMessage="El nombre es un campo oblifatorio" />
                             <p:message for="txtNombre"/>
 
-                            <p:outputLabel for="txtDireccion" value="Direccion: " /> 
-                            <p:inputText value="#{bibliotecaControl.biblioteca.direccion}" 
-                                         required="true" id="txtDireccion" 
-                                         requiredMessage="La direccion es un campo oblifatorio" />
-                            <p:message for="txtDireccion"/>
-                            
-                            <p:outputLabel for="txtLocalidad" value="Localidad: " /> 
-                            <p:inputText value="#{bibliotecaControl.biblioteca.localidad}" 
-                                         required="true" id="txtLocalidad" 
-                                         requiredMessage="La localidad es un campo oblifatorio" />
-                            <p:message for="txtLocalidad"/>
-
-                            
                         </p:panelGrid>
+                    </p:fieldset>
+                     <p:fieldset legend="Datos opcionales">
+                        <p:panelGrid columns="2" styleClass="ui-noborder">
+                            <p:outputLabel value="Apellidos "/> 
+                            <p:inputText value="#{autorControl.autor.apellidos}" />
+                            <p:outputLabel value="Nacionalidad "/> 
+                            <p:inputText value="#{autorControl.autor.pais}"/> 
+                            <p:outputLabel value="Fecha de Nacimiento "/> 
+                            <p:datePicker value="#{autorControl.autor.fechaNacimiento}"/> 
+                            
+                        </p:panelGrid> 
                     </p:fieldset>
                     
                     
                     <p:separator/>
-                    <p:commandButton value="Instertar" actionListener="#{bibliotecaControl.insertar()}" 
+                    <p:commandButton value="Modificar" actionListener="#{autorControl.modificar(autorControl.autor)}" 
                                      update="grid"/>
                 </h:form>
+                                    </p:fieldset>
+
+                <p:separator/>
+                    <p:link href="listaAutores.xhtml" value="Retroceder"/> 
+                    <p:link href="./index.xhtml" value="Inicio"/> 
+                <p:separator/>
             </ui:define>
 
         </ui:composition>

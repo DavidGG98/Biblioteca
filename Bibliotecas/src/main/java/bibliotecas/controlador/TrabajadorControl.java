@@ -31,7 +31,23 @@ public class TrabajadorControl implements Serializable{
     List <Trabajador> listaTrabajadores;
     private Biblioteca biblioteca;
     private Rol rol;
-    
+    public Trabajador getTrabajador(int id){
+        try{
+            System.out.println(id);
+            System.out.println("Seleccionado "+ id);
+            for(Trabajador b:listaTrabajadores){
+                if(b.getIdTrabajador()==id){
+                    System.out.println("Trabajador "+ b.getNombre()+" tiene el mismo id");
+                    trabajador=b;
+                    break;
+                }
+            }
+            return trabajador;
+        } catch (Exception e){
+            System.out.println("Error al seleccionar el Trabajador "+ e.getMessage());
+        }
+        return null;
+    }
     
     @PostConstruct
     public void reserva(){

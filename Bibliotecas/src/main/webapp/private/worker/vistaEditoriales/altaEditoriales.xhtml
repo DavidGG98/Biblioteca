@@ -23,7 +23,7 @@
 
                             <p:outputLabel for="txtCIF" value="CIF: " /> 
                             <p:inputText value="#{editorialControl.editorial.cif}" 
-                                         required="true" id="txtDireccion" 
+                                         required="true" id="txtCIF" 
                                          requiredMessage="El CIF es un campo oblifatorio" />
                             <p:message for="txtCIF"/>
 
@@ -44,9 +44,11 @@
                     <p:separator/>
                     <p:commandButton value="Instertar" actionListener="#{editorialControl.insertar()}" 
                                      update="grid"/>
+                    </p:fieldset>
+                
                 </h:form>
                 <p:separator/>
-                    <p:link href="./../listaEditoriales.xhtml" value="Retroceder"/> 
+                    <p:link href="listaEditoriales.xhtml" value="Retroceder"/> 
                     <p:link href="./index.xhtml" value="Inicio"/> 
                 <p:separator/>
             </ui:define>

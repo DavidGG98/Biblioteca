@@ -30,7 +30,23 @@ public class AutorControl implements Serializable {
     AutorFacadeLocal autorEJB;
     List <Autor> listaAutores;
 
-    
+    public Autor getAutor(int id){
+        try{
+            System.out.println(id);
+            System.out.println("Seleccionado "+ id);
+            for(Autor b:listaAutores){
+                if(b.getIdAutor()==id){
+                    System.out.println("Autor "+ b.getNombre()+" tiene el mismo id");
+                    autor=b;
+                    break;
+                }
+            }
+            return autor;
+        } catch (Exception e){
+            System.out.println("Error al seleccionar el Autor "+ e.getMessage());
+        }
+        return null;
+    }
     
     @PostConstruct //le mandamos ejecutarse antes, ya que el constructor debe estar vacio
     public void reserva() {

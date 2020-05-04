@@ -28,7 +28,23 @@ public class PrestamoControl implements Serializable{
     @EJB
     PrestamoFacadeLocal prestamoEJB;
     List <Prestamo> listaPrestamoes;
- 
+    public Prestamo getPrestamo(int id){
+        try{
+            System.out.println(id);
+            System.out.println("Seleccionado "+ id);
+            for(Prestamo b:listaPrestamoes){
+                if(b.getIdPrestamo()==id){
+                    System.out.println("Prestamo "+ b.getIdPrestamo()+" tiene el mismo id");
+                    prestamo=b;
+                    break;
+                }
+            }
+            return prestamo;
+        } catch (Exception e){
+            System.out.println("Error al seleccionar el Prestamo "+ e.getMessage());
+        }
+        return null;
+    }
     @PostConstruct //le mandamos ejecutarse antes, ya que el constructor debe estar vacio
     public void reserva() {
         prestamo=new Prestamo(); //reserva la memoria

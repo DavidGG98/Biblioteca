@@ -21,6 +21,7 @@ and open the template in the editor.
         <p:linkButton outcome="altaBiblioteca" value="Añadir" style="margin-right:20px;">
             <f:param name="Añadir Biblioteca"/>
         </p:linkButton>
+        
         <p:dataTable id="datos" widgetVar="dtVar"  var="bibliotecas" value="#{bibliotecaControl.listaBiblioteca}" 
                      selectionMode="single" rowKey="#{bibliotecas.idBiblioteca}" >
             <f:facet name="header">
@@ -50,7 +51,9 @@ and open the template in the editor.
             <p:column headerText="Acciones">
                 
                 <h:form id="acc">
-                    <p:commandButton value="Editar" style="margin-right:20px;"  update=":form:datos" action="#{bibliotecaControl.modificar(bibliotecas.idBiblioteca)}"/>
+                    <p:linkButton outcome="editarBiblioteca" value="Editar" style="margin-right:20px;" >
+                        <f:param name="id" value="#{bibliotecas.idBiblioteca}"/>
+                    </p:linkButton>
                     <p:commandButton value="Borrar" style="margin-right:20px;" update=":form:datos" action="#{bibliotecaControl.eliminar(bibliotecas.idBiblioteca)}"/>
                         
                     
@@ -62,7 +65,7 @@ and open the template in the editor.
         </h:form>
         <p:separator/>
                 
-            <p:link href="./../workerHome.xhtml" value="Inicio"/> 
+            <p:link href="./../workerHome.xhtml" value="Retroceder   "/> 
             <p:link href="./index.xhtml" value="Inicio"/>
         <p:separator/>
         

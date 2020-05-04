@@ -15,35 +15,45 @@
 
                     <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
                         <p:panelGrid columns="3" styleClass="ui-noborder">
-                            <p:outputLabel for="txtNombre" value="Nombre: " /> 
-                            <p:inputText value="#{bibliotecaControl.biblioteca.nombre}" 
+
+                            <p:outputLabel for="txtlibro" value="Libro: " /> 
+                            <p:inputText value="#{prestamoControl.prestamo.libro}" 
                                          required="true" id="txtNombre" 
-                                         requiredMessage="El nombre es un campo oblifatorio" />
-                            <p:message for="txtNombre"/>
+                                         requiredMessage="El libro es un campo oblifatorio" />
+                            <p:message for="txtlibro"/>
 
-                            <p:outputLabel for="txtDireccion" value="Direccion: " /> 
-                            <p:inputText value="#{bibliotecaControl.biblioteca.direccion}" 
+                            <p:outputLabel for="txtdev" value="Fechad de Devolucion " /> 
+                            <p:inputText value="#{prestamoControl.prestamo.fechaDevolucion}" 
                                          required="true" id="txtDireccion" 
-                                         requiredMessage="La direccion es un campo oblifatorio" />
-                            <p:message for="txtDireccion"/>
+                                         requiredMessage="La fecha de devolucion es un campo oblifatorio" />
+                            <p:message for="txtdev"/>
                             
-                            <p:outputLabel for="txtLocalidad" value="Localidad: " /> 
-                            <p:inputText value="#{bibliotecaControl.biblioteca.localidad}" 
+                            <p:outputLabel for="txtfechaini" value="Fecha de inico: " /> 
+                            <p:inputText value="#{prestamoControl.prestamo.fechaInicio}" 
                                          required="true" id="txtLocalidad" 
-                                         requiredMessage="La localidad es un campo oblifatorio" />
-                            <p:message for="txtLocalidad"/>
-
+                                         requiredMessage="La fecha de inicio es un campo oblifatorio" />
+                            <p:message for="txtfechaini"/>
                             
+                           <p:outputLabel for="txtfechafin" value="Fecha de finalizacion: " /> 
+                            <p:inputText value="#{prestamoControl.prestamo.fechaFin}" 
+                                         required="true" id="txtLocalidad" 
+                                         requiredMessage="La fecha de finalizacion es un campo oblifatorio" />
+                            <p:message for="txtfechafin"/>
+                            <p:outputLabel for="tstusu" value="Usuario: " /> 
+                            <p:inputText value="#{prestamoControl.prestamo.usuario}" 
+                                         required="true" id="txtLocalidad" 
+                                         requiredMessage="El usuario es un campo oblifatorio" />
+                            <p:message for="tstusu"/>
                         </p:panelGrid>
                     </p:fieldset>
                     
                     
                     <p:separator/>
-                    <p:commandButton value="Instertar" actionListener="#{bibliotecaControl.insertar()}" 
+                    <p:commandButton value="Instertar" actionListener="#{prestamoControl.insertar()}" 
                                      update="grid"/>
                 </h:form>
                 <p:separator/>
-                    <p:link href="./../listaPrestamos.xhtml" value="Retroceder"/> 
+                    <p:link href="listaPrestamos.xhtml" value="Retroceder"/> 
                     <p:link href="./index.xhtml" value="Inicio"/> 
                 <p:separator/>
             </ui:define>

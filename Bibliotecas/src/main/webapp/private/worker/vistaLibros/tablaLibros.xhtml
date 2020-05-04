@@ -28,8 +28,10 @@
 
                     
                     <p:column headerText="Acción">
-                        <p:commandButton value="Editar" style="margin-right:20px;"  update=":acc:datos" action="#{libroControl.modificar(libro.idLibro)}"/>
-                        <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{libroControl.eliminar(libro.idLibro)}"/>
+                    <p:linkButton outcome="editarLibro" value="Editar" style="margin-right:20px;" >
+                        <f:param name="id" value="#{libro.idLibro}"/>
+                    </p:linkButton>
+                    <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{libroControl.eliminar(libro.idLibro)}"/>
                  </p:column>
 
                 </p:dataTable>
