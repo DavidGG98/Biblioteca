@@ -22,7 +22,6 @@ bibliotecas\EJB\AbstractFacade.class
 bibliotecas\EJB\LibroFacade.class
 bibliotecas\EJB\TrabajadorFacade.class
 bibliotecas\EJB\UsuarioFacadeLocal.class
-bibliotecas\EJB\Query.class
 bibliotecas\modelo\Rol.class
 bibliotecas\modelo\Rol_.class
 bibliotecas\modelo\Biblioteca.class
