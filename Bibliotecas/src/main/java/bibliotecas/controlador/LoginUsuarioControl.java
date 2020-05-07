@@ -35,7 +35,8 @@ public class LoginUsuarioControl implements Serializable{
     }
     
     public String verificarUsuario () {
-             
+      
+        
         usuario = usuarioEJB.verificarUsuario(usuario);
         if (usuario == null) {
             return "loginError.xhtml?faces-redirect=true";

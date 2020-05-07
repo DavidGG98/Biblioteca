@@ -81,7 +81,6 @@ public class LibroControl implements Serializable {
         }
     }
     
-  
     /*
     public Libro comprimeLibro () {
         
