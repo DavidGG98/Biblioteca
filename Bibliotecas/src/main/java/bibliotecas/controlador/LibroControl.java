@@ -10,6 +10,7 @@ import bibliotecas.modelo.Autor;
 import bibliotecas.modelo.Editorial;
 import bibliotecas.modelo.Libro;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -79,7 +80,38 @@ public class LibroControl implements Serializable {
             System.out.println("Erroooooor al modificarl el libro"+ e.getMessage());
         }
     }
-
+    
+    /*
+    public Libro comprimeLibro () {
+        
+    }
+    
+    //Agrupa todos los libros que tengan el mismo titulo y autor.
+    //Si al menos un libro no está alquilado, aparecerá como libre.
+    
+    public List <Libro> comprimeLibroLista () {
+        List <Libro> libros = new ArrayList <Libro>();
+        for (Libro l : listaLibros) {
+            //Creamos una copia del libro y lo introducimos en la lista
+            Libro lib = new Libro ();
+            lib.setAutor(l.getAutor());
+            lib.setTitulo(l.getTitulo());
+            if (libros.contains(l) && libros.) {
+                //Si el estado es libre, actualizamos a libre
+            } else {       
+                lib.setEstado(l.getEstado());
+                libros.add(lib);
+            }
+       
+        }
+        return libros;
+    }
+    
+    //Dado un titulo y un autor te devuelve todos los libros
+    public List <Libro> expandeLibro (String titulo, String auto) {
+        
+    }
+    */
     public Libro getLibro() {
         return libro;
     }

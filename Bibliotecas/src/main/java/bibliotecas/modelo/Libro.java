@@ -66,6 +66,17 @@ public class Libro implements Serializable {
     @ManyToOne(cascade=CascadeType.PERSIST)
     private Editorial editorial;
 
+    @Column (name="estado")
+    private int estado;
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+    
     public int getIdLibro() {
         return idLibro;
     }
