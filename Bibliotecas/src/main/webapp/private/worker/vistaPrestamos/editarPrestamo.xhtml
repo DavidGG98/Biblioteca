@@ -21,12 +21,12 @@
                                          required="true" id="txtNombre" 
                                          requiredMessage="El libro es un campo oblifatorio" />
                             <p:message for="txtlibro"/>
-
-                            <p:outputLabel for="txtdev" value="Fechad de Devolucion " /> 
-                            <p:inputText value="#{prestamoControl.prestamo.fechaDevolucion}" 
-                                         required="true" id="txtDireccion" 
-                                         requiredMessage="La fecha de devolucion es un campo oblifatorio" />
-                            <p:message for="txtdev"/>
+            
+                             <p:outputLabel for="txtcoment" value="Comentario " /> 
+                            <p:inputText value="#{prestamoControl.prestamo.comentario}"
+                                        required="true" id="txtcoment" 
+                                         requiredMessage="El comentario es un campo oblifatorio" />
+                            <p:message for="txtcoment"/>
                             
                             <p:outputLabel for="txtfechaini" value="Fecha de inico: " /> 
                             <p:inputText value="#{prestamoControl.prestamo.fechaInicio}" 
@@ -46,7 +46,13 @@
                             <p:message for="tstusu"/>
                         </p:panelGrid>
                     </p:fieldset>
-                    
+                    <p:fieldset legend="Datos opcionales">
+                        <p:panelGrid columns="2" styleClass="ui-noborder">
+                            <p:outputLabel for="txtdev" value="Fecha de Devolucion " /> 
+                            <p:inputText value="#{prestamoControl.prestamo.fechaDevolucion}" />
+                             
+                        </p:panelGrid>
+                    </p:fieldset>
                     
                     <p:separator/>
                     <p:commandButton value="Modificar" actionListener="#{prestamoControl.modificar(prestamoControl.prestamo)}" 

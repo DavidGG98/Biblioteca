@@ -54,6 +54,10 @@ public class Libro implements Serializable {
     @NotNull
     private int tiempoPrestamo;
     
+    @Column (name="estado")
+    @NotNull
+    private int estado;
+    
     @JoinColumn(name="idAutor")
     @ManyToOne(cascade=CascadeType.PERSIST)
     private Autor autor;
@@ -101,6 +105,10 @@ public class Libro implements Serializable {
     public Editorial getEditorial() {
         return editorial;
     }
+    
+    public int getEstado() {
+        return estado;
+    }
 
     public void setIdLibro(int idLibro) {
         this.idLibro = idLibro;
@@ -145,10 +153,14 @@ public class Libro implements Serializable {
     public String getIdioma() {
         return idioma;
     }
-
+    
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+    
     @Override
     public String toString() {
-        return "Libro{" + "idLibro=" + idLibro + ", titulo=" + titulo + ", genero=" + genero + ", resumen=" + resumen + ", imagen=" + imagen + ", tiempoPrestamo=" + tiempoPrestamo + ", autor=" + autor + ", biblioteca=" + biblioteca + ", editorial=" + editorial + '}';
+        return "Libro{" + "idLibro=" + idLibro + ", titulo=" + titulo + ", genero=" + genero + ", resumen=" + resumen + ", imagen=" + imagen + ", tiempoPrestamo=" + tiempoPrestamo + ", autor=" + autor + ", biblioteca=" + biblioteca + ", editorial=" + editorial + ", estado=" + estado + '}';
     }
 
 }
