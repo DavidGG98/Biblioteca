@@ -16,32 +16,34 @@
                     <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
                         <p:panelGrid columns="3" styleClass="ui-noborder">
 
-                            <p:outputLabel for="txtlibro" value="Libro: " /> 
-                            <p:inputText value="#{prestamoControl.prestamo.libro}" 
-                                         required="true" id="txtNombre" 
-                                         requiredMessage="El libro es un campo oblifatorio" />
-                            <p:message for="txtlibro"/>
+                            <p:outputLabel for="txtlibro" value="Libro: " />
+                            <p:selectOneMenu value="#{prestamoControl.prestamo.libro}" 
+                                             required="true" id="txtlibro" 
+                                             requiredMessage="Hay que seleccionar un libro">
+                                <f:selectItems value="#{libroControl.listaLibros}"
+                                               var="c" itemLabel="#{c.titulo}" itemValue="#{c.idLibro}"/>
+                            </p:selectOneMenu>
                             
                              <p:outputLabel for="txtcoment" value="Comentario " /> 
                             <p:inputText value="#{prestamoControl.prestamo.comentario}"
-                                        required="true" id="txtcoment" 
+                                         required="true" id="txtcoment" size="300"
                                          requiredMessage="El comentario es un campo oblifatorio" />
                             <p:message for="txtcoment"/>
                             
                             <p:outputLabel for="txtfechaini" value="Fecha de inico: " /> 
                             <p:inputText value="#{prestamoControl.prestamo.fechaInicio}" 
-                                         required="true" id="txtLocalidad" 
+                                         required="true" id="txtfechaini" 
                                          requiredMessage="La fecha de inicio es un campo oblifatorio" />
                             <p:message for="txtfechaini"/>
                             
                            <p:outputLabel for="txtfechafin" value="Fecha de finalizacion: " /> 
                             <p:inputText value="#{prestamoControl.prestamo.fechaFin}" 
-                                         required="true" id="txtLocalidad" 
+                                         required="true" id="txtfechafin" 
                                          requiredMessage="La fecha de finalizacion es un campo oblifatorio" />
                             <p:message for="txtfechafin"/>
                             <p:outputLabel for="tstusu" value="Usuario: " /> 
                             <p:inputText value="#{prestamoControl.prestamo.usuario}" 
-                                         required="true" id="txtLocalidad" 
+                                         required="true" id="tstusu" 
                                          requiredMessage="El usuario es un campo oblifatorio" />
                             <p:message for="tstusu"/>
                         </p:panelGrid>

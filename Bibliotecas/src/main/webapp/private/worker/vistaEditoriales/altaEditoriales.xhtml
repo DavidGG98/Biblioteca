@@ -17,13 +17,13 @@
                         <p:panelGrid columns="3" styleClass="ui-noborder">
                             <p:outputLabel for="txtNombre" value="Nombre: " /> 
                             <p:inputText value="#{editorialControl.editorial.nombre}" 
-                                         required="true" id="txtNombre" 
+                                         required="true" id="txtNombre" size="50"
                                          requiredMessage="El nombre es un campo oblifatorio" />
                             <p:message for="txtNombre"/>
 
                             <p:outputLabel for="txtCIF" value="CIF: " /> 
                             <p:inputText value="#{editorialControl.editorial.cif}" 
-                                         required="true" id="txtCIF" 
+                                         required="true" id="txtDireccion" size="50"
                                          requiredMessage="El CIF es un campo oblifatorio" />
                             <p:message for="txtCIF"/>
 
@@ -34,10 +34,10 @@
                      <p:fieldset legend="Datos opcionales">
                         <p:panelGrid columns="2" styleClass="ui-noborder">
                             <p:outputLabel value="Email: "/> 
-                            <p:inputText value="#{editorialControl.editorial.email}" />
+                            <p:inputText value="#{editorialControl.editorial.email}" size="50"/>
 
                              <p:outputLabel value="Telefono: "/> 
-                             <p:inputText value="#{editorialControl.editorial.telefono}"/> 
+                             <p:inputText value="#{editorialControl.editorial.telefono}"size="10"/> 
 
                             
                         </p:panelGrid>

@@ -18,13 +18,14 @@
                             <p:outputLabel for="txtTitulo" value="Titulo: " /> 
                             <p:inputText value="#{libroControl.libro.titulo}" 
                                          required="true" id="txtTitulo" 
+                                         size="50"
                                          requiredMessage="El titulo es un campo oblifatorio" />
                             <p:message for="txtTitulo"/>
 
                             <p:outputLabel for="txtAutor" value="Autor: "/> 
                             <p:selectOneMenu value="#{libroControl.libro.autor}" 
                                              required="true" id="txtAutor" 
-                                             requiredMessage="Hay que seleccionar una autor">
+                                             requiredMessage="Hay que seleccionar una autor"/>
                             <f:selectItems value="#{autorControl.listaAutores}"
                                            var="c" itemLabel="#{c.nombre}" itemValue="#{c.idAutor}"/>
                             </p:selectOneMenu>
@@ -32,8 +33,8 @@
                             
                             <p:outputLabel for="txtEditorial" value="Editorial: "/> 
                             <p:selectOneMenu value="#{libroControl.libro.editorial}" 
-                                             required="true" id="txtEditorial" 
-                                             requiredMessage="Hay que seleccionar una autor">
+                                             required="true" id="txtEditorial"
+                                             requiredMessage="Hay que seleccionar una autor"/>
                             <f:selectItems value="#{editorialControl.listaEditoriales}"
                                            var="c" itemLabel="#{c.nombre}" itemValue="#{c.idEditorial}"/>
                             </p:selectOneMenu>
@@ -46,14 +47,15 @@
                     <p:fieldset legend="Datos opcionales">
                         <p:panelGrid columns="2" styleClass="ui-noborder">
                             <p:outputLabel value="Genero: "/> 
-                             <p:inputText value="#{libroControl.libro.genero}" />
+                             <p:inputText value="#{libroControl.libro.genero}" size="200"/>
 
                              <p:outputLabel value="Idioma: "/> 
-                             <p:inputText value="#{libroControl.libro.idioma}"/> 
+                             <p:inputText value="#{libroControl.libro.idioma} "size="500" /> 
 
                             
                         </p:panelGrid>
                     </p:fieldset>
+                    
                     <p:separator/>
                     <p:commandButton value="Instertar" actionListener="#{libroControl.insertar()}" 
                                      update="grid"/>

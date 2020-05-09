@@ -17,25 +17,25 @@
                         <p:panelGrid columns="3" styleClass="ui-noborder">
                             <p:outputLabel for="txtNombre" value="Nombre: " /> 
                             <p:inputText value="#{dtTrabajador.trabajador.nombre}" 
-                                         required="true" id="txtNombre" 
+                                         required="true" id="txtNombre" size="20"
                                          requiredMessage="El nombre es un campo oblifatorio" />
                             <p:message for="txtNombre"/>
                             
                             <p:outputLabel for="txtApellidos" value="Apellidos: " /> 
                             <p:inputText value="#{dtTrabajador.trabajador.apellidos}" 
-                                         required="true" id="txtApellidos" 
+                                         required="true" id="txtApellidos" size="50"
                                          requiredMessage="El/los apellido/s es un campo oblifatorio" />
                             <p:message for="txtApellidos"/>
 
                             <p:outputLabel for="txtDNI" value="DNI:  " /> 
                             <p:inputText value="#{dtTrabajador.trabajador.dni}" 
-                                         required="true" id="txtDNI" 
+                                         required="true" id="txtDNI" size="9"
                                          requiredMessage="La DNI es un campo oblifatorio" />
                             <p:message for="txtDNI"/>
                             
                             <p:outputLabel for="txtContrasena" value="Contraseña: " /> 
                             <p:inputText value="#{dtTrabajador.trabajador.contrasena}" 
-                                         required="true" id="txtContrasena" 
+                                         required="true" id="txtContrasena" size="20"
                                          binding="true"
                                          requiredMessage="La contraseña es un campo oblifatorio" />
                             <p:message for="txtContrasena"/>

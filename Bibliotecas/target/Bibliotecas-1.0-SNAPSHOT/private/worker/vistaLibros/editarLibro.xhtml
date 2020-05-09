@@ -18,7 +18,7 @@
 
                             <p:outputLabel for="txtTitulo" value="Titulo: " /> 
                             <p:inputText value="#{libroControl.getLibro(param['id']).titulo}" 
-                                         required="true" id="txtTitulo" 
+                                         required="true" id="txtTitulo" size="50"
                                          requiredMessage="El titulo es un campo oblifatorio" />
                             <p:message for="txtTitulo"/>
 
@@ -43,7 +43,17 @@
                             
                         </p:panelGrid>
                     </p:fieldset>
-                    
+                    <p:fieldset legend="Datos opcionales">
+                        <p:panelGrid columns="2" styleClass="ui-noborder">
+                            <p:outputLabel value="Genero: "/> 
+                             <p:inputText value="#{libroControl.libro.genero}" size="200"/>
+
+                             <p:outputLabel value="Idioma: "/> 
+                             <p:inputText value="#{libroControl.libro.idioma} "size="500" /> 
+
+                            
+                        </p:panelGrid>
+                    </p:fieldset>
                     
                     <p:separator/>
                     <p:commandButton value="Modificar" actionListener="#{libroControl.modificar(libroControl.libro)}" 

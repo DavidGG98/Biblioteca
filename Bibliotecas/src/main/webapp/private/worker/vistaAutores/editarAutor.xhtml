@@ -17,7 +17,7 @@
                         <p:panelGrid columns="3" styleClass="ui-noborder">
                             <p:outputLabel for="txtNombre" value="Nombre: " /> 
                             <p:inputText value="#{autorControl.getAutor(param['id']).nombre}" 
-                                         required="true" id="txtNombre" 
+                                         required="true" id="txtNombre" size="30"
                                          requiredMessage="El nombre es un campo oblifatorio" />
                             <p:message for="txtNombre"/>
 
@@ -26,9 +26,9 @@
                      <p:fieldset legend="Datos opcionales">
                         <p:panelGrid columns="2" styleClass="ui-noborder">
                             <p:outputLabel value="Apellidos "/> 
-                            <p:inputText value="#{autorControl.autor.apellidos}" />
+                            <p:inputText value="#{autorControl.autor.apellidos}" size="50"/>
                             <p:outputLabel value="Nacionalidad "/> 
-                            <p:inputText value="#{autorControl.autor.pais}"/> 
+                            <p:inputText value="#{autorControl.autor.pais}"size="50"/> 
                             <p:outputLabel value="Fecha de Nacimiento "/> 
                             <p:datePicker value="#{autorControl.autor.fechaNacimiento}"/> 
                             
