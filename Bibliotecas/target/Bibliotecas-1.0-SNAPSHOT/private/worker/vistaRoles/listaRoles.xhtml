@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Lista Roles</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <p:linkButton outcome="altaRoles" value="Añadir" style="margin-right:20px;">
+            <f:param name="Añadir Rol"/>
+        </p:linkButton>
+        <h:form id="acc">
+        <p:dataTable id="datos" widgetVar="dtVar"  var="rol" value="#{rolControl.listaRoles}">
+            <f:facet name="header">
+                Roles
+            </f:facet>
+            <p:column headerText="ID">
+                <h:outputText value="#{rol.idRol}"></h:outputText>
+            </p:column>
+            
+            <p:column headerText="Nombre">
+                <h:outputText value="#{rol.nombre}"></h:outputText>
+                
+            </p:column>
+            
+            <p:column headerText="Descripcion">
+                <h:outputText value="#{rol.descripcion}"></h:outputText>
+                
+            </p:column>
+            
+            
+                
+            <p:column headerText="Acciones">
+                
+                
+                <p:linkButton outcome="editarRol" value="Editar" style="margin-right:20px;" >
+                    <f:param name="id" value="#{rol.idRol}"/>
+                    </p:linkButton>
+                <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{rolControl.eliminar(rol.idRol)}"/>
+                  
+                
+                
+            </p:column>
+            
+        </p:dataTable>
+        </h:form>
+        <p:separator/>
+                
+            <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
+            <p:link href="./index.xhtml" value="Inicio"/>    
+        <p:separator/>
+        
+    </body>
+</html>

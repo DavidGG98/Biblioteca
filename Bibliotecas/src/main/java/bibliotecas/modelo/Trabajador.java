@@ -51,7 +51,7 @@ public class Trabajador implements Serializable {
     
     @JoinColumn (name="idBiblioteca")
     @ManyToOne (cascade=CascadeType.PERSIST)
-    private Editorial editorial;
+    private Biblioteca biblioteca;
     
     @JoinColumn (name="idRol")
     @ManyToOne (cascade=CascadeType.PERSIST)
@@ -77,8 +77,8 @@ public class Trabajador implements Serializable {
         return contrasena;
     }
 
-    public Editorial getEditorial() {
-        return editorial;
+    public Biblioteca getBiblioteca() {
+        return biblioteca;
     }
 
     public Rol getRol() {
@@ -105,8 +105,8 @@ public class Trabajador implements Serializable {
         this.contrasena = contrasena;
     }
 
-    public void setEditorial(Editorial editorial) {
-        this.editorial = editorial;
+    public void setBiblioteca(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
     }
 
     public void setRol(Rol rol) {
@@ -115,7 +115,7 @@ public class Trabajador implements Serializable {
 
     @Override
     public String toString() {
-        return "Trabajador{" + "idTrabajador=" + idTrabajador + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", contrasena=" + contrasena + ", editorial=" + editorial + ", rol=" + rol + '}';
+        return "Trabajador{" + "idTrabajador=" + idTrabajador + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", contrasena=" + contrasena + ", biblioteca=" + biblioteca + ", rol=" + rol + '}';
     }
     
     

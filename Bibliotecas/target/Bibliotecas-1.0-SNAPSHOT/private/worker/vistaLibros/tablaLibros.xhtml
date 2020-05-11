@@ -1,19 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <body>
+<body>
 
-         <ui:composition template="./../../../WEB-INF/template/workerTemplate.xhtml">
+    <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
 
-            <ui:define name="content">
-                <h1> Lista de libros </h1>
-                <h:link outcome="altaLibro" value="Nuevo libro"/> 
-                <p:dataTable var="libro" value="#{libroControl.listaLibros}">
+        <ui:define name="content">
+            <h1> Lista de libros </h1>
+            <h:link outcome="altaLibro" value="Nuevo libro" />
+            <h:form id="acc">
+                <p:dataTable id="datos" var="libro" value="#{libroControl.listaLibros}">
                     <f:facet name="header">
                         Lista de libros
                     </f:facet>
@@ -25,25 +22,29 @@
                         <h:outputText value="#{libro.titulo}" />
                     </p:column>
 
-                    
+
                     <p:column headerText="Acción">
-                        <h:outputText value=" Eliminar / Más detalles (Se podrá eliminar y editar desde ahi tambien" />
+                        <p:linkButton outcome="editarLibro" value="Editar" style="margin-right:20px;">
+                            <f:param name="id" value="#{libro.idLibro}" />
+                        </p:linkButton>
+                        <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{libroControl.eliminar(libro.idLibro)}" />
                     </p:column>
 
                 </p:dataTable>
-                
-              
-                <p:separator/>
-                
-                <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
-                
-                 <p:separator/>
-                
-               
-                
-            </ui:define>
-            
-        </ui:composition>
+            </h:form>
 
-    </body>
+            <p:separator/>
+
+            <p:link href="./../workerHome.xhtml" value="Retroceder" />
+            <p:link href="./index.xhtml" value="Inicio" />
+            <p:separator/>
+
+
+
+        </ui:define>
+
+    </ui:composition>
+
+</body>
+
 </html>

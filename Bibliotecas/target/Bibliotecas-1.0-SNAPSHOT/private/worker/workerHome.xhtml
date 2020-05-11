@@ -1,32 +1,33 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <body>
-        
-        <ui:composition template="./../../WEB-INF/template/workerTemplate.xhtml"> 
-            <ui:define name="head">
-                <title> Home </title>
-            </ui:define>
-            <ui:define name="content">
-                <h1> Panel de administracion para trabajadores </h1>
-                <h:form>
-                    <p:panelGrid columns="1">
-                        <h:link outcome="vistaLibros/tablaLibros" value="Libros"/> 
-                        <h:link outcome="vistaRoles/altaRoles" value="Roles"/> 
-
-                    </p:panelGrid>
-
-                    <p:separator/>
-                    <p:link href="../../index.xhtml" value="Volver al inicio" />
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title> Panel Trabajador </title>
+</h:head>
+<h:body>
+    <h1> Panel de administracion para trabajadores </h1>
+    <h:form>
+        <p:panelGrid columns="1">
+            <!--
+                cambiar por botones
+                -->
+            <h:link outcome="vistaLibros/tablaLibros" value="Libros" />
+            <h:link outcome="vistaRoles/listaRoles" value="Roles" />
+            <h:link outcome="vistaBibliotecas/listaBibliotecas" value="Bibliotecas" />
+            <h:link outcome="vistaTrabajadores/listaTrabajadores" value="Trabajadores" />
+            <h:link outcome="vistaUsuarios/listaUsuarios" value="Usuarios" />
+            <h:link outcome="vistaPrestamos/listaPrestamos" value="Prestamos" />
+            <h:link outcome="vistaAutores/listaAutores" value="Autores" />
+            <h:link outcome="vistaEditoriales/listaEditoriales" value="Editoriales" />
 
 
-                </h:form>
-            </ui:define>
-        </ui:composition>
-    </body>
+        </p:panelGrid>
+
+        <p:separator/>
+        <p:link href="../../index.xhtml" value="Volver al inicio" />
+
+
+    </h:form>
+</h:body>
+
 </html>

@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        
+         <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form id="grid">
+
+                    <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
+                        <p:panelGrid columns="3" styleClass="ui-noborder">
+                            <p:outputLabel for="txtNombre" value="Nombre: " /> 
+                            <p:inputText value="#{dtTrabajador.trabajador.nombre}" 
+                                         required="true" id="txtNombre" size="20"
+                                         requiredMessage="El nombre es un campo oblifatorio" />
+                            <p:message for="txtNombre"/>
+                            
+                            <p:outputLabel for="txtApellidos" value="Apellidos: " /> 
+                            <p:inputText value="#{dtTrabajador.trabajador.apellidos}" 
+                                         required="true" id="txtApellidos" size="50"
+                                         requiredMessage="El/los apellido/s es un campo oblifatorio" />
+                            <p:message for="txtApellidos"/>
+
+                            <p:outputLabel for="txtDNI" value="DNI:  " /> 
+                            <p:inputText value="#{dtTrabajador.trabajador.dni}" 
+                                         required="true" id="txtDNI" size="9"
+                                         requiredMessage="La DNI es un campo oblifatorio" />
+                            <p:message for="txtDNI"/>
+                            
+                            <p:outputLabel for="txtContrasena" value="Contraseña: " /> 
+                            <p:inputText value="#{dtTrabajador.trabajador.contrasena}" 
+                                         required="true" id="txtContrasena" size="20"
+                                         binding="true"
+                                         requiredMessage="La contraseña es un campo oblifatorio" />
+                            <p:message for="txtContrasena"/>
+                            
+                            <p:outputLabel for="txtBiblioteca" value="Biblioteca: "/> 
+                            <p:selectOneMenu value="#{dtTrabajador.trabajador.biblioteca}" 
+                                             required="true" id="txtBiblioteca" 
+                                             requiredMessage="Hay que seleccionar una biblioteca">
+                                <f:selectItems value="#{bibliotecaControl.listaBiblioteca}"
+                                               var="c" itemLabel="#{c.nombre}" itemValue="#{c.idBiblioteca}"/>
+                            </p:selectOneMenu>
+                            <p:message for="txtBiblioteca"/>
+                            
+                            <p:outputLabel for="txtRol" value="Rol: "/> 
+                            <p:selectOneMenu value="#{dtTrabajador.trabajador.rol}" 
+                                             required="true" id="txtRol" 
+                                             requiredMessage="Hay que seleccionar una autor">
+                                <f:selectItems value="#{rolControl.listaRoles}"
+                                               var="c" itemLabel="#{c.nombre}" itemValue="#{c.idRol}"/>
+                            </p:selectOneMenu>
+                            <p:message for="txtRol"/>
+
+                            
+                        </p:panelGrid>
+                    </p:fieldset>
+                    
+                    
+                    <p:separator/>
+                    <p:commandButton value="Instertar" actionListener="#{dtTrabajador.insertar()}" 
+                                     update="grid"/>
+                </h:form>
+                <p:separator/>
+                    <p:link href="listaTrabajador.xhtml" value="Retroceder"/> 
+                    <p:link href="./index.xhtml" value="Inicio"/> 
+
+                <p:separator/>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
