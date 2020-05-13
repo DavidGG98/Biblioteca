@@ -23,7 +23,7 @@
 
                             <p:outputLabel for="txtCIF" value="CIF: " /> 
                             <p:inputText value="#{editorialControl.editorial.cif}" 
-                                         required="true" id="txtDireccion" size="50"
+                                         required="true" id="txtCIF" size="50"
                                          requiredMessage="El CIF es un campo oblifatorio" />
                             <p:message for="txtCIF"/>
 
@@ -37,7 +37,7 @@
                             <p:inputText value="#{editorialControl.editorial.email}" size="50"/>
 
                              <p:outputLabel value="Telefono: "/> 
-                             <p:inputText value="#{editorialControl.editorial.telefono}"size="10"/> 
+                             <p:inputText value="#{editorialControl.editorial.telefono}" size="10"/> 
 
                             
                         </p:panelGrid>
@@ -47,9 +47,9 @@
                     <p:separator/>
                     <p:commandButton value="Modificar" actionListener="#{editorialControl.modificar(editorialControl.editorial)}" 
                                      update="grid"/>
-                </h:form>
-                                    </p:fieldset>
-
+                </p:fieldset>
+</h:form>
+                                    
                 <p:separator/>
                     <p:link href="listaEditoriales.xhtml" value="Retroceder"/> 
                     <p:link href="./index.xhtml" value="Inicio"/> 

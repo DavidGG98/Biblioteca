@@ -7,7 +7,7 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-05-03T23:22:36")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-05-13T15:28:53")
 @StaticMetamodel(Prestamo.class)
 public class Prestamo_ { 
 
@@ -16,6 +16,7 @@ public class Prestamo_ {
     public static volatile SingularAttribute<Prestamo, Date> fechaInicio;
     public static volatile SingularAttribute<Prestamo, Integer> idPrestamo;
     public static volatile SingularAttribute<Prestamo, Usuario> usuario;
+    public static volatile SingularAttribute<Prestamo, String> comentario;
     public static volatile SingularAttribute<Prestamo, Date> fechaFin;
 
 }

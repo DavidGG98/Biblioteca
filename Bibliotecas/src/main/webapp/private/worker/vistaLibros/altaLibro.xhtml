@@ -25,16 +25,16 @@
                             <p:outputLabel for="txtAutor" value="Autor: "/> 
                             <p:selectOneMenu value="#{libroControl.libro.autor}" 
                                              required="true" id="txtAutor" 
-                                             requiredMessage="Hay que seleccionar una autor"/>
+                                             requiredMessage="Hay que seleccionar una autor">
                             <f:selectItems value="#{autorControl.listaAutores}"
-                                           var="c" itemLabel="#{c.nombre}" itemValue="#{c.idAutor}"/>
+                                           var="c" itemLabel="#{c.nombre}" itemValue="#{c.nombre}"/>
                             </p:selectOneMenu>
                             <p:message for="txtAutor"/>
                             
                             <p:outputLabel for="txtEditorial" value="Editorial: "/> 
                             <p:selectOneMenu value="#{libroControl.libro.editorial}" 
                                              required="true" id="txtEditorial"
-                                             requiredMessage="Hay que seleccionar una autor"/>
+                                             requiredMessage="Hay que seleccionar una autor">
                             <f:selectItems value="#{editorialControl.listaEditoriales}"
                                            var="c" itemLabel="#{c.nombre}" itemValue="#{c.idEditorial}"/>
                             </p:selectOneMenu>
@@ -50,7 +50,7 @@
                              <p:inputText value="#{libroControl.libro.genero}" size="200"/>
 
                              <p:outputLabel value="Idioma: "/> 
-                             <p:inputText value="#{libroControl.libro.idioma} "size="500" /> 
+                             <p:inputText value="#{libroControl.libro.idioma}" size="500" /> 
 
                             
                         </p:panelGrid>

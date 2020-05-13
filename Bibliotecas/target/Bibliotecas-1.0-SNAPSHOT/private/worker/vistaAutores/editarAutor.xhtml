@@ -28,7 +28,7 @@
                             <p:outputLabel value="Apellidos "/> 
                             <p:inputText value="#{autorControl.autor.apellidos}" size="50"/>
                             <p:outputLabel value="Nacionalidad "/> 
-                            <p:inputText value="#{autorControl.autor.pais}"size="50"/> 
+                            <p:inputText value="#{autorControl.autor.pais}" size="50"/> 
                             <p:outputLabel value="Fecha de Nacimiento "/> 
                             <p:datePicker value="#{autorControl.autor.fechaNacimiento}"/> 
                             
@@ -39,9 +39,9 @@
                     <p:separator/>
                     <p:commandButton value="Modificar" actionListener="#{autorControl.modificar(autorControl.autor)}" 
                                      update="grid"/>
-                </h:form>
+                
                                     </p:fieldset>
-
+                </h:form>
                 <p:separator/>
                     <p:link href="listaAutores.xhtml" value="Retroceder"/> 
                     <p:link href="./index.xhtml" value="Inicio"/> 

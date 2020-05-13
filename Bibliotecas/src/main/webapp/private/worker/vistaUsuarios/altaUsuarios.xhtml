@@ -29,7 +29,7 @@
                             
                             <p:outputLabel for="txtApellidos" value="Apellidos: " /> 
                             <p:inputText value="#{usuarioControl.usuarios.apellidos}" 
-                                         required="true" id="txtDireccion" size="50"
+                                         required="true" id="txtApellidos" size="50"
                                          requiredMessage="Apellidos es un campo oblifatorio" />
                             <p:message for="txtApellidos"/>
                             
@@ -40,7 +40,7 @@
                             <p:message for="txtEmail"/>
                             <p:outputLabel for="txtnum" value="Numero de Carnet " /> 
                             <p:inputText value="#{usuarioControl.usuarios.numeroCarnet}" 
-                                         required="true" id="txtEmail" size="10"
+                                         required="true" id="txtnum" size="10"
                                          requiredMessage="El Numero de Carnet es un campo oblifatorio" />
                             <p:message for="txtnum"/>
 
@@ -50,7 +50,7 @@
                     
                     
                     <p:separator/>
-                    <p:commandButton value="Instertar" actionListener="#{bibliotecaControl.insertar()}" 
+                    <p:commandButton value="Instertar" actionListener="#{usuarioControl.insertar()}" 
                                      update="grid"/>
                 </h:form>
             <p:separator/>

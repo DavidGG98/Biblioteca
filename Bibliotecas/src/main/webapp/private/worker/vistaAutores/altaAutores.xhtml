@@ -28,11 +28,13 @@
                             <p:outputLabel value="Apellidos "/> 
                             <p:inputText value="#{autorControl.autor.apellidos}" size="50"/>
                             <p:outputLabel value="Nacionalidad "/> 
-                            <p:inputText value="#{autorControl.autor.pais}"size="50"/> 
+                            <p:inputText value="#{autorControl.autor.pais}" size="50"/> 
                             <p:outputLabel value="Fecha de Nacimiento "/> 
                             <p:datePicker value="#{autorControl.autor.fechaNacimiento}"/> 
                             
                         </p:panelGrid>                    
+                     </p:fieldset>
+                    
                     <p:separator/>
                     <p:commandButton value="Instertar" actionListener="#{autorControl.insertar()}" 
                                      update="grid"/>

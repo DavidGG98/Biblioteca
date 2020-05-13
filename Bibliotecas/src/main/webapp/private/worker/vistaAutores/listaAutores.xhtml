@@ -50,7 +50,7 @@ and open the template in the editor.
             <p:column headerText="Acciones">
                 
                 
-                <p:linkButton outcome="editarBiblioteca" value="Editar" style="margin-right:20px;" >
+                <p:linkButton outcome="editarAutor" value="Editar" style="margin-right:20px;" >
                     <f:param name="id" value="#{autor.idAutor}"/>
                 </p:linkButton>
                 <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{autorControl.eliminar(autor.idAutor)}"/>  
