@@ -10,6 +10,8 @@
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <f:event type="preRenderView" listener="#{plantillaControl.verificarUsuario()}"/>
+        <ui:insert name="eventHead"/>
+        <ui:insert name="meta"/>
         <title>Facelets Template</title>
     </h:head>
 
