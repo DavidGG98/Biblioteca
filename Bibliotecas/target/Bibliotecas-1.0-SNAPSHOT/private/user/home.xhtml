@@ -11,9 +11,10 @@
         <ui:composition template="./../../WEB-INF/template/userTemplate.xhtml">
             
             <ui:define name="content">
-            <h1> Panel de usuarios </h1>
-                <h:link outcome="libros/lista" value="Libros"/> 
-                <h:link outcome=" " value =" Desconectarse "/>
+            <h1> Panel de usuarios </h1>                
+                <p:linkButton outcome="libros/lista" value="Libros" style="margin-right: 10px"/> 
+                <p:linkButton outcome="reservas/lista" value="Reservas" style="margin-right: 10px"/> 
+                <p:linkButton outcome="datos" value="Datos" style="margin-right: 10px"/>                
             </ui:define>
             
         </ui:composition>
