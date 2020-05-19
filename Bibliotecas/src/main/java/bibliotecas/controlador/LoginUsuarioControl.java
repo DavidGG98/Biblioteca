@@ -40,7 +40,7 @@ public class LoginUsuarioControl implements Serializable{
             return "loginError.xhtml?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
-            return "private/user/userHome.xhtml?faces-redirect=true";
+            return "private/user/home.xhtml?faces-redirect=true";
         }
     }
     

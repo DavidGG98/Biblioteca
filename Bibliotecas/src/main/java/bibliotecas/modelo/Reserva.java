@@ -63,6 +63,16 @@ public class Reserva implements Serializable {
     @Column (name="estado") 
     private int estado;
 
+    public String getStringEstado () {
+        int e = this.estado;
+        switch (e) {
+            case 0: return "Activo";
+            case 1: return "Recogido";
+            case -1: return "Cancelado";
+            default : return "ERROR";
+        }
+    }
+    
     public int getIdReserva() {
         return idReserva;
     }

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+         
+    </head>
+    
+    <body>
+         <ui:composition template="./../../../WEB-INF/template/userTemplate.xhtml">
+                          
+             <ui:define name="content">
+                 <p:fieldset legend="Numero de reserva: #{param['id']}" style="margin-bottom: 25px" >
+                 <p:panelGrid columns="1" >
+                    <p:row>     
+                        <h:outputText value="Libro: #{reservaControl.getReserva(param['id']).libro.titulo} " />
+                    </p:row>
+                    <p:row>
+                        <h:outputText value="Fecha de la reserva: #{reservaControl.getFormatDate(reservaControl.getReserva(param['id']).fechaInicio)}"/>
+                    </p:row>
+                    <p:row>
+                        <h:outputText value="Fecha tope recogida: #{reservaControl.getFormatDate(reservaControl.getReserva(param['id']).fechaFin)}"/>                   
+                    </p:row>
+                     <p:row>
+                        <h:outputText value="Estado de la reserva: #{reservaControl.getReserva(param['id']).getStringEstado()}"/>
+                    </p:row>
+                    <p:row>
+                        <h:outputText value="Comentarios: #{reservaControl.getReserva(param['id']).comentario}"/>
+                    </p:row>
+                    
+                 </p:panelGrid>
+                 </p:fieldset>
+             </ui:define>       
+            
+        </ui:composition>
+
+    </body>
+</html>

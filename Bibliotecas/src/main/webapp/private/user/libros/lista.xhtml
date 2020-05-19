@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+         <ui:composition template="./../../../WEB-INF/template/userTemplate.xhtml">
+
+            <ui:define name="content">
+                <h1> Lista de libros </h1>
+                <p:growl id="fallo" showDetail="true" life="2000" />
+                <h:form>
+                
+                <p:dataTable var="libro" value="#{libroControl.listaLibros}">
+                   
+                    <f:facet name="header">
+                        Lista de libros
+                    </f:facet>
+                    <p:column headerText="Titulo">
+                        <h:outputText value="#{libro.titulo}" />
+                    </p:column>
+                    
+                    <p:column headerText="Autor">
+                        <h:outputText value="#{libro.autor.nombre} #{libro.autor.apellidos}" />
+                    </p:column>
+
+                    <p:column headerText="Genero">
+                        <h:outputText value="#{libro.genero}" />
+                    </p:column>
+                    
+                    <p:column headerText="Idioma">
+                        <h:outputText value="#{libro.idioma}" />
+                    </p:column>
+                    
+                    <p:column headerText="Biblioteca">
+                        <h:outputText value="#{libro.biblioteca.nombre}" />
+                    </p:column>
+                    
+                    <p:column headerText="Estado">
+                        <h:outputText value="#{libro.escribeEstado()}" />
+                    </p:column>
+                    
+                    <p:column headerText="">
+
+                        <p:commandButton value="Reservar" action="#{reservaControl.nuevaReserva(libro.idLibro)}"
+                                        update="fallo"/>
+                                            
+                    </p:column>
+                    
+                  
+                </p:dataTable>
+                </h:form>            
+                <p:separator/>
+                    <p:link href="./../home.xhtml" value="Retroceder"/> 
+                <p:separator/>
+               
+            </ui:define>           
+        </ui:composition>
+
+    </body>
+</html>
