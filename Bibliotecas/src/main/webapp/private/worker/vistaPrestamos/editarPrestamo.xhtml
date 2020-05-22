@@ -8,60 +8,55 @@
 
     <body>
         
-         <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
+         <ui:composition template="./../../../WEB-INF/template/workerTemplate.xhtml">
 
             <ui:define name="content">
                 <h:form id="grid">
-                    <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
+                <p:growl id="mensaje" showDetail="true" life="2000" />
+                    <p:fieldset legend="ID Prestamo: #{param['id']}" style="margin-bottom: 25px" >
                         <p:panelGrid columns="3" styleClass="ui-noborder">
-                                                <h:outputText value="#{param['id']}"/>
+                            
+                            <p:outputLabel value="Libro: " /> 
+                            <p:outputLabel value="#{prestamoControl.getPrestamo(param['id']).libro.titulo}"/>
+                            <p:outputLabel value="(ID = #{prestamoControl.getPrestamo(param['id']).libro.idLibro})"/>
+           
+                            <p:outputLabel value="Usuario: " /> 
+                            <p:outputLabel value="#{prestamoControl.getPrestamo(param['id']).usuario.nombre} #{prestamoControl.getPrestamo(param['id']).usuario.apellidos}"/>
+                            <p:outputLabel value="(ID = #{prestamoControl.getPrestamo(param['id']).usuario.idUsuario})"/>
+                            
+                            <p:outputLabel value="Comentario " /> 
+                            <p:inputText value="#{prestamoControl.prestamo.comentario}"/>
+                            <p:commandButton value="Añadir comentario" actionListener="#{prestamoControl.addComent()}" update="grid mensaje"/>
+                            
+                            <p:outputLabel value="Fecha de inico: " /> 
+                            <p:outputLabel value="#{prestamoControl.getFormatDate(prestamoControl.getPrestamo(param['id']).fechaInicio)}"/>
+                            <p:outputLabel value=""/>
+                            
+                            <p:outputLabel value="Fecha de finalizacion: " /> 
+                            <p:outputLabel value="#{prestamoControl.getFormatDate(prestamoControl.getPrestamo(param['id']).fechaFin)}"/>
+                            <p:commandButton value="Ampliar por 15 días" actionListener="#{prestamoControl.amplia()}" update="grid mensaje"/>
+                            
+                            <p:outputLabel value="Fecha de Devolucion " /> 
+                            <p:outputLabel value="#{prestamoControl.getFormatDate(prestamoControl.getPrestamo(param['id']).fechaDevolucion)}" />
+                            <p:outputLabel value=""/>
+                            
+                            <p:outputLabel value="Estado " /> 
+                            <p:outputLabel value="#{prestamoControl.getPrestamo(param['id']).stringEstado}" />
+                            <p:outputLabel value=""/>
 
-                            <p:outputLabel for="txtlibro" value="Libro: " /> 
-                            <p:inputText value="#{prestamoControl.getPrestamo(param['id']).libro}" 
-                                         required="true" id="txtlibro" size="50"
-                                         requiredMessage="El libro es un campo oblifatorio" />
-                            <p:message for="txtlibro"/>
-                            
-            
-                             <p:outputLabel for="txtcoment" value="Comentario " /> 
-                            <p:inputText value="#{prestamoControl.prestamo.comentario}"
-                                         required="true" id="txtcoment" size="300"
-                                         requiredMessage="El comentario es un campo oblifatorio" />
-                            <p:message for="txtcoment"/>
-                            
-                            <p:outputLabel for="txtfechaini" value="Fecha de inico: " /> 
-                            <p:inputText value="#{prestamoControl.prestamo.fechaInicio}" 
-                                         required="true" id="txtfechaini" 
-                                         requiredMessage="La fecha de inicio es un campo oblifatorio" />
-                            <p:message for="txtfechaini"/>
-                            
-                           <p:outputLabel for="txtfechafin" value="Fecha de finalizacion: " /> 
-                            <p:inputText value="#{prestamoControl.prestamo.fechaFin}" 
-                                         required="true" id="txtfechafin" 
-                                         requiredMessage="La fecha de finalizacion es un campo oblifatorio" />
-                            <p:message for="txtfechafin"/>
-                            <p:outputLabel for="tstusu" value="Usuario: " /> 
-                            <p:inputText value="#{prestamoControl.prestamo.usuario}" 
-                                         required="true" id="tstusu" 
-                                         requiredMessage="El usuario es un campo oblifatorio" />
-                            <p:message for="tstusu"/>
                         </p:panelGrid>
                     </p:fieldset>
-                    <p:fieldset legend="Datos opcionales">
-                        <p:panelGrid columns="2" styleClass="ui-noborder">
-                            <p:outputLabel for="txtdev" value="Fecha de Devolucion " /> 
-                            <p:inputText value="#{prestamoControl.prestamo.fechaDevolucion}" />
-                             
-                        </p:panelGrid>
-                    </p:fieldset>
-                    
+                  
                     <p:separator/>
-                    <p:commandButton value="Modificar" actionListener="#{prestamoControl.modificar(prestamoControl.prestamo)}" 
+                    <p:commandButton value="Finalizar Prestamo " actionListener="#{prestamoControl.finPrestamo(prestamoControl.prestamo.idPrestamo)}" 
                                      update="grid"/>
+                    
+                    <p:commandButton value="borrar Prestamo" actionListener="#{prestamoControl.eliminar(prestamoControl.prestamo.idPrestamo)}" 
+                                     update="grid" style="margin-left: 20px"/>
                 </h:form>
                 <p:separator/>
                     <p:link href="listaPrestamos.xhtml" value="Retroceder"/> 
-                    <p:link href="./index.xhtml" value="Inicio"/> 
+                    <p:link href="./../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/> 
                 <p:separator/>
             </ui:define>
 

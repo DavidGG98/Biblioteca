@@ -5,6 +5,8 @@
  */
 package bibliotecas.controlador;
 
+import bibliotecas.EJB.BibliotecaFacadeLocal;
+import bibliotecas.EJB.RolFacadeLocal;
 import bibliotecas.EJB.TrabajadorFacadeLocal;
 import bibliotecas.modelo.Biblioteca;
 import bibliotecas.modelo.Rol;
@@ -13,6 +15,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -20,7 +23,7 @@ import javax.inject.Named;
  *
  * @author david, alex
  */
-@Named ("dtTrabajador")
+@Named 
 @ViewScoped
 public class TrabajadorControl implements Serializable{
     
@@ -28,7 +31,13 @@ public class TrabajadorControl implements Serializable{
     
     @EJB
     TrabajadorFacadeLocal trabajadorEJB;
+    @EJB
+    BibliotecaFacadeLocal bicliotecaEJB;
+    @EJB
+    RolFacadeLocal rolEJB;
     List <Trabajador> listaTrabajadores;
+    List <Biblioteca> listaBibliotecas;
+    List <Rol> listaRoles;
     private Biblioteca biblioteca;
     private Rol rol;
     public Trabajador getTrabajador(int id){
@@ -52,42 +61,61 @@ public class TrabajadorControl implements Serializable{
     @PostConstruct
     public void reserva(){
         trabajador= new Trabajador();
+        biblioteca = new Biblioteca();
+        rol = new Rol();
         listaTrabajadores= trabajadorEJB.findAll();
-        
+        listaBibliotecas=bicliotecaEJB.findAll();
+        listaRoles = rolEJB.findAll();        
     }
     public void insertar(){
+        String context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
+        for (Biblioteca b:listaBibliotecas) {
+            if (b.getIdBiblioteca() == biblioteca.getIdBiblioteca()) {
+                biblioteca = b;
+                break;
+            }
+        }
+        trabajador.setBiblioteca(biblioteca);
+        for (Rol r:listaRoles) {
+            if (r.getIdRol()==rol.getIdRol()) {
+                rol = r;
+                break;
+            }
+        }
+        trabajador.setRol(rol);
         try{
-          trabajadorEJB.create(trabajador);
+            trabajadorEJB.create(trabajador);
             System.out.println("Anadiendo trabajador...");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaTrabajadores/listraTrabajadores.xhtml");
         } catch (Exception e) {
             System.out.println("Error al anadir el Trabajador "+ e.getMessage());
         }
     }
     public void eliminar(int id){
+        String context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
+        System.out.println("Eliminado trabajador con id= "+id);
         try{
-            System.out.println("");
             for(Trabajador t:listaTrabajadores){
                 if(t.getIdTrabajador()==id){
                     trabajador=t;
                     break;
                 }
-            trabajadorEJB.remove(trabajador);
             }
+            trabajadorEJB.remove(trabajador);
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaTrabajadores/listaTrabajadores.xhtml");       
+            
         } catch (Exception e) {
             System.out.println("Error al eliminar el trabajador "+ e.getMessage());
         }
     }
-    public void modificar(int id) {
+    public void modificar(Trabajador t) {
+        String context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
         try {
-            String n=trabajador.getNombre();
-            for (Trabajador c:listaTrabajadores) {
-                if(c.getIdTrabajador()== id) {
-                    trabajador=c; //Recuperamos el objeto al completo, no solo su id
-                    break; //Sale del bucle
-                }
-            }
-            trabajador.setNombre(n); //Actualizamos el nombre que hemos puesto y lo guardamos
+            trabajador.setRol(rol);
+            trabajador.setBiblioteca(biblioteca);
             trabajadorEJB.edit(trabajador);
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaTrabajadores/listraTrabajadores.xhtml");
+        
         } catch (Exception e) {
             System.out.println("Error al modificar el trabajador"+ e.getMessage());
         }
@@ -134,4 +162,21 @@ public class TrabajadorControl implements Serializable{
         this.rol = rol;
     }
 
+    public List<Biblioteca> getListaBibliotecas() {
+        return listaBibliotecas;
+    }
+
+    public List<Rol> getListaRoles() {
+        return listaRoles;
+    }
+
+    public void setListaBibliotecas(List<Biblioteca> listaBibliotecas) {
+        this.listaBibliotecas = listaBibliotecas;
+    }
+
+    public void setListaRoles(List<Rol> listaRoles) {
+        this.listaRoles = listaRoles;
+    }
+
+    
 }

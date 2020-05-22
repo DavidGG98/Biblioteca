@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -54,9 +55,12 @@ public class RolControl implements Serializable {
     }
     
     public void insertar() { //Inserta en la base de datos
+        String context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
         try {
             RolEJB.create(rol);
-            System.out.println("Insertando Rol...");
+            System.out.println("Rol insertado con exito");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaLibros/tablaLibros.xhtml");
+
         } catch (Exception e) {
             System.out.println("Error al insertar el Rol " + e.getMessage());
         }
@@ -79,19 +83,13 @@ public class RolControl implements Serializable {
         }
     }
     
-    public void modificar(int id) {
+    public void modificar(Rol r) {
+        String context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
         try {
-            String n=rol.getNombre();
-            String d=rol.getDescripcion();
-            for (Rol r:listaRoles) {
-                if(r.getIdRol() == id) {
-                    rol=r; //Recuperamos el objeto al completo, no solo su id
-                    break; //Sale del bucle
-                }
-            }
-            rol.setNombre(n); //Actualizamos el nombre que hemos puesto y lo guardamos
-            rol.setDescripcion(d);
-            RolEJB.edit(rol);
+            RolEJB.edit(r);
+            System.out.println("Rol editado con exito");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaLibros/tablaLibros.xhtml");
+
         } catch (Exception e) {
             System.out.println("Erroooooor al modificarl el libro"+ e.getMessage());
         }

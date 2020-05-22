@@ -9,66 +9,61 @@
     <body>
         
          <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
-
             <ui:define name="content">
                 <h:form id="grid">
                     <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
                         <p:panelGrid columns="3" styleClass="ui-noborder">
                             <p:outputLabel for="txtNombre" value="Nombre: " /> 
-                            <p:inputText value="#{dtTrabajador.getTrabajador(param['id']).nombre}" 
+                            <p:inputText value="#{trabajadorControl.getTrabajador(param['id']).nombre}" 
                                          required="true" id="txtNombre" size="20"
                                          requiredMessage="El nombre es un campo oblifatorio" />
                             <p:message for="txtNombre"/>
                             
                             <p:outputLabel for="txtApellidos" value="Apellidos: " /> 
-                            <p:inputText value="#{dtTrabajador.trabajador.apellidos}" 
+                            <p:inputText value="#{trabajadorControl.getTrabajador(param['id']).apellidos}" 
                                          required="true" id="txtApellidos" size="50"
                                          requiredMessage="El/los apellido/s es un campo oblifatorio" />
                             <p:message for="txtApellidos"/>
 
                             <p:outputLabel for="txtDNI" value="DNI:  " /> 
-                            <p:inputText value="#{dtTrabajador.trabajador.dni}" 
+                            <p:inputText value="#{trabajadorControl.getTrabajador(param['id']).dni}" 
                                          required="true" id="txtDNI" size="9"
                                          requiredMessage="La DNI es un campo oblifatorio" />
                             <p:message for="txtDNI"/>
                             
                             <p:outputLabel for="txtContrasena" value="Contraseña: " /> 
-                            <p:inputText value="#{dtTrabajador.trabajador.contrasena}" 
+                            <p:inputText value="#{trabajadorControl.getTrabajador(param['id']).contrasena}" 
                                          required="true" id="txtContrasena" size="20"
-                                         binding="true"
                                          requiredMessage="La contraseña es un campo oblifatorio" />
                             <p:message for="txtContrasena"/>
-                            
-                            <p:outputLabel for="txtBiblioteca" value="Biblioteca: "/> 
-                            <p:selectOneMenu value="#{dtTrabajador.trabajador.biblioteca}" 
+                             <p:outputLabel for="txtBiblioteca" value="Biblioteca: "/> 
+                            <p:selectOneMenu value="#{trabajadorControl.biblioteca.idBiblioteca}" 
                                              required="true" id="txtBiblioteca" 
                                              requiredMessage="Hay que seleccionar una biblioteca">
-                                <f:selectItems value="#{bibliotecaControl.listaBiblioteca}"
+                                <f:selectItems value="#{trabajadorControl.listaBibliotecas}"
                                                var="c" itemLabel="#{c.nombre}" itemValue="#{c.idBiblioteca}"/>
                             </p:selectOneMenu>
                             <p:message for="txtBiblioteca"/>
                             
                             <p:outputLabel for="txtRol" value="Rol: "/> 
-                            <p:selectOneMenu value="#{dtTrabajador.trabajador.rol}" 
+                            <p:selectOneMenu value="#{trabajadorControl.rol.idRol}" 
                                              required="true" id="txtRol" 
                                              requiredMessage="Hay que seleccionar una autor">
-                                <f:selectItems value="#{rolControl.listaRoles}"
+                                <f:selectItems value="#{trabajadorControl.listaRoles}"
                                                var="c" itemLabel="#{c.nombre}" itemValue="#{c.idRol}"/>
                             </p:selectOneMenu>
                             <p:message for="txtRol"/>
-
-                            
-                        </p:panelGrid>
+                     </p:panelGrid>
                     </p:fieldset>
                     
                     
                     <p:separator/>
-                    <p:commandButton value="Modificar" actionListener="#{dtTrabajador.modificar(dtTrabajador.trabajador)}" 
+                    <p:commandButton value="Modificar" actionListener="#{trabajadorControl.modificar(trabajadorControl.trabajador)}" 
                                      update="grid"/>
                 </h:form>
                 <p:separator/>
-                    <p:link href="listaTrabajador.xhtml" value="Retroceder"/> 
-                    <p:link href="./index.xhtml" value="Inicio"/> 
+                    <p:link href="listaTrabajadores.xhtml" value="Retroceder"/> 
+                   <p:link href="./../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/> 
                 <p:separator/>
             </ui:define>
 

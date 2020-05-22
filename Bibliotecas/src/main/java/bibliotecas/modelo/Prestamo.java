@@ -33,30 +33,34 @@ public class Prestamo implements Serializable {
     private int idPrestamo;
     
     @JoinColumn (name="idLibro")
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Libro libro;
     
     @JoinColumn (name="idUsuario") 
-    @ManyToOne (cascade=CascadeType.PERSIST)
+    @ManyToOne 
     private Usuario usuario;
     
     @Column(name="fechaInicio")
     @NotNull
-    @Temporal (TemporalType.TIME)
+    @Temporal (TemporalType.DATE)
     private Date fechaInicio;
     
     @Column (name="fechaFin")
     @NotNull
-    @Temporal (TemporalType.TIME)
+    @Temporal (TemporalType.DATE)
     private Date fechaFin;
     
     @Column (name="fechaDevolucion")
-    @Temporal (TemporalType.TIME)
+    @Temporal (TemporalType.DATE)
     private Date fechaDevolucion;
     
     @Column (name="comentario")
     @NotNull
     private String comentario;
+    
+    @Column (name="estado")
+    @NotNull
+    private int estado=0; //default 0
     
     public int getIdPrestamo() {
         return idPrestamo;
@@ -112,6 +116,23 @@ public class Prestamo implements Serializable {
     
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+    
+    public String getStringEstado() {           
+        switch (estado) {
+            case 0: return "Activa";
+            case 1: return "Finalizado";
+            case -1: return "Cancelado";
+            default: return "ERROR";
+        }
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public int getEstado() {
+        return estado;
     }
     
     @Override

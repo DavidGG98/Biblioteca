@@ -76,9 +76,21 @@ public class Autor implements Serializable {
     }
 
     public String getApellidos() {
-        return apellidos;
+        if (apellidos == null) {
+            return "";
+        } else {
+            return apellidos;
+        }
     }
 
+    public String getNombreYApellidos () {
+        if (apellidos == null) {
+            return nombre;
+        } else {
+            return nombre + " " + apellidos;
+        }
+    }
+    
     public String getPais() {
         return pais;
     }

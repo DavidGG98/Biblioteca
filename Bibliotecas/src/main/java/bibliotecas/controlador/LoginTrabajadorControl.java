@@ -37,13 +37,17 @@ public class LoginTrabajadorControl implements Serializable{
     }
     
     public String verificarTrabajador () {
-             
-        trabajador = trabajadorEJB.verificarTrabajador(trabajador);
-        if (trabajador == null) {
-            return "loginError.xhtml?faces-redirect=true";
-        } else {
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("trabajador", trabajador);
-            return "private/worker/workerHome.xhtml?faces-redirect=true";
+        try {
+            trabajador = trabajadorEJB.verificarTrabajador(trabajador);
+            if (trabajador == null) {
+                return "loginError.xhtml?faces-redirect=true";
+            } else {
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("trabajador", trabajador);
+                return "private/worker/workerHome.xhtml?faces-redirect=true";
+            }
+        } catch (Exception e) {
+            System.out.println("Error inesperado " + e.getMessage());
+            return "unexpectedError.xhtml?faces-redirect=true";
         }
     }
 
