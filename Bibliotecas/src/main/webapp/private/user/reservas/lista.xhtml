@@ -10,7 +10,39 @@
         <ui:composition template="./../../../WEB-INF/template/userTemplate.xhtml">
 
             <ui:define name="content">
+                <h1> Mis reservas </h1>
+                <p:growl id="fallo" showDetail="true" life="2000" />
+                <h:form>
+                
+                    <p:dataTable var="reserva" value="#{reservaControl.reservasUsuario}">
+                   
+                    <f:facet name="header">
+                        Lista de Reservas
+                    </f:facet>
+                    <p:column headerText="ID" style="width: 20px">
+                        <h:outputText value="#{reserva.idReserva}" />
+                    </p:column>
+                    
+                    <p:column headerText="Libro">
+                        <h:outputText value="#{reserva.libro.titulo}" />
+                    </p:column>
 
+                    <p:column headerText="Estado">
+                        <h:outputText value="#{reserva.stringEstado}" />
+                    </p:column>
+                                      
+               
+                    <p:column headerText="">
+                        <p:linkButton value="Más informacion" href="./info.xhtml?id=#{reserva.idReserva}"/>                                      
+                    </p:column>
+                    
+                  
+                </p:dataTable>
+                </h:form>           
+                
+                <p:separator/>
+                    <p:link href="./../home.xhtml" value="Retroceder"/> 
+                <p:separator/>
             </ui:define>
             
         </ui:composition>

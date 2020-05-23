@@ -24,6 +24,7 @@ import javax.inject.Named;
 import bibliotecas.EJB.ReservaFacadeLocal;
 import bibliotecas.EJB.UsuarioFacadeLocal;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.faces.application.FacesMessage;
 
 /**
@@ -33,7 +34,7 @@ import javax.faces.application.FacesMessage;
 @Named
 @ViewScoped
 public class ReservaControl implements Serializable {
-    
+
     private Reserva reserva;
     private Usuario usuario;
     private Libro libro;
@@ -47,36 +48,63 @@ public class ReservaControl implements Serializable {
     LibroFacadeLocal libroEJB;
     @EJB
     UsuarioFacadeLocal usuarioEJB;
-    
-    List <Reserva> listaReservas;
-    List <Usuario> listaUsuarios;
-    List <Libro> listaLibros;
-    
-    @PostConstruct 
+
+    List<Reserva> listaReservas;
+    List<Usuario> listaUsuarios;
+    List<Libro> listaLibros;
+    String context;
+
+    @PostConstruct
     public void reservaEspacio() {
-        c=Calendar.getInstance();
-        d=new Date();
+        c = Calendar.getInstance();
+        d = new Date();
         reserva = new Reserva();
         libro = new Libro();
         usuario = new Usuario();
         listaReservas = reservaEJB.findAll();
         listaUsuarios = usuarioEJB.findAll();
         listaLibros = libroEJB.findAll();
+        context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
+        caducarReservas();
     }
-    
-    public void nuevaReserva (int idLibro) throws IOException {
-        String context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();       
+
+    public void cancelaReserva(int id) {
+        System.out.println("Cancelando reserva " + id);
+        Reserva r = reservaEJB.find(id);
+        if (r.getEstado() == 0) {
+            r.setEstado(-1); //Estado cancelado
+            Libro l = r.getLibro();
+            l.setEstado(0); //estado libre
+            try {
+                libroEJB.edit(l);
+                try {
+                    reservaEJB.edit(r);
+                    FacesContext.getCurrentInstance().getExternalContext()
+                            .redirect(context + "/faces/private/user/reservas/lista.xhtml");
+                } catch (Exception e) {
+                    System.out.println("Error al editar la reserva");
+                }
+            } catch (Exception e) {
+                System.out.println("Error al liberar el libro");
+            }
+
+        }
+
+    }
+
+    public void nuevaReserva(int idLibro) throws IOException {
+
         System.out.println("Creando reserva");
-        c=Calendar.getInstance();
+        c = Calendar.getInstance();
         //utilizamos el usuario de la sesión
         usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
         libro = libroEJB.find(idLibro);
-        if (libro.getEstado()==0) {
+        if (libro.getEstado() == 0) {
             reserva.setLibro(libro);
             reserva.setUsuario(usuario);
             d.setDate(c.get(Calendar.DAY_OF_MONTH));
             d.setMonth(c.get(Calendar.MONTH));
-            d.setYear(c.get(Calendar.YEAR)-1900);
+            d.setYear(c.get(Calendar.YEAR) - 1900);
             System.out.println(d.toString());
             System.out.println("-----------------------------------------------------------------");
             reserva.setFechaInicio(d); //Fecha inicio de la reserva
@@ -84,7 +112,7 @@ public class ReservaControl implements Serializable {
             d = new Date();
             d.setDate(c.get(Calendar.DAY_OF_MONTH));
             d.setMonth(c.get(Calendar.MONTH));
-            d.setYear(c.get(Calendar.YEAR)-1900);
+            d.setYear(c.get(Calendar.YEAR) - 1900);
             System.out.println(d.toString());
             reserva.setFechaFin(d); //Fecha final reserva
             reserva.setEstado(0); //Estado activo
@@ -94,14 +122,14 @@ public class ReservaControl implements Serializable {
                 libro.setEstado(1);
                 libroEJB.edit(libro);
                 try {
-                FacesContext.getCurrentInstance().getExternalContext()
-                .redirect(context+"/faces/private/user/reservas/info.xhtml?id=" + getNuevaReserva().getIdReserva());            
+                    FacesContext.getCurrentInstance().getExternalContext()
+                            .redirect(context + "/faces/private/user/reservas/info.xhtml?id=" + getNuevaReserva().getIdReserva());
                 } catch (IOException e) {
                     System.out.println("Error al redireccionar" + e.getMessage());
                 }
             } catch (Exception e) {
-                System.out.println("Error al crear una nueva reserva "+ e.getMessage());
-                FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/user/genericError.xhtml");
+                System.out.println("Error al crear una nueva reserva " + e.getMessage());
+                FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/faces/private/user/genericError.xhtml");
             }
         } else {
             addMessage("El libro ya está alquilado!!");
@@ -111,23 +139,23 @@ public class ReservaControl implements Serializable {
     }
 
     public void addMessage(String summary) {
-        
+
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Aviso:", "El libro seleccionado no está disponible"));
     }
-    
-    public String getFormatDate (Date d) {
+
+    public String getFormatDate(Date d) {
         return df.format(d);
     }
-    
-    public void insertar () {
-        if (reserva.getUsuario()==null) {
-        usuario = usuarioEJB.find(usuario.getIdUsuario());
-        reserva.setUsuario(usuario);
-        } 
+
+    public void insertar() {
+        if (reserva.getUsuario() == null) {
+            usuario = usuarioEJB.find(usuario.getIdUsuario());
+            reserva.setUsuario(usuario);
+        }
         if (reserva.getLibro() == null) {
-        libro = libroEJB.find(libro.getIdLibro());
-        reserva.setLibro(libro);
+            libro = libroEJB.find(libro.getIdLibro());
+            reserva.setLibro(libro);
         }
         try {
             reservaEJB.create(reserva);
@@ -135,26 +163,32 @@ public class ReservaControl implements Serializable {
             System.out.println("Error al crear la reserva " + e.getMessage());
         }
     }
-    
-    public void editar(){
-        
+
+    public void editar() {
+
     }
+
     public void eliminar() {
-        
+
     }
 
     public Reserva getReserva() {
         return reserva;
     }
-    public Reserva getNuevaReserva() {
-        listaReservas=reservaEJB.findAll();
 
-        return listaReservas.get(listaReservas.size()-1);
+    public Reserva getNuevaReserva() {
+        listaReservas = reservaEJB.findAll();
+
+        return listaReservas.get(listaReservas.size() - 1);
     }
+
     public Reserva getReserva(int id) {
-        return reservaEJB.find(id);
+        System.out.println("recuperando la reserva con id = " + id);
+        
+        reserva = reservaEJB.find(id);
+        return reserva;
     }
-    
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -174,10 +208,11 @@ public class ReservaControl implements Serializable {
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
     }
-    
-    public void setReserva (int id) {
-        this.reserva=reservaEJB.find(id);
+
+    public void setReserva(int id) {
+        this.reserva = reservaEJB.find(id);
     }
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
@@ -193,7 +228,29 @@ public class ReservaControl implements Serializable {
     public void setListaReservas(List<Reserva> listaReservas) {
         this.listaReservas = listaReservas;
     }
-    
-    
-    
+
+    public void caducarReservas() {
+        for (Reserva r : listaReservas) {
+            if (r.getFechaFin().before(new Date()) && r.getEstado() == 0) {
+                System.out.println("La reserva " + r.getIdReserva() + " con fecha de caducidad"
+                        + r.getFechaFin().toString() + " ha caducado " + new Date().toString());
+                r.setEstado(-1);
+                reservaEJB.edit(r);
+            }
+        }
+        listaReservas = reservaEJB.findAll();
+    }
+
+    public List<Reserva> getReservasUsuario() {
+        List<Reserva> lista = new ArrayList();
+        Usuario u = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        int id = u.getIdUsuario();
+        for (Reserva r : listaReservas) {
+            if (r.getUsuario().getIdUsuario() == id) {
+                lista.add(r);
+            }
+        }
+        return lista;
+    }
+
 }

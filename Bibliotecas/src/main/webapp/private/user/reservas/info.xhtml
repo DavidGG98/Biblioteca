@@ -6,35 +6,42 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
-         
+
     </head>
-    
+
     <body>
-         <ui:composition template="./../../../WEB-INF/template/userTemplate.xhtml">
-                          
-             <ui:define name="content">
-                 <p:fieldset legend="Numero de reserva: #{param['id']}" style="margin-bottom: 25px" >
-                 <p:panelGrid columns="1" >
-                    <p:row>     
-                        <h:outputText value="Libro: #{reservaControl.getReserva(param['id']).libro.titulo} " />
-                    </p:row>
-                    <p:row>
-                        <h:outputText value="Fecha de la reserva: #{reservaControl.getFormatDate(reservaControl.getReserva(param['id']).fechaInicio)}"/>
-                    </p:row>
-                    <p:row>
-                        <h:outputText value="Fecha tope recogida: #{reservaControl.getFormatDate(reservaControl.getReserva(param['id']).fechaFin)}"/>                   
-                    </p:row>
-                     <p:row>
-                        <h:outputText value="Estado de la reserva: #{reservaControl.getReserva(param['id']).getStringEstado()}"/>
-                    </p:row>
-                    <p:row>
-                        <h:outputText value="Comentarios: #{reservaControl.getReserva(param['id']).comentario}"/>
-                    </p:row>
-                    
-                 </p:panelGrid>
-                 </p:fieldset>
-             </ui:define>       
-            
+        <ui:composition template="./../../../WEB-INF/template/userTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:fieldset legend="Numero de reserva: #{param['id']}" style="margin-bottom: 25px" >
+                        <p:panelGrid columns="1" >
+                            <p:row>     
+                                <h:outputText value="Libro: #{reservaControl.getReserva(param['id']).libro.titulo} " />
+                            </p:row>
+                            <p:row>
+                                <h:outputText value="Fecha de la reserva: #{reservaControl.getFormatDate(reservaControl.getReserva(param['id']).fechaInicio)}"/>
+                            </p:row>
+                            <p:row>
+                                <h:outputText value="Fecha tope recogida: #{reservaControl.getFormatDate(reservaControl.getReserva(param['id']).fechaFin)}"/>                   
+                            </p:row>
+                            <p:row>
+                                <h:outputText value="Estado de la reserva: #{reservaControl.getReserva(param['id']).getStringEstado()}"/>
+                            </p:row>
+                            <p:row>
+                                <h:outputText value="Comentarios: #{reservaControl.getReserva(param['id']).comentario}"/>
+                            </p:row>
+
+                        </p:panelGrid>
+                    </p:fieldset>
+
+                    <p:separator/>
+                    <p:commandButton value="Cancelar reserva" action="#{reservaControl.cancelaReserva(reservaControl.reserva.idReserva)}"/> 
+                    <p:linkButton href="./lista.xhtml" value="Continuar" style="margin-left: 30px"/> 
+                    <p:separator/>
+                </h:form>
+            </ui:define>       
+
         </ui:composition>
 
     </body>

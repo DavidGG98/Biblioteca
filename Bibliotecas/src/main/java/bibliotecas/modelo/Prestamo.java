@@ -7,7 +7,6 @@ package bibliotecas.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 /**
  *
@@ -35,27 +33,35 @@ public class Prestamo implements Serializable {
     private int idPrestamo;
     
     @JoinColumn (name="idLibro")
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Libro libro;
     
     @JoinColumn (name="idUsuario") 
-    @ManyToOne (cascade=CascadeType.PERSIST)
+    @ManyToOne 
     private Usuario usuario;
     
     @Column(name="fechaInicio")
     @NotNull
-    @Temporal (TemporalType.TIME)
+    @Temporal (TemporalType.DATE)
     private Date fechaInicio;
     
     @Column (name="fechaFin")
     @NotNull
-    @Temporal (TemporalType.TIME)
+    @Temporal (TemporalType.DATE)
     private Date fechaFin;
     
     @Column (name="fechaDevolucion")
-    @Temporal (TemporalType.TIME)
+    @Temporal (TemporalType.DATE)
     private Date fechaDevolucion;
-
+    
+    @Column (name="comentario")
+    @NotNull
+    private String comentario;
+    
+    @Column (name="estado")
+    @NotNull
+    private int estado=0; //default 0
+    
     public int getIdPrestamo() {
         return idPrestamo;
     }
@@ -80,6 +86,10 @@ public class Prestamo implements Serializable {
         return fechaDevolucion;
     }
 
+    public String getComentario() {
+        return comentario;
+    }
+    
     public void setIdPrestamo(int idPrestamo) {
         this.idPrestamo = idPrestamo;
     }
@@ -103,10 +113,31 @@ public class Prestamo implements Serializable {
     public void setFechaDevolucion(Date fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
     }
+    
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+    
+    public String getStringEstado() {           
+        switch (estado) {
+            case 0: return "Activa";
+            case 1: return "Finalizado";
+            case -1: return "Cancelado";
+            default: return "ERROR";
+        }
+    }
 
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+    
     @Override
     public String toString() {
-        return "Prestamo{" + "idPrestamo=" + idPrestamo + ", libro=" + libro + ", usuario=" + usuario + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", fechaDevolucion=" + fechaDevolucion + '}';
+        return "Prestamo{" + "idPrestamo=" + idPrestamo + ", libro=" + libro + ", usuario=" + usuario + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", fechaDevolucion=" + fechaDevolucion + ", comentario=" + comentario + '}';
     }
 
 }
