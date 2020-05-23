@@ -24,10 +24,7 @@ import javax.inject.Named;
 import bibliotecas.EJB.ReservaFacadeLocal;
 import bibliotecas.EJB.UsuarioFacadeLocal;
 import java.io.IOException;
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
->>>>>>> prestamos_usuario
 import javax.faces.application.FacesMessage;
 
 /**
@@ -37,11 +34,7 @@ import javax.faces.application.FacesMessage;
 @Named
 @ViewScoped
 public class ReservaControl implements Serializable {
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> prestamos_usuario
     private Reserva reserva;
     private Usuario usuario;
     private Libro libro;
@@ -55,17 +48,6 @@ public class ReservaControl implements Serializable {
     LibroFacadeLocal libroEJB;
     @EJB
     UsuarioFacadeLocal usuarioEJB;
-<<<<<<< HEAD
-    
-    List <Reserva> listaReservas;
-    List <Usuario> listaUsuarios;
-    List <Libro> listaLibros;
-    
-    @PostConstruct 
-    public void reservaEspacio() {
-        c=Calendar.getInstance();
-        d=new Date();
-=======
 
     List<Reserva> listaReservas;
     List<Usuario> listaUsuarios;
@@ -76,41 +58,14 @@ public class ReservaControl implements Serializable {
     public void reservaEspacio() {
         c = Calendar.getInstance();
         d = new Date();
->>>>>>> prestamos_usuario
         reserva = new Reserva();
         libro = new Libro();
         usuario = new Usuario();
         listaReservas = reservaEJB.findAll();
         listaUsuarios = usuarioEJB.findAll();
         listaLibros = libroEJB.findAll();
-<<<<<<< HEAD
     }
-    public void cancelaReserva (int idReserva) {
-        reserva = getReserva(idReserva);
-        libro = reserva.getLibro();
-        //CANCELAMOS LA RESERVA
-        reserva.setEstado(-1);
-        reservaEJB.edit(reserva);
-        //LIBERAMOS EL LIBRO
-        libro.setEstado(0);
-        libroEJB.edit(libro);
-    }
-    
-    public void nuevaReserva (int idLibro) throws IOException {
-        String context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();       
-        System.out.println("Creando reserva");
-        c=Calendar.getInstance();
-        //utilizamos el usuario de la sesión
-        usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-        libro = libroEJB.find(idLibro);
-        if (libro.getEstado()==0) {
-            libro.setEstado(1);
-            libroEJB.edit(libro);
-            
-=======
-        context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
-        caducarReservas();
-    }
+
 
     public void cancelaReserva(int id) {
         System.out.println("Cancelando reserva " + id);
@@ -144,16 +99,12 @@ public class ReservaControl implements Serializable {
         usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
         libro = libroEJB.find(idLibro);
         if (libro.getEstado() == 0) {
->>>>>>> prestamos_usuario
             reserva.setLibro(libro);
             reserva.setUsuario(usuario);
             d.setDate(c.get(Calendar.DAY_OF_MONTH));
             d.setMonth(c.get(Calendar.MONTH));
-<<<<<<< HEAD
-            d.setYear(c.get(Calendar.YEAR)-1900);
-=======
             d.setYear(c.get(Calendar.YEAR) - 1900);
->>>>>>> prestamos_usuario
+
             System.out.println(d.toString());
             System.out.println("-----------------------------------------------------------------");
             reserva.setFechaInicio(d); //Fecha inicio de la reserva
@@ -161,39 +112,27 @@ public class ReservaControl implements Serializable {
             d = new Date();
             d.setDate(c.get(Calendar.DAY_OF_MONTH));
             d.setMonth(c.get(Calendar.MONTH));
-<<<<<<< HEAD
-            d.setYear(c.get(Calendar.YEAR)-1900);
-=======
             d.setYear(c.get(Calendar.YEAR) - 1900);
->>>>>>> prestamos_usuario
+
             System.out.println(d.toString());
             reserva.setFechaFin(d); //Fecha final reserva
             reserva.setEstado(0); //Estado activo
             try {
                 reservaEJB.create(reserva);
                 System.out.println("Reserva añadida a la base de datos");
-<<<<<<< HEAD
-                try {
-                FacesContext.getCurrentInstance().getExternalContext()
-                .redirect(context+"/faces/private/user/reservas/info.xhtml?id=" + getNuevaReserva().getIdReserva());            
-=======
+                          
                 libro.setEstado(1);
                 libroEJB.edit(libro);
                 try {
                     FacesContext.getCurrentInstance().getExternalContext()
                             .redirect(context + "/faces/private/user/reservas/info.xhtml?id=" + getNuevaReserva().getIdReserva());
->>>>>>> prestamos_usuario
                 } catch (IOException e) {
                     System.out.println("Error al redireccionar" + e.getMessage());
                 }
             } catch (Exception e) {
-<<<<<<< HEAD
                 System.out.println("Error al crear una nueva reserva "+ e.getMessage());
                 FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/user/genericError.xhtml");
-=======
-                System.out.println("Error al crear una nueva reserva " + e.getMessage());
-                FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/faces/private/user/genericError.xhtml");
->>>>>>> prestamos_usuario
+
             }
         } else {
             addMessage("El libro ya está alquilado!!");
@@ -203,29 +142,10 @@ public class ReservaControl implements Serializable {
     }
 
     public void addMessage(String summary) {
-<<<<<<< HEAD
-        
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Aviso:", "El libro seleccionado no está disponible"));
     }
     
-    public String getFormatDate (Date d) {
-        return df.format(d);
-    }
-    
-    public void insertar () {
-        if (reserva.getUsuario()==null) {
-        usuario = usuarioEJB.find(usuario.getIdUsuario());
-        reserva.setUsuario(usuario);
-        } 
-        if (reserva.getLibro() == null) {
-        libro = libroEJB.find(libro.getIdLibro());
-        reserva.setLibro(libro);
-=======
-
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Aviso:", "El libro seleccionado no está disponible"));
-    }
 
     public String getFormatDate(Date d) {
         return df.format(d);
@@ -238,8 +158,9 @@ public class ReservaControl implements Serializable {
         }
         if (reserva.getLibro() == null) {
             libro = libroEJB.find(libro.getIdLibro());
+            libro.setEstado(1);
+            libroEJB.edit(libro);
             reserva.setLibro(libro);
->>>>>>> prestamos_usuario
         }
         try {
             reservaEJB.create(reserva);
@@ -247,43 +168,22 @@ public class ReservaControl implements Serializable {
             System.out.println("Error al crear la reserva " + e.getMessage());
         }
     }
-<<<<<<< HEAD
-    
+
     public void editar(){
         
     }
     public void eliminar() {
-        
-=======
 
-    public void editar() {
-
-    }
-
-    public void eliminar() {
-
->>>>>>> prestamos_usuario
     }
 
     public Reserva getReserva() {
         return reserva;
     }
-<<<<<<< HEAD
+
     public Reserva getNuevaReserva() {
         listaReservas=reservaEJB.findAll();
 
         return listaReservas.get(listaReservas.size()-1);
-    }
-    public Reserva getReserva(int id) {
-        return reservaEJB.find(id);
-    }
-    
-=======
-
-    public Reserva getNuevaReserva() {
-        listaReservas = reservaEJB.findAll();
-
-        return listaReservas.get(listaReservas.size() - 1);
     }
 
     public Reserva getReserva(int id) {
@@ -293,7 +193,6 @@ public class ReservaControl implements Serializable {
         return reserva;
     }
 
->>>>>>> prestamos_usuario
     public Usuario getUsuario() {
         return usuario;
     }
@@ -313,18 +212,11 @@ public class ReservaControl implements Serializable {
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
     }
-<<<<<<< HEAD
-    
+
     public void setReserva (int id) {
         this.reserva=reservaEJB.find(id);
     }
-=======
 
-    public void setReserva(int id) {
-        this.reserva = reservaEJB.find(id);
-    }
-
->>>>>>> prestamos_usuario
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
@@ -340,11 +232,6 @@ public class ReservaControl implements Serializable {
     public void setListaReservas(List<Reserva> listaReservas) {
         this.listaReservas = listaReservas;
     }
-<<<<<<< HEAD
-    
-    
-    
-=======
 
     public void caducarReservas() {
         for (Reserva r : listaReservas) {
@@ -370,5 +257,4 @@ public class ReservaControl implements Serializable {
         return lista;
     }
 
->>>>>>> prestamos_usuario
 }
