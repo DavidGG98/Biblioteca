@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+        <ui:composition template="./../../../WEB-INF/template/workerTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:link outcome="altaPrestamo" value="Nuevo prestamo" />
+                <h:form id="acc">
+                    <p:dataTable id="datos" widgetVar="dtVar"  var="prestamo" value="#{prestamoControl.listaPrestamos}">
+                        <f:facet name="header">
+                            Prestamos
+                        </f:facet>
+                        <p:column headerText="ID" style="width: 20px">
+                            <h:outputText value="#{prestamo.idPrestamo}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="Usuario">
+                            <h:outputText value="#{prestamo.usuario.numeroCarnet}"></h:outputText>
+                        </p:column>
+                        
+                        <p:column headerText="Fecha de inicio">
+                            <h:outputText value="#{prestamoControl.getFormatDate(prestamo.fechaInicio)}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="Fecha de finalizacion">
+                            <h:outputText value="#{prestamoControl.getFormatDate(prestamo.fechaFin)}"></h:outputText>
+
+                        </p:column>
+                        <p:column headerText="Fecha de devolucion">
+                            <h:outputText value="#{prestamoControl.getFormatDate(prestamo.fechaDevolucion)}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="Estado">
+                            <h:outputText value="#{prestamo.stringEstado}"></h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Libro ID" style="width: 50px">
+                            <h:outputText value="#{prestamo.libro.idLibro}"></h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Libro">
+                            <h:outputText value="#{prestamo.libro.titulo}"></h:outputText>
+                        </p:column>
+
+                        
+                        <p:column headerText="Acciones">
+                            <p:linkButton outcome="editarPrestamo" value="Administrar" style="margin-right:20px;" >
+                                <f:param name="id" value="#{prestamo.idPrestamo}"/>
+                            </p:linkButton>
+                         
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+                <p:separator/>
+
+                <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
+                <p:link href="./../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/>    
+                <p:separator/>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

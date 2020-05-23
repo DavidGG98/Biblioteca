@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../../WEB-INF/template/workerTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form id="grid">
+
+                    <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
+                        <p:panelGrid columns="3" styleClass="ui-noborder">
+                            <p:outputLabel for="txtNombre" value="Nombre: " /> 
+                            <p:inputText value="#{editorialControl.editorial.nombre}" 
+                                         required="true" id="txtNombre" size="50"
+                                         requiredMessage="El nombre es un campo oblifatorio" />
+                            <p:message for="txtNombre"/>
+
+                            <p:outputLabel for="txtCIF" value="CIF: " /> 
+                            <p:inputText value="#{editorialControl.editorial.cif}" 
+                                         required="true" id="txtCIF" size="50"
+                                         requiredMessage="El CIF es un campo oblifatorio" />
+                            <p:message for="txtCIF"/>
+
+
+
+                        </p:panelGrid>
+                    </p:fieldset>
+                    <p:fieldset legend="Datos opcionales">
+                        <p:panelGrid columns="2" styleClass="ui-noborder">
+                            <p:outputLabel value="Email: "/> 
+                            <p:inputText value="#{editorialControl.editorial.email}" size="50"/>
+
+                            <p:outputLabel value="Telefono: "/> 
+                            <p:inputText value="#{editorialControl.editorial.telefono}" size="10"/> 
+
+
+                        </p:panelGrid>
+                        <p:separator/>
+                        <p:commandButton value="Instertar" actionListener="#{editorialControl.insertar()}" 
+                                         update="grid"/>
+                    </p:fieldset>
+
+                </h:form>
+                <p:separator/>
+                <p:link href="listaEditoriales.xhtml" value="Retroceder"/> 
+                <p:link href="./../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/> 
+                <p:separator/>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

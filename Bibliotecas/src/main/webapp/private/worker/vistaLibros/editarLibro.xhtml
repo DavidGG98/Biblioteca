@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        
+         <ui:composition template="./../../../WEB-INF/template/workerTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form id="grid">
+                    <h:outputText value=" Modificando libro #ID=#{param['id']}"/>
+                    <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
+                        
+                        <p:panelGrid columns="3" styleClass="ui-noborder">
+                                                    
+                            <p:outputLabel for="txtTitulo" value="Titulo: " /> 
+                            <p:inputText value="#{libroControl.getLibro(param['id']).titulo}" 
+                                         required="true" id="txtTitulo" size="50"
+                                         requiredMessage="El titulo es un campo oblifatorio" />
+                            <p:message for="txtTitulo"/>
+
+                            <p:outputLabel for="txtAutor" value="Autor: "/> 
+                            <p:selectOneMenu value="#{libroControl.autor.idAutor}" 
+                                             required="true" id="txtAutor" 
+                                             requiredMessage="Hay que seleccionar una autor" 
+                                             placeholder="#{libroControl.getLibro(param['id']).autor.nombreYApellidos}">
+                            <f:selectItems value="#{libroControl.listaAutores}"
+                                           var="c" itemLabel="#{c.nombreYApellidos}" itemValue="#{c.idAutor}" />
+                            </p:selectOneMenu>
+                            <p:message for="txtAutor"/>
+                            
+                            <p:outputLabel for="txtEditorial" value="Editorial: "/> 
+                            <p:selectOneMenu value="#{libroControl.editorial.idEditorial}" 
+                                             required="true" id="txtEditorial" 
+                                             requiredMessage="Hay que seleccionar una autor"
+                                             placeholder="#{libroControl.getLibro(param['id']).editorial.nombre}">
+                            <f:selectItems value="#{libroControl.listaEditoriales}"
+                                           var="c" itemLabel="#{c.nombre}" itemValue="#{c.idEditorial}"/>
+                            </p:selectOneMenu>
+                            <p:message for="txtEditorial"/>
+                           
+                        </p:panelGrid>
+                    </p:fieldset>
+                    
+                    <p:fieldset legend="Datos opcionales">
+                        <p:panelGrid columns="2" styleClass="ui-noborder">
+                            <p:outputLabel value="Genero: "/> 
+                            <p:inputText value="#{libroControl.libro.genero}" size="200"/>
+                             
+                            <p:outputLabel value="Idioma: "/> 
+                            <p:inputText value="#{libroControl.libro.idioma}" size="200"/>            
+                        </p:panelGrid>
+                    </p:fieldset>
+                    
+                    <p:separator/>
+                    <p:commandButton value="Modificar" actionListener="#{libroControl.modificar(libroControl.libro)}" 
+                                     update="grid"/>
+                </h:form>
+                
+                <p:separator/>
+                    <p:link href="tablaLibros.xhtml" value="Retroceder"/> 
+                    <p:link href="./../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/> 
+                <p:separator/>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

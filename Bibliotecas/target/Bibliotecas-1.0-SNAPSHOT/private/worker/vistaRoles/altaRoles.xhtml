@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<body>
+
+    <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
+
+        <ui:define name="content">
+            <h:form>
+                <h1> Alta de Roles </h1>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Introduzca nombre del rol " />
+                    <p:inputText value="#{rolControl.rol.nombre}" size="50" />
+                    <p:outputLabel value="Introduzca una descripcion: " />
+                    <p:inputText value="#{rolControl.rol.descripcion}" size="50" />
+                    <p:commandButton value="Instertar" actionListener="#{rolControl.insertar()}" />
+                </p:panelGrid>
+            </h:form>
+            <p:separator/>           
+                <p:link href="listaRoles.xhtml" value="Retroceder" />
+                <p:link href="./../../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/> 
+            <p:separator/>
+        </ui:define>
+
+    </ui:composition>
+
+</body>
+
+</html>
