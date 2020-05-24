@@ -11,10 +11,6 @@ bibliotecas\modelo\Biblioteca_.class
 bibliotecas\controlador\RolControl.class
 bibliotecas\modelo\Reserva.class
 bibliotecas\EJB\LibroFacade.class
-<<<<<<< HEAD
-=======
-bibliotecas\EJB\Query.class
->>>>>>> prestamos_usuario
 bibliotecas\modelo\Rol.class
 bibliotecas\modelo\Rol_.class
 bibliotecas\modelo\Autor.class

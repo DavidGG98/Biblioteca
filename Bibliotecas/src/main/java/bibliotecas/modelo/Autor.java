@@ -44,8 +44,7 @@ public class Autor implements Serializable {
     @Column (name="nacionalidad")
     private String pais;
     @Column (name="fechaNacimiento")
-    @Temporal(TemporalType.DATE)
-    private Date fechaNacimiento;
+    private int fechaNacimiento;
 
     public void setIdAutor(int idAutor) {
         this.idAutor = idAutor;
@@ -63,7 +62,7 @@ public class Autor implements Serializable {
         this.pais = pais;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(int fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -95,7 +94,7 @@ public class Autor implements Serializable {
         return pais;
     }
 
-    public Date getFechaNacimiento() {
+    public int getFechaNacimiento() {
         return fechaNacimiento;
     }
 

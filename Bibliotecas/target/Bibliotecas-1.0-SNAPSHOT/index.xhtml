@@ -5,7 +5,7 @@
     <title> BiblioWeb - Bienvenido </title>
 </h:head>
 <h:body>
-    <h1> Index Aplicacion </h1>
+    
     <h:form id="grid">
         <p:fieldset legend="Registrate como usuario" style="margin-bottom: 25px">
             <p:panelGrid columns="3" styleClass="ui-noborder">
@@ -30,12 +30,9 @@
                 <p:outputLabel value="" />
             </p:panelGrid>
             <p:separator/>
-            <p:commandButton value="Instertar" actionListener="#{usuarioControl.insertar()}" update="grid" />
+            <p:commandButton value="Registrarme" actionListener="#{usuarioControl.registrar()}" update="grid" />
 
         </p:fieldset>
-
-
-
     </h:form>
 
     <p:separator/>

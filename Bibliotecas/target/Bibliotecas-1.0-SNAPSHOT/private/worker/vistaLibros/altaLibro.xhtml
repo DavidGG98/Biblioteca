@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -14,78 +13,7 @@
             <ui:define name="content">
                 <h:form id="grid">
 
-                    <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px">
-                        <p:panelGrid columns="3" styleClass="ui-noborder">
-                            <p:outputLabel for="txtTitulo" value="Titulo: " /> 
-                            <p:inputText value="#{libroControl.libro.titulo}" 
-                                         required="true" id="txtTitulo" 
-                                         size="50"
-                                         requiredMessage="El titulo es un campo oblifatorio" />
-                            <p:message for="txtTitulo"/>
-
-                            <p:outputLabel for="txtAutor" value="Autor: "/> 
-                            <p:selectOneMenu value="#{libroControl.autor.idAutor}" 
-                                             required="true" id="txtAutor" 
-                                             requiredMessage="Hay que seleccionar un autor">
-                            <f:selectItems value="#{libroControl.listaAutores}"
-                                           var="c" itemLabel="#{c.nombre}" itemValue="#{c.idAutor}"/>
-                            </p:selectOneMenu>
-                            <p:message for="txtAutor"/>
-                            
-                            <p:outputLabel for="txtEditorial" value="Editorial: "/> 
-                            <p:selectOneMenu value="#{libroControl.editorial.idEditorial}" 
-                                             required="true" id="txtEditorial"
-                                             requiredMessage="Hay que seleccionar una autor">
-                            <f:selectItems value="#{libroControl.listaEditoriales}"
-                                           var="c" itemLabel="#{c.nombre}" itemValue="#{c.idEditorial}"/>
-                            </p:selectOneMenu>
-                            <p:message for="txtEditorial"/>
-
-                            
-                        </p:panelGrid>
-                    </p:fieldset>
-                    
-                    <p:fieldset legend="Datos opcionales">
-                        <p:panelGrid columns="2" styleClass="ui-noborder">
-                            <p:outputLabel value="Genero: "/> 
-                             <p:inputText value="#{libroControl.libro.genero}" size="200"/>
-
-                             <p:outputLabel value="Idioma: "/> 
-                             <p:inputText value="#{libroControl.libro.idioma}" size="500"/>                           
-                        </p:panelGrid>
-                    </p:fieldset>
-                    
-                    <p:separator/>
-                    <p:commandButton value="Instertar" actionListener="#{libroControl.insertar()}"/>
-                </h:form>
-                <p:separator/>
-                    <p:link href="tablaLibros.xhtml" value="Retroceder"/> 
-                   <p:link href="./../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/> 
-                <p:separator/>
-                
-            </ui:define>
-
-        </ui:composition>
-
-    </body>
-</html>
-=======
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <body>
-        
-         <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
-
-            <ui:define name="content">
-                <h:form id="grid">
-
-                    <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
+                    <p:fieldset legend="Datos del Libro" style="margin-bottom: 25px">
                         <p:panelGrid columns="3" styleClass="ui-noborder">
                             <p:outputLabel for="txtTitulo" value="Titulo: " /> 
                             <p:inputText value="#{libroControl.libro.titulo}" 
@@ -111,16 +39,6 @@
                                            var="c" itemLabel="#{c.nombre}" itemValue="#{c.idEditorial}"/>
                             </p:selectOneMenu>
                             <p:message for="txtEditorial"/>
-                            <p:outputLabel for="txtBiblioteca" value="Biblioteca: "/> 
-
-                            <p:selectOneMenu value="#{libroControl.biblioteca.idBiblioteca}" 
-                                             required="true" id="txtBiblioteca"
-                                             requiredMessage="Hay que seleccionar una biblioteca">
-                                <f:selectItems value="#{libroControl.listaBibliotecas}"
-                                               var="c" itemLabel="#{c.nombre}" itemValue="#{c.idBiblioteca}"/>
-                            </p:selectOneMenu>
-                            <p:message for="txtBiblioteca"/>
-
                             
                         </p:panelGrid>
                     </p:fieldset>
@@ -132,23 +50,20 @@
 
                              <p:outputLabel value="Idioma: "/> 
                              <p:inputText value="#{libroControl.libro.idioma}" size="500" /> 
-
-                            
                         </p:panelGrid>
                     </p:fieldset>
                     
                     <p:separator/>
-                    <p:commandButton value="Instertar" actionListener="#{libroControl.insertar()}" 
-                                     update="grid"/>
+                    <p:commandButton value="Instertar" actionListener="#{libroControl.insertar()}"/>
                 </h:form>
                 <p:separator/>
                     <p:link href="tablaLibros.xhtml" value="Retroceder"/> 
-                    <p:link href="./index.xhtml" value="Inicio"/> 
+                   <p:link href="./../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/> 
                 <p:separator/>
+
             </ui:define>
 
         </ui:composition>
 
     </body>
 </html>
->>>>>>> prestamos_usuario

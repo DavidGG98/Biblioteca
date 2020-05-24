@@ -45,11 +45,16 @@
                             <p:outputLabel value=""/>
 
                         </p:panelGrid>
+                            <p:commandButton value="Eliminar Prestamo" actionListener="#{prestamoControl.eliminar(prestamoControl.prestamo.idPrestamo)}" 
+                                     update="grid" style="margin-left: 20px"/>
                     </p:fieldset>
                   
                     <p:separator/>
                     <p:commandButton value="Finalizar Prestamo " actionListener="#{prestamoControl.finPrestamo(prestamoControl.prestamo.idPrestamo)}" 
                                      update="grid"/>
+                    
+                    <p:commandButton value="cancelar Prestamo" actionListener="#{prestamoControl.cancelaPrestamo(prestamoControl.prestamo.idPrestamo)}" 
+                                     update="grid" style="margin-left: 20px"/>
                     
                     <p:commandButton value="borrar Prestamo" actionListener="#{prestamoControl.eliminar(prestamoControl.prestamo.idPrestamo)}" 
                                      update="grid" style="margin-left: 20px"/>

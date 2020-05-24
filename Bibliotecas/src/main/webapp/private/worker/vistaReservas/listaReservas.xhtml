@@ -5,12 +5,67 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
     <body>
-        <div>TODO write content</div>
+        <ui:composition template="./../../../WEB-INF/template/workerTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form id="acc">
+                    <p:dataTable id="datos" widgetVar="dtVar"  var="reserva" value="#{reservaControl.listaReservas}">
+                        <f:facet name="header">
+                            Prestamos
+                        </f:facet>
+                        <p:column headerText="ID" style="width: 20px">
+                            <h:outputText value="#{reserva.idReserva}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="Usuario">
+                            <h:outputText value="#{reserva.usuario.numeroCarnet}"></h:outputText>
+                        </p:column>
+                        
+                        <p:column headerText="Fecha de inicio">
+                            <h:outputText value="#{reservaControl.getFormatDate(reserva.fechaInicio)}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="Fecha de finalizacion">
+                            <h:outputText value="#{reservaControl.getFormatDate(reserva.fechaFin)}"></h:outputText>
+
+                        </p:column>
+                        <p:column headerText="Fecha de Recogida">
+                            <h:outputText value="#{reservaControl.getFormatDate(reserva.fechaRecogida)}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="Estado">
+                            <h:outputText value="#{reserva.stringEstado}"></h:outputText>
+                        </p:column>
+                        
+                        <p:column headerText="Libro ID" style="width: 50px">
+                            <h:outputText value="#{reserva.libro.idLibro}"></h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Libro">
+                            <h:outputText value="#{reserva.libro.titulo}"></h:outputText>
+                        </p:column>
+
+                        
+                        <p:column headerText="Acciones">
+                            <p:linkButton outcome="editarReserva" value="Administrar" style="margin-right:20px;" >
+                                <f:param name="id" value="#{reserva.idReserva}"/>
+                            </p:linkButton>
+                         
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+                <p:separator/>
+
+                <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
+                <p:link href="./../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/>    
+                <p:separator/>
+            </ui:define>
+        </ui:composition>
+
     </body>
 </html>

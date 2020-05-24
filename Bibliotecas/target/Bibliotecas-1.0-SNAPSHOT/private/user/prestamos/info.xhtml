@@ -20,14 +20,14 @@
                                 <h:outputText value="Libro: #{prestamoControl.getPrestamo(param['id']).libro.titulo} " />
                             </p:row>
                             <p:row>
-                                <h:outputText value="Fecha de la reserva: #{prestamoControl.getFormatDate(prestamo.fechaInicio)}"/>
+                                <h:outputText value="Fecha de la reserva: #{prestamoControl.getFormatDate(prestamoControl.getPrestamo(param['id']).fechaInicio)}"/>
                             </p:row>
                             <p:row>
-                                <h:outputText value="Fecha tope devolucion #{prestamoControl.getFormatDate(prestamo.fechaFin)}"/>                   
+                                <h:outputText value="Fecha tope devolucion #{prestamoControl.getFormatDate(prestamoControl.getPrestamo(param['id']).fechaFin)}"/>                   
                             </p:row>
                             
                             <p:row>
-                                <h:outputText value="Fecha de devolucion #{prestamoControl.getFormatDate(prestamo.fechaDevolucion)}"/>                   
+                                <h:outputText value="Fecha de devolucion #{prestamoControl.getFormatDate(prestamoControl.getPrestamo(param['id']).fechaDevolucion)}"/>                   
                             </p:row>
                                         
                             <p:row>

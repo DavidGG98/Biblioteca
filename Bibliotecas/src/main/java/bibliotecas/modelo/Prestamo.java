@@ -55,7 +55,6 @@ public class Prestamo implements Serializable {
     private Date fechaDevolucion;
     
     @Column (name="comentario")
-    @NotNull
     private String comentario;
     
     @Column (name="estado")

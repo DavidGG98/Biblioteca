@@ -8,6 +8,8 @@ package bibliotecas.controlador;
 import bibliotecas.EJB.AutorFacadeLocal;
 import bibliotecas.modelo.Autor;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -31,23 +33,8 @@ public class AutorControl implements Serializable {
     AutorFacadeLocal autorEJB;
     List <Autor> listaAutores;
     String context;
-    public Autor getAutor(int id){
-        try{
-            System.out.println(id);
-            System.out.println("Seleccionado "+ id);
-            for(Autor b:listaAutores){
-                if(b.getIdAutor()==id){
-                    System.out.println("Autor "+ b.getNombre()+" tiene el mismo id");
-                    autor=b;
-                    break;
-                }
-            }
-            return autor;
-        } catch (Exception e){
-            System.out.println("Error al seleccionar el Autor "+ e.getMessage());
-        }
-        return null;
-    }
+    private SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+   
     
     @PostConstruct //le mandamos ejecutarse antes, ya que el constructor debe estar vacio
     public void reserva() {
@@ -111,5 +98,30 @@ public class AutorControl implements Serializable {
     public void setListaAutores(List<Autor> listaAutores) {
         this.listaAutores = listaAutores;
     }
+    
+    public String getFormatDate(Date d) {
+        if (d!=null) {
+            return df.format(d);
+        } else {
+            return "";
+        }
+    }
         
+     public Autor getAutor(int id){
+        try{
+            System.out.println(id);
+            System.out.println("Seleccionado "+ id);
+            for(Autor b:listaAutores){
+                if(b.getIdAutor()==id){
+                    System.out.println("Autor "+ b.getNombre()+" tiene el mismo id");
+                    autor=b;
+                    break;
+                }
+            }
+            return autor;
+        } catch (Exception e){
+            System.out.println("Error al seleccionar el Autor "+ e.getMessage());
+        }
+        return null;
+    }
 }

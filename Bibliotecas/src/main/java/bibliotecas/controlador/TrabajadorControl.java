@@ -86,7 +86,7 @@ public class TrabajadorControl implements Serializable{
         try{
             trabajadorEJB.create(trabajador);
             System.out.println("Anadiendo trabajador...");
-            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaTrabajadores/listraTrabajadores.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaTrabajadores/listaTrabajadores.xhtml");
         } catch (Exception e) {
             System.out.println("Error al anadir el Trabajador "+ e.getMessage());
         }

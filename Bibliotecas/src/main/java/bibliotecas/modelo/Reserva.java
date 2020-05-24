@@ -137,6 +137,7 @@ public class Reserva implements Serializable {
         this.estado = estado;
     }
 
+
     @Override
     public int hashCode() {
         int hash = 7;

@@ -8,12 +8,12 @@
 
     <body>
         
-         <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
+         <ui:composition template="./../../../WEB-INF/template/workerTemplate.xhtml">
 
             <ui:define name="content">
                 <h:form id="grid">
 
-                    <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px">
+                    <p:fieldset legend="Datos del Libro" style="margin-bottom: 25px">
                         <p:panelGrid columns="3" styleClass="ui-noborder">
                             <p:outputLabel for="txtTitulo" value="Titulo: " /> 
                             <p:inputText value="#{libroControl.libro.titulo}" 
@@ -25,11 +25,7 @@
                             <p:outputLabel for="txtAutor" value="Autor: "/> 
                             <p:selectOneMenu value="#{libroControl.autor.idAutor}" 
                                              required="true" id="txtAutor" 
-<<<<<<< HEAD
-                                             requiredMessage="Hay que seleccionar un autor">
-=======
                                              requiredMessage="Hay que seleccionar una autor">
->>>>>>> prestamos_usuario
                             <f:selectItems value="#{libroControl.listaAutores}"
                                            var="c" itemLabel="#{c.nombre}" itemValue="#{c.idAutor}"/>
                             </p:selectOneMenu>
@@ -38,25 +34,11 @@
                             <p:outputLabel for="txtEditorial" value="Editorial: "/> 
                             <p:selectOneMenu value="#{libroControl.editorial.idEditorial}" 
                                              required="true" id="txtEditorial"
-<<<<<<< HEAD
-                                             requiredMessage="Hay que seleccionar una autor">
-=======
                                              requiredMessage="Hay que seleccionar una editorial">
->>>>>>> prestamos_usuario
                             <f:selectItems value="#{libroControl.listaEditoriales}"
                                            var="c" itemLabel="#{c.nombre}" itemValue="#{c.idEditorial}"/>
                             </p:selectOneMenu>
                             <p:message for="txtEditorial"/>
-                            <p:outputLabel for="txtBiblioteca" value="Biblioteca: "/> 
-
-                            <p:selectOneMenu value="#{libroControl.biblioteca.idBiblioteca}" 
-                                             required="true" id="txtBiblioteca"
-                                             requiredMessage="Hay que seleccionar una biblioteca">
-                                <f:selectItems value="#{libroControl.listaBibliotecas}"
-                                               var="c" itemLabel="#{c.nombre}" itemValue="#{c.idBiblioteca}"/>
-                            </p:selectOneMenu>
-                            <p:message for="txtBiblioteca"/>
-
                             
                         </p:panelGrid>
                     </p:fieldset>
@@ -67,13 +49,7 @@
                              <p:inputText value="#{libroControl.libro.genero}" size="200"/>
 
                              <p:outputLabel value="Idioma: "/> 
-<<<<<<< HEAD
-                             <p:inputText value="#{libroControl.libro.idioma}" size="500"/>                           
-=======
                              <p:inputText value="#{libroControl.libro.idioma}" size="500" /> 
-
-                            
->>>>>>> prestamos_usuario
                         </p:panelGrid>
                     </p:fieldset>
                     
@@ -82,14 +58,9 @@
                 </h:form>
                 <p:separator/>
                     <p:link href="tablaLibros.xhtml" value="Retroceder"/> 
-<<<<<<< HEAD
                    <p:link href="./../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/> 
                 <p:separator/>
-                
-=======
-                    <p:link href="./index.xhtml" value="Inicio"/> 
-                <p:separator/>
->>>>>>> prestamos_usuario
+
             </ui:define>
 
         </ui:composition>

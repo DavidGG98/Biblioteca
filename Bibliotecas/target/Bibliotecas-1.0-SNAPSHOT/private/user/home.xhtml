@@ -11,7 +11,7 @@
         <ui:composition template="./../../WEB-INF/template/userTemplate.xhtml">
             
             <ui:define name="content">
-            <h1> Panel de usuarios </h1>                
+                <h1> Panel de #{usuarioControl.usuario.nombre} #{usuarioControl.usuario.apellidos} (#{usuarioControl.usuario.numeroCarnet}) </h1>                
                 <p:linkButton outcome="libros/lista" value="Libros" style="margin-right: 10px"/> 
                 <p:linkButton outcome="reservas/lista" value="Reservas" style="margin-right: 10px"/> 
                 <p:linkButton outcome="prestamos/lista" value="Prestamos" style="margin-right: 10px"/> 

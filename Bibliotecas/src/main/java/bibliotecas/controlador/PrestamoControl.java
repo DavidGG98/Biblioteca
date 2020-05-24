@@ -25,8 +25,11 @@ import javax.inject.Named;
 import bibliotecas.EJB.ReservaFacadeLocal;
 import bibliotecas.EJB.UsuarioFacadeLocal;
 import bibliotecas.modelo.Prestamo;
+import bibliotecas.modelo.Trabajador;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 
 /**
@@ -56,6 +59,7 @@ public class PrestamoControl implements Serializable {
     List<Libro> listaLibros;
 
     String context;
+
     @PostConstruct
     public void reservaEspacio() {
         c = Calendar.getInstance();
@@ -70,14 +74,23 @@ public class PrestamoControl implements Serializable {
     }
 
     public void cancelaPrestamo(int idPrestamo) {
-        prestamo = getPrestamo(idPrestamo);
-        libro = prestamo.getLibro();
-        //CANCELAMOS LA RESERVA
-        prestamo.setEstado(-1);
-        prestamoEJB.edit(prestamo);
-        //LIBERAMOS EL LIBRO
-        libro.setEstado(0);
-        libroEJB.edit(libro);
+        try {
+            prestamo = getPrestamo(idPrestamo);
+            libro = prestamo.getLibro();
+            //CANCELAMOS LA RESERVA
+            prestamo.setEstado(-1);
+            prestamoEJB.edit(prestamo);
+            //LIBERAMOS EL LIBRO
+            libro.setEstado(0);
+            libroEJB.edit(libro);
+        } catch (Exception e) {
+            System.out.println("Error al cancelar el prestamo nº" + idPrestamo);
+        }
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/faces/private/worker/vistaPrestamos/editarPrestamos.xhtml?id=" + prestamo.getIdPrestamo());
+        } catch (IOException ex) {
+            Logger.getLogger(PrestamoControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void finPrestamo(int idPrestamo) {
@@ -87,8 +100,9 @@ public class PrestamoControl implements Serializable {
             libro.setEstado(0);
             libroEJB.edit(libro);
             prestamo.setEstado(1);
+            prestamo.setFechaDevolucion(new Date());
             prestamoEJB.edit(prestamo);
-            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaPrestamos/editarPrestamo.xhtml?id=" + prestamo.getIdPrestamo());
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/faces/private/worker/vistaPrestamos/editarPrestamos.xhtml?id=" + prestamo.getIdPrestamo());
 
         } catch (Exception e) {
             System.out.println("Error al finalizar el prestamo " + e.getMessage());
@@ -96,7 +110,6 @@ public class PrestamoControl implements Serializable {
     }
 
     public void nuevoPrestamo(int idLibro) throws IOException {
-        String context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
         System.out.println("Creando reserva");
         c = Calendar.getInstance();
         //utilizamos el usuario de la sesión
@@ -141,23 +154,27 @@ public class PrestamoControl implements Serializable {
         }
 
     }
+
+    
+
     //Añade un mensaje al growl de la vista
     public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
-    
-    public void addComent () {
+
+    public void addComent() {
         try {
-            prestamoEJB.edit(prestamo); 
-            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaPrestamos/editarPrestamo.xhtml?id=" + prestamo.getIdPrestamo());
+            prestamoEJB.edit(prestamo);
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/faces/private/worker/vistaPrestamos/editarPrestamo.xhtml?id=" + prestamo.getIdPrestamo());
             addMessage("Comentario guardado con éxito");
         } catch (Exception e) {
-            System.out.println("Error guardar el comentario del prestamo " +e.getMessage());
+            System.out.println("Error guardar el comentario del prestamo " + e.getMessage());
             addMessage("Error guardar el comentario");
-                    
+
         }
     }
+
     //Metodo que amplia la fecha de devolución del prestamo por 15 dias
     public void amplia() {
         c.setTime(prestamo.getFechaFin());
@@ -168,29 +185,29 @@ public class PrestamoControl implements Serializable {
         d.setYear(c.get(Calendar.YEAR) - 1900);
         prestamo.setFechaFin(d);
         try {
-            prestamoEJB.edit(prestamo); 
-            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaPrestamos/editarPrestamo.xhtml?id=" + prestamo.getIdPrestamo());
+            prestamoEJB.edit(prestamo);
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/faces/private/worker/vistaPrestamos/editarPrestamo.xhtml?id=" + prestamo.getIdPrestamo());
             addMessage("Fecha ampliada con éxito");
-            
+
         } catch (Exception e) {
-            System.out.println("Error al ampliar la fecha de devolucion del prestamo " +e.getMessage());
+            System.out.println("Error al ampliar la fecha de devolucion del prestamo " + e.getMessage());
             addMessage("Error al ampliar la fecha de devolucion");
-                    
-        }      
+
+        }
     }
 
     public String getFormatDate(Date d) {
-        if (d!=null) {
+        if (d != null) {
             return df.format(d);
         } else {
             return "";
         }
     }
-    
-    public List <Libro> getLibrosLibres () {
-        List <Libro> lista = new ArrayList();
-        for (Libro l:listaLibros) {
-            if (l.getEstado()==0) {
+
+    public List<Libro> getLibrosLibres() {
+        List<Libro> lista = new ArrayList();
+        for (Libro l : listaLibros) {
+            if (l.getEstado() == 0) {
                 lista.add(l);
             }
         }
@@ -198,16 +215,16 @@ public class PrestamoControl implements Serializable {
     }
 
     public void insertar() {
-        for (Libro l:listaLibros) {
-            if (l.getIdLibro()==libro.getIdLibro()) {
-                libro=l;
+        for (Libro l : listaLibros) {
+            if (l.getIdLibro() == libro.getIdLibro()) {
+                libro = l;
                 break;
             }
         }
         prestamo.setLibro(libro);
-        for (Usuario u:listaUsuarios) {
-            if (u.getIdUsuario()==usuario.getIdUsuario()) {
-                usuario=u;
+        for (Usuario u : listaUsuarios) {
+            if (u.getIdUsuario() == usuario.getIdUsuario()) {
+                usuario = u;
                 break;
             }
         }
@@ -232,7 +249,7 @@ public class PrestamoControl implements Serializable {
         prestamo.setEstado(0); //Estado activo
         try {
             prestamoEJB.create(prestamo);
-            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaPrestamos/listaPrestamos.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/faces/private/worker/vistaPrestamos/listaPrestamos.xhtml");
         } catch (Exception e) {
             System.out.println("Error al crear la reserva " + e.getMessage());
         }
@@ -243,14 +260,18 @@ public class PrestamoControl implements Serializable {
     }
 
     public void eliminar(int id) {
-        setPrestamo(getPrestamo(id));
+        prestamo=prestamoEJB.find(id);
+        libro = prestamo.getLibro();
+        libro.setEstado(0);
+        libroEJB.edit(libro);
         try {
-        prestamoEJB.remove(prestamo);
+            prestamoEJB.remove(prestamo);
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/faces/private/worker/vistaPrestamos/listaPrestamos.xhtml");
         } catch (Exception e) {
             System.out.println("Error al eliminar el prestamo " + e.getMessage());
         }
     }
-    
+
     public Prestamo getPrestamo() {
         return prestamo;
     }
@@ -322,4 +343,28 @@ public class PrestamoControl implements Serializable {
         return listaLibros;
     }
 
+    public List<Prestamo> getPrestamosUsuario() {
+        List<Prestamo> lista = new ArrayList();
+        Usuario u = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        int id = u.getIdUsuario();
+        for (Prestamo r : listaPrestamos) {
+            if (r.getUsuario().getIdUsuario() == id) {
+                lista.add(r);
+            }
+        }
+        return lista;
+    }
+
+    //Muestra los prestamos relacionados con la biblioteca del trabajador
+    public List<Prestamo> getPrestamosBiblioteca() {
+        List<Prestamo> lista = new ArrayList();
+        Trabajador t = (Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+        int id = t.getBiblioteca().getIdBiblioteca();
+        for (Prestamo p : listaPrestamos) {
+            if (p.getLibro().getBiblioteca().getIdBiblioteca() == id) {
+                lista.add(p);
+            }
+        }
+        return lista;
+    }
 }
