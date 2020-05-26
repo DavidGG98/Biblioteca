@@ -60,7 +60,11 @@ public class TrabajadorControl implements Serializable{
     
     @PostConstruct
     public void reserva(){
-        trabajador= new Trabajador();
+        if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador") != null) {
+            trabajador = (Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+        } else {
+            trabajador= new Trabajador();
+        }
         biblioteca = new Biblioteca();
         rol = new Rol();
         listaTrabajadores= trabajadorEJB.findAll();

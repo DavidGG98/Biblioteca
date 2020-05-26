@@ -69,11 +69,9 @@ public class LibroControl implements Serializable {
                 autor=a;
                 break;
             }
-        }
-  
+        } 
         libro.setAutor(autor);
-        //recuperamos la editorial completa
-        
+        //recuperamos la editorial completa     
         for (Editorial e:listaEditoriales) {
             if (e.getIdEditorial() == editorial.getIdEditorial()) {
                 editorial=e;

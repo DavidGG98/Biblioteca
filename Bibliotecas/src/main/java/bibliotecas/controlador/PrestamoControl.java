@@ -87,7 +87,7 @@ public class PrestamoControl implements Serializable {
             System.out.println("Error al cancelar el prestamo nº" + idPrestamo);
         }
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/faces/private/worker/vistaPrestamos/editarPrestamos.xhtml?id=" + prestamo.getIdPrestamo());
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/faces/private/worker/vistaPrestamos/editarPrestamo.xhtml?id=" + prestamo.getIdPrestamo());
         } catch (IOException ex) {
             Logger.getLogger(PrestamoControl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -102,7 +102,7 @@ public class PrestamoControl implements Serializable {
             prestamo.setEstado(1);
             prestamo.setFechaDevolucion(new Date());
             prestamoEJB.edit(prestamo);
-            FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/faces/private/worker/vistaPrestamos/editarPrestamos.xhtml?id=" + prestamo.getIdPrestamo());
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/faces/private/worker/vistaPrestamos/editarPrestamo.xhtml?id=" + prestamo.getIdPrestamo());
 
         } catch (Exception e) {
             System.out.println("Error al finalizar el prestamo " + e.getMessage());
