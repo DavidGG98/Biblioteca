@@ -7,52 +7,53 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-        
-         <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
+
+        <ui:composition template="./../../../WEB-INF/template/workerTemplate.xhtml">
 
             <ui:define name="content">
                 <h:form id="grid">
                     <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
                         <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
-                        <p:panelGrid columns="3" styleClass="ui-noborder">
-                            <p:outputLabel for="txtNombre" value="Nombre: " /> 
-                            <p:inputText value="#{editorialControl.getEditorial(param['id']).nombre}" 
-                                         required="true" id="txtNombre" size="50"
-                                         requiredMessage="El nombre es un campo oblifatorio" />
-                            <p:message for="txtNombre"/>
+                            <p:panelGrid columns="3" styleClass="ui-noborder">
+                                <p:outputLabel for="txtNombre" value="Nombre: " /> 
+                                <p:inputText value="#{editorialControl.getEditorial(param['id']).nombre}" 
+                                             required="true" id="txtNombre" size="50"
+                                             requiredMessage="El nombre es un campo oblifatorio" />
+                                <p:message for="txtNombre"/>
 
-                            <p:outputLabel for="txtCIF" value="CIF: " /> 
-                            <p:inputText value="#{editorialControl.editorial.cif}" 
-                                         required="true" id="txtDireccion" size="50"
-                                         requiredMessage="El CIF es un campo oblifatorio" />
-                            <p:message for="txtCIF"/>
+                                <p:outputLabel for="txtCIF" value="CIF: " /> 
+                                <p:inputText value="#{editorialControl.editorial.cif}" 
+                                             required="true" id="txtCIF" size="50"
+                                             requiredMessage="El CIF es un campo oblifatorio" />
+                                <p:message for="txtCIF"/>
 
 
-                            
-                        </p:panelGrid>
-                    </p:fieldset>
-                     <p:fieldset legend="Datos opcionales">
-                        <p:panelGrid columns="2" styleClass="ui-noborder">
-                            <p:outputLabel value="Email: "/> 
-                            <p:inputText value="#{editorialControl.editorial.email}" size="50"/>
 
-                             <p:outputLabel value="Telefono: "/> 
-                             <p:inputText value="#{editorialControl.editorial.telefono}"size="10"/> 
+                            </p:panelGrid>
+                        </p:fieldset>
+                        <p:fieldset legend="Datos opcionales">
+                            <p:panelGrid columns="2" styleClass="ui-noborder">
+                                <p:outputLabel value="Email: "/> 
+                                <p:inputText value="#{editorialControl.editorial.email}" size="50"/>
 
-                            
-                        </p:panelGrid>
-                    </p:fieldset>
-                    
-                    
-                    <p:separator/>
-                    <p:commandButton value="Modificar" actionListener="#{editorialControl.modificar(editorialControl.editorial)}" 
-                                     update="grid"/>
+                                <p:outputLabel value="Telefono: "/> 
+                                <p:inputText value="#{editorialControl.editorial.telefono}" size="9"/> 
+
+
+                            </p:panelGrid>
+                        </p:fieldset>
+
+
+                        <p:separator/>
+                        <p:commandButton value="Modificar" actionListener="#{editorialControl.modificar(editorialControl.editorial)}" 
+                                         update="grid"/>
+                
+                </p:fieldset>
                 </h:form>
-                                    </p:fieldset>
-
+                
                 <p:separator/>
-                    <p:link href="listaEditoriales.xhtml" value="Retroceder"/> 
-                    <p:link href="./index.xhtml" value="Inicio"/> 
+                <p:link href="listaEditoriales.xhtml" value="Retroceder"/> 
+                <p:link href="./../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/>  
                 <p:separator/>
             </ui:define>
 

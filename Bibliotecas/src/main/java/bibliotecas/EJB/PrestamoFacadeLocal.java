@@ -30,4 +30,6 @@ public interface PrestamoFacadeLocal {
 
     int count();
     
+    int getLastId ();
+    
 }

@@ -6,65 +6,69 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <head>
-        <title>Lista Editoriales</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+
+
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <body>
-        <p:linkButton outcome="altaEditoriales" value="Añadir" style="margin-right:20px;">
-            <f:param name="Añadir editorial"/>
-        </p:linkButton>
-        <h:form id="acc">
+        <ui:composition template="./../../../WEB-INF/template/workerTemplate.xhtml">
 
-        <p:dataTable id="datos" widgetVar="dtVar"  var="editorial" value="#{editorialControl.listaEditoriales}">
-            <f:facet name="header">
-                editoriales
-            </f:facet>
-            <p:column headerText="ID">
-                <h:outputText value="#{editorial.idEditorial}"></h:outputText>
-            </p:column>
-            
-            <p:column headerText="Nombre">
-                <h:outputText value="#{editorial.nombre}"></h:outputText>
-                
-            </p:column>
-            
-            <p:column headerText="CIF">
-                <h:outputText value="#{editorial.cif}"></h:outputText>
-                
-            </p:column>
-            
-            <p:column headerText="Email">
-                <h:outputText value="#{editorial.email}"></h:outputText>
-                
-            </p:column>
-            
-            <p:column headerText="Telefono">
-                <h:outputText value="#{editorial.telefono}"></h:outputText>
-                
-            </p:column>
-            
+            <ui:define name="content">
+                <p:linkButton outcome="altaEditoriales" value="Añadir" style="margin-right:20px;">
+                    <f:param name="Añadir editorial"/>
+                </p:linkButton>
+                <h:form id="acc">
 
-            <p:column headerText="Acciones">
-                
-                    <p:linkButton outcome="editarEditorial" value="Editar" style="margin-right:20px;" >
-                        <f:param name="id" value="#{editorial.idEditorial}"/>
-                    </p:linkButton>                <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{editorialControl.eliminar(editorial.idEditorial)}"/>  
-                        
-                    
-                
-            </p:column>
-            
-        </p:dataTable>
-        </h:form>
-        <p:separator/>
-                
-            <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
-            <p:link href="./index.xhtml" value="Inicio"/>    
-        <p:separator/>
-        
+                    <p:dataTable id="datos" widgetVar="dtVar"  var="editorial" value="#{editorialControl.listaEditoriales}">
+                        <f:facet name="header">
+                            editoriales
+                        </f:facet>
+                        <p:column headerText="ID">
+                            <h:outputText value="#{editorial.idEditorial}"></h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{editorial.nombre}"></h:outputText>
+
+                        </p:column>
+
+                        <p:column headerText="CIF">
+                            <h:outputText value="#{editorial.cif}"></h:outputText>
+
+                        </p:column>
+
+                        <p:column headerText="Email">
+                            <h:outputText value="#{editorial.email}"></h:outputText>
+
+                        </p:column>
+
+                        <p:column headerText="Telefono">
+                            <h:outputText value="#{editorial.telefono}"></h:outputText>
+
+                        </p:column>
+
+
+                        <p:column headerText="Acciones">
+
+                            <p:linkButton outcome="editarEditorial" value="Editar" style="margin-right:20px;" >
+                                <f:param name="id" value="#{editorial.idEditorial}"/>
+                            </p:linkButton>                
+                            <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{editorialControl.eliminar(editorial.idEditorial)}"/>  
+
+
+
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+                <p:separator/>
+
+                <p:link href="./../workerHome.xhtml" value="Retroceder"/> 
+                <p:link href="./../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/>   
+                <p:separator/>
+            </ui:define>
+        </ui:composition>
     </body>
 </html>

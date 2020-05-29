@@ -6,59 +6,58 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <body>
-        
-         <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
+    <h:body>
+       
+         <ui:composition template="./../../../WEB-INF/template/workerTemplate.xhtml">
 
             <ui:define name="content">
                 <h:form id="grid">
                     <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
                         <p:panelGrid columns="3" styleClass="ui-noborder">
-                            <p:outputLabel for="txtNombre" value="Nombre: " /> 
-                            <p:inputText value="#{usuarioControl.getUsuario(param['id']).nombre}" 
-                                         required="true" id="txtNombre" size="50"
-                                         requiredMessage="El nombre es un campo oblifatorio" />
-                            <p:message for="txtNombre"/>
+                            <p:outputLabel for="txtnum" value="Numero de Carnet " /> 
+                            <p:inputText value="#{usuarioControl.getUsuario(param['id']).numeroCarnet}" 
+                                         required="true" id="txtnum" size="6"
+                                         requiredMessage="El Numero de Carnet es un campo obligatorio" />
+                            <p:message for="txtnum"/>
 
                             <p:outputLabel for="txtContrasena" value="Contraseña: " /> 
-                            <p:inputText value="#{usuarioControl.usuarios.apellidos}" 
+                            <p:inputText value="#{usuarioControl.getUsuario(param['id']).contrasena}" 
                                          required="true" id="txtContrasena" size="20"
-                                         requiredMessage="La contraseña es un campo oblifatorio" />
+                                         requiredMessage="La contraseña es un campo obligatorio" />
                             <p:message for="txtContrasena"/>
-                            
+                             <p:outputLabel for="txtNombre" value="Nombre: " /> 
+                            <p:inputText value="#{usuarioControl.getUsuario(param['id']).nombre}" 
+                                         required="true" id="txtNombre" size="50"
+                                         requiredMessage="El nombre es un campo obligatorio" />
+                            <p:message for="txtNombre"/>
                             <p:outputLabel for="txtApellidos" value="Apellidos: " /> 
-                            <p:inputText value="#{usuarioControl.usuarios.apellidos}" 
-                                         required="true" id="txtDireccion" size="50"
-                                         requiredMessage="Apellidos es un campo oblifatorio" />
+                            <p:inputText value="#{usuarioControl.getUsuario(param['id']).apellidos}" 
+                                         required="true" id="txtApellidos" size="50"
+                                         requiredMessage="Apellidos es un campo obligatorio" />
                             <p:message for="txtApellidos"/>
                             
                             <p:outputLabel for="txtEmail" value="Email: " /> 
-                            <p:inputText value="#{usuarioControl.usuarios.email}" 
-                                         required="true" id="txtEmail" size="100"
-                                         requiredMessage="La email es un campo oblifatorio" />
+                            <p:inputText value="#{usuarioControl.getUsuario(param['id']).email}" 
+                                         required="false" id="txtEmail" size="100"
+                                         requiredMessage="La email es un campo obligatorio" />
                             <p:message for="txtEmail"/>
-                            <p:outputLabel for="txtnum" value="Numero de Carnet " /> 
-                            <p:inputText value="#{usuarioControl.usuarios.numeroCarnet}" 
-                                         required="true" id="txtEmail" size="10"
-                                         requiredMessage="El Numero de Carnet es un campo oblifatorio" />
-                            <p:message for="txtnum"/>
-
+                            
                             
                         </p:panelGrid>
                     </p:fieldset>
                     
                     
                     <p:separator/>
-                    <p:commandButton value="Modificar" actionListener="#{usuarioControl.modificar(usuarioControl.usuarios)}" 
+                    <p:commandButton value="Modificar" actionListener="#{usuarioControl.modificar(usuarioControl.getUsuario(param['id']), 0)}" 
                                      update="grid"/>
                 </h:form>
                 <p:separator/>
                     <p:link href="listaUsuarios.xhtml" value="Retroceder"/> 
-                    <p:link href="./index.xhtml" value="Inicio"/> 
+                    <p:link href="./../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/> 
                 <p:separator/>
             </ui:define>
 
         </ui:composition>
 
-    </body>
+    </h:body>
 </html>

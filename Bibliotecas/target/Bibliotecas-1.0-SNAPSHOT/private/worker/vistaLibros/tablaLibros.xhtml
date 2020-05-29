@@ -4,30 +4,43 @@
 
 <body>
 
-    <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
+    <ui:composition template="./../../../WEB-INF/template/workerTemplate.xhtml">
 
         <ui:define name="content">
             <h1> Lista de libros </h1>
             <h:link outcome="altaLibro" value="Nuevo libro" />
             <h:form id="acc">
-                <p:dataTable id="datos" var="libro" value="#{libroControl.listaLibros}">
+                <p:dataTable id="datos" var="libro" value="#{libroControl.librosBiblioteca}">
                     <f:facet name="header">
                         Lista de libros
-                    </f:facet>
-                    <p:column headerText="Id">
+                    </f:facet>                   
+                    <p:column headerText="Id" style="width: 30px; text-align: right">
                         <h:outputText value="#{libro.idLibro}" />
                     </p:column>
-
                     <p:column headerText="Titulo">
                         <h:outputText value="#{libro.titulo}" />
                     </p:column>
-
+                    <p:column headerText="Autor">
+                        <h:outputText value="#{libro.autor.getNombreYApellidos()}" />
+                    </p:column>
+                    <p:column headerText="Genero">
+                        <h:outputText value="#{libro.genero}" />
+                    </p:column>
+                    <p:column headerText="Idioma">
+                        <h:outputText value="#{libro.idioma}" />
+                    </p:column>
+                    <p:column headerText="Idioma">
+                        <h:outputText value="#{libro.estadoString}" />
+                    </p:column>
+                    <p:column headerText="Biblioteca">
+                        <h:outputText value="#{libro.biblioteca.nombre}" />
+                    </p:column>
 
                     <p:column headerText="Acción">
                         <p:linkButton outcome="editarLibro" value="Editar" style="margin-right:20px;">
                             <f:param name="id" value="#{libro.idLibro}" />
                         </p:linkButton>
-                        <p:commandButton value="Borrar" style="margin-right:20px;" update=":acc:datos" action="#{libroControl.eliminar(libro.idLibro)}" />
+                        <p:commandButton value="Borrar" style="margin-right:20px;" update="datos" action="#{libroControl.eliminar(libro.idLibro)}" />
                     </p:column>
 
                 </p:dataTable>
@@ -36,7 +49,7 @@
             <p:separator/>
 
             <p:link href="./../workerHome.xhtml" value="Retroceder" />
-            <p:link href="./index.xhtml" value="Inicio" />
+            <p:link href="./../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/> 
             <p:separator/>
 
 

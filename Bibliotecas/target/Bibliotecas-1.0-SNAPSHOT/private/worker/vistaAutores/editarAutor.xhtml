@@ -7,44 +7,43 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-        
-         <ui:composition template="./../../../WEB-INF/template/headBotTemplate.xhtml">
 
+        <ui:composition template="./../../../WEB-INF/template/workerTemplate.xhtml">
             <ui:define name="content">
                 <h:form id="grid">
-                    <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
+                    <p:fieldset legend="Id del autor: #{autorControl.getAutor(param['id']).idAutor}" style="margin-bottom: 25px" >
                         <p:fieldset legend="Datos obligatorios" style="margin-bottom: 25px" >
-                        <p:panelGrid columns="3" styleClass="ui-noborder">
-                            <p:outputLabel for="txtNombre" value="Nombre: " /> 
-                            <p:inputText value="#{autorControl.getAutor(param['id']).nombre}" 
-                                         required="true" id="txtNombre" size="30"
-                                         requiredMessage="El nombre es un campo oblifatorio" />
-                            <p:message for="txtNombre"/>
+                            <p:panelGrid columns="3" styleClass="ui-noborder">
+                                <p:outputLabel for="txtNombre" value="Nombre: " /> 
+                                <p:inputText value="#{autorControl.getAutor(param['id']).nombre}" 
+                                             required="true" id="txtNombre" size="30"
+                                             requiredMessage="El nombre es un campo oblifatorio" />
+                                <p:message for="txtNombre"/>
 
-                        </p:panelGrid>
+                            </p:panelGrid>
+                        </p:fieldset>
+                        <p:fieldset legend="Datos opcionales">
+                            <p:panelGrid columns="2" styleClass="ui-noborder">
+                                <p:outputLabel value="Apellidos "/> 
+                                <p:inputText value="#{autorControl.autor.apellidos}" size="50"/>
+                                <p:outputLabel value="Nacionalidad "/> 
+                                <p:inputText value="#{autorControl.autor.pais}" size="50"/> 
+                                <p:outputLabel value="Fecha de Nacimiento "/> 
+                                <p:inputText value="#{autorControl.autor.fechaNacimiento}"/> 
+
+                            </p:panelGrid> 
+                        </p:fieldset>
+
+
+                        <p:separator/>
+                        <p:commandButton value="Modificar" actionListener="#{autorControl.modificar(autorControl.autor)}" 
+                                         update="grid"/>
+
                     </p:fieldset>
-                     <p:fieldset legend="Datos opcionales">
-                        <p:panelGrid columns="2" styleClass="ui-noborder">
-                            <p:outputLabel value="Apellidos "/> 
-                            <p:inputText value="#{autorControl.autor.apellidos}" size="50"/>
-                            <p:outputLabel value="Nacionalidad "/> 
-                            <p:inputText value="#{autorControl.autor.pais}"size="50"/> 
-                            <p:outputLabel value="Fecha de Nacimiento "/> 
-                            <p:datePicker value="#{autorControl.autor.fechaNacimiento}"/> 
-                            
-                        </p:panelGrid> 
-                    </p:fieldset>
-                    
-                    
-                    <p:separator/>
-                    <p:commandButton value="Modificar" actionListener="#{autorControl.modificar(autorControl.autor)}" 
-                                     update="grid"/>
                 </h:form>
-                                    </p:fieldset>
-
                 <p:separator/>
-                    <p:link href="listaAutores.xhtml" value="Retroceder"/> 
-                    <p:link href="./index.xhtml" value="Inicio"/> 
+                <p:link href="listaAutores.xhtml" value="Retroceder"/> 
+                <p:link href="./../workerHome.xhtml" value="Inicio" style="margin-left: 20px"/> 
                 <p:separator/>
             </ui:define>
 

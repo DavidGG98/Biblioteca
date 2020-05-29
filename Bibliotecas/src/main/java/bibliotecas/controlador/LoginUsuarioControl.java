@@ -34,17 +34,18 @@ public class LoginUsuarioControl implements Serializable{
         usuario=new Usuario(); //reserva la memoria
     }
     
-    public String verificarUsuario () {
-      
-        
+    public String verificarUsuario () {       
         usuario = usuarioEJB.verificarUsuario(usuario);
         if (usuario == null) {
             return "loginError.xhtml?faces-redirect=true";
         } else {
+            //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
-            return "private/user/userHome.xhtml?faces-redirect=true";
+            return "private/user/home.xhtml?faces-redirect=true";
         }
     }
+    
+
     
     public UsuarioFacadeLocal getUsuarioEJB() {
         return usuarioEJB;

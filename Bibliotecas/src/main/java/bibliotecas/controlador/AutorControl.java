@@ -8,9 +8,12 @@ package bibliotecas.controlador;
 import bibliotecas.EJB.AutorFacadeLocal;
 import bibliotecas.modelo.Autor;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -29,64 +32,44 @@ public class AutorControl implements Serializable {
     @EJB
     AutorFacadeLocal autorEJB;
     List <Autor> listaAutores;
-
-    public Autor getAutor(int id){
-        try{
-            System.out.println(id);
-            System.out.println("Seleccionado "+ id);
-            for(Autor b:listaAutores){
-                if(b.getIdAutor()==id){
-                    System.out.println("Autor "+ b.getNombre()+" tiene el mismo id");
-                    autor=b;
-                    break;
-                }
-            }
-            return autor;
-        } catch (Exception e){
-            System.out.println("Error al seleccionar el Autor "+ e.getMessage());
-        }
-        return null;
-    }
+    String context;
+    private SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+   
     
     @PostConstruct //le mandamos ejecutarse antes, ya que el constructor debe estar vacio
     public void reserva() {
         autor=new Autor(); //reserva la memoria
         listaAutores = autorEJB.findAll();
-
+        context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
     }
     public void insertar(){
         try{
           autorEJB.create(autor);
             System.out.println("Anadiendo Autor...");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaAutores/listaAutores.xhtml");
         } catch (Exception e) {
             System.out.println("Error al anadir el Autor "+ e.getMessage());
         }
     }
     public void eliminar(int id){
+        System.out.println("eliminando autor " +id);
         try{
-            System.out.println("");
             for(Autor t:listaAutores){
                 if((id)==t.getIdAutor()){
                     autor=t;
                     break;
                 }
-            autorEJB.remove(autor);
             }
+             autorEJB.remove(autor);
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaAutores/listaAutores.xhtml");
         } catch (Exception e) {
             System.out.println("Error al eliminar el Autor "+ e.getMessage());
         }
     }
-    public void modificar(int id) {
+    public void modificar(Autor a) {
         try {
-            String n=autor.getNombre();
-            for (Autor c:listaAutores) {
-                if(id== c.getIdAutor()) {
-                    autor=c; //Recuperamos el objeto al completo, no solo su id
-                    break; //Sale del bucle
-                }
-            }
-            autor.setNombre(n); //Actualizamos el nombre que hemos puesto y lo guardamos
-            autorEJB.edit(autor);
+            autorEJB.edit(a);
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaAutores/listaAutores.xhtml");
         } catch (Exception e) {
             System.out.println("Error al modificar el Autor"+ e.getMessage());
         }
@@ -115,5 +98,30 @@ public class AutorControl implements Serializable {
     public void setListaAutores(List<Autor> listaAutores) {
         this.listaAutores = listaAutores;
     }
+    
+    public String getFormatDate(Date d) {
+        if (d!=null) {
+            return df.format(d);
+        } else {
+            return "";
+        }
+    }
         
+     public Autor getAutor(int id){
+        try{
+            System.out.println(id);
+            System.out.println("Seleccionado "+ id);
+            for(Autor b:listaAutores){
+                if(b.getIdAutor()==id){
+                    System.out.println("Autor "+ b.getNombre()+" tiene el mismo id");
+                    autor=b;
+                    break;
+                }
+            }
+            return autor;
+        } catch (Exception e){
+            System.out.println("Error al seleccionar el Autor "+ e.getMessage());
+        }
+        return null;
+    }
 }

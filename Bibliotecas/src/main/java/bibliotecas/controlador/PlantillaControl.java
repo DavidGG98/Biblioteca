@@ -42,4 +42,9 @@ public class PlantillaControl implements Serializable {
             
         }
     }
+    
+    public String terminaSesion () {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "index.xhtml?faces-redirect=true";
+    }
 }

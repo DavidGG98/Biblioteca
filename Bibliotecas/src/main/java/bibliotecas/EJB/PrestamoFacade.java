@@ -6,6 +6,7 @@
 package bibliotecas.EJB;
 
 import bibliotecas.modelo.Prestamo;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,4 +30,15 @@ public class PrestamoFacade extends AbstractFacade<Prestamo> implements Prestamo
         super(Prestamo.class);
     }
     
+    @Override
+    public int getLastId () {
+        int id=0;
+        List <Prestamo> lista = findAll();
+        for (Prestamo p:lista) {
+            if (p.getIdPrestamo()>id) {
+                id=p.getIdPrestamo();
+            }
+        }
+        return id;
+    }
 }

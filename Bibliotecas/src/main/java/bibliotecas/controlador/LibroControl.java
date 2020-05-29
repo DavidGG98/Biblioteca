@@ -5,16 +5,27 @@
  */
 package bibliotecas.controlador;
 
+import bibliotecas.EJB.AutorFacadeLocal;
+import bibliotecas.EJB.EditorialFacadeLocal;
 import bibliotecas.EJB.LibroFacadeLocal;
 import bibliotecas.modelo.Autor;
+import bibliotecas.modelo.Biblioteca;
 import bibliotecas.modelo.Editorial;
 import bibliotecas.modelo.Libro;
+import bibliotecas.modelo.Trabajador;
+import bibliotecas.modelo.Usuario;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+
 
 /**
  *
@@ -29,48 +40,121 @@ public class LibroControl implements Serializable {
     
     @EJB
     LibroFacadeLocal libroEJB;
+    @EJB
+    EditorialFacadeLocal editorialEJB;
+    @EJB
+    AutorFacadeLocal autorEJB;
     List <Libro> listaLibros;
+    List <Editorial> listaEditoriales;
+    List <Autor> listaAutores;
     private Autor autor;
     private Editorial editorial;
-    /*
-    public Libro comprimeLibro () {
-        
+    String context;
+    
+    @PostConstruct //le mandamos ejecutarse antes, ya que el constructor debe estar vacio
+    public void reserva() {
+        libro=new Libro(); //reserva la memoria
+        autor = new Autor();
+        editorial = new Editorial();
+        listaLibros = libroEJB.findAll();
+        listaAutores = autorEJB.findAll();
+        listaEditoriales=editorialEJB.findAll();
+        context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
     }
     
-    //Agrupa todos los libros que tengan el mismo titulo y autor.
-    //Si al menos un libro no está alquilado, aparecerá como libre.
-    
-    public List <Libro> comprimeLibroLista () {
-        List <Libro> libros = new ArrayList <Libro>();
-        for (Libro l : listaLibros) {
-            //Creamos una copia del libro y lo introducimos en la lista
-            Libro lib = new Libro ();
-            lib.setAutor(l.getAutor());
-            lib.setTitulo(l.getTitulo());
-            if (libros.contains(l) && libros.) {
-                //Si el estado es libre, actualizamos a libre
-            } else {       
-                lib.setEstado(l.getEstado());
-                libros.add(lib);
+        public void insertar() { //Inserta en la base de datos             
+        //recuperamos el autor completo        
+        for (Autor a:listaAutores) {
+            if (a.getIdAutor()==autor.getIdAutor()) {
+                autor=a;
+                break;
             }
-       
+        } 
+        libro.setAutor(autor);
+        //recuperamos la editorial completa     
+        for (Editorial e:listaEditoriales) {
+            if (e.getIdEditorial() == editorial.getIdEditorial()) {
+                editorial=e;
+                break;
+            }
         }
-        return libros;
+        libro.setEditorial(editorial);
+        //Seteamos la biblioteca
+        Trabajador t =(Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+        libro.setBiblioteca(t.getBiblioteca());
+        //Seteamos los defaults 
+        if(libro.getIdioma() == null || libro.getIdioma().equals("")) {
+                libro.setIdioma("Espanol"); //IDIOMA DEFAULT
+        }
+        libro.setTiempoPrestamo(15); //Dias que peude estar prestado
+        try {
+            libroEJB.create(libro);
+            System.out.println("Insertando libro...");
+             try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaLibros/tablaLibros.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(LibroControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al insertar el libro " + e.getMessage());
+        }
+       
     }
     
-    //Dado un titulo y un autor te devuelve todos los libros
-    public List <Libro> expandeLibro (String titulo, String auto) {
-        
+    public void eliminar(int id) {
+        Trabajador t = (Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+        if (t.getBiblioteca().getIdBiblioteca()==libro.getBiblioteca().getIdBiblioteca()) {
+        try {
+            System.out.println();
+            for (Libro l:listaLibros) {
+                if(l.getIdLibro() == id) {
+                    libro=l; //Recuperamos la categoria al completo, no solo su id
+                    break; //Sale del bucle
+                }
+            }
+            libroEJB.remove(libro);
+            System.out.println("Libro eliminado de la base de datos");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaLibros/tablaLibros.xhtml");
+
+        } catch (Exception e) {
+            System.out.println("Erroooooor al eliminar el libro "+ e.getMessage());
+        }
+        }else{
+            //NO HACE NADA
+        }
     }
-    */
-   public Libro getLibro(int id){
+    
+    public void modificar(Libro l) {
+        //String context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();    
+        Trabajador t = (Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+        if (t.getBiblioteca().getIdBiblioteca()==libro.getBiblioteca().getIdBiblioteca()) {
+            try {
+                libro.setAutor(autor);
+                libro.setEditorial(editorial);
+                //libro.setTitulo(n); //Actualizamos el nombre que hemos puesto y lo guardamos
+                libroEJB.edit(l);
+                FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaLibros/tablaLibros.xhtml");
+
+            } catch (Exception e) {
+                System.out.println("Erroooooor al modificarl el libro"+ e.getMessage());
+            }
+        } else {
+            //NO HACE NADA
+        }
+    }
+
+    public Libro getLibro() {
+        return libro;
+    }
+
+       public Libro getLibro(int id){
         
         try{
-            System.out.println(id);
-            System.out.println("Seleccionado "+ id);
+            //System.out.println(id);
+            //System.out.println("Seleccionado "+ id);
             for(Libro b:listaLibros){
                 if(b.getIdLibro()==id){
-                    System.out.println("Libro "+ b.getTitulo()+" tiene el mismo id");
+                    //System.out.println("Libro "+ b.getTitulo()+" tiene el mismo id");
                     libro=b;
                     break;
                 }
@@ -82,56 +166,6 @@ public class LibroControl implements Serializable {
         return null;
     } 
     
-    @PostConstruct //le mandamos ejecutarse antes, ya que el constructor debe estar vacio
-    public void reserva() {
-        libro=new Libro(); //reserva la memoria
-        listaLibros = libroEJB.findAll();
-    }
-    
-        public void insertar() { //Inserta en la base de datos
-        try {
-            libroEJB.create(libro);
-            System.out.println("Insertando libro...");
-        } catch (Exception e) {
-            System.out.println("Error al insertar el libro " + e.getMessage());
-        }
-    }
-    
-    public void eliminar(int id) {
-        try {
-            System.out.println();
-            for (Libro l:listaLibros) {
-                if(l.getIdLibro() == id) {
-                    libro=l; //Recuperamos la categoria al completo, no solo su id
-                    break; //Sale del bucle
-                }
-            }
-            libroEJB.remove(libro);
-        } catch (Exception e) {
-            System.out.println("Erroooooor al eliminar el libro "+ e.getMessage());
-        }
-    }
-    
-    public void modificar(int id) {
-        try {
-            String n=libro.getTitulo();
-            for (Libro c:listaLibros) {
-                if(c.getIdLibro() == id) {
-                    libro=c; //Recuperamos el objeto al completo, no solo su id
-                    break; //Sale del bucle
-                }
-            }
-            libro.setTitulo(n); //Actualizamos el nombre que hemos puesto y lo guardamos
-            libroEJB.edit(libro);
-        } catch (Exception e) {
-            System.out.println("Erroooooor al modificarl el libro"+ e.getMessage());
-        }
-    }
-
-    public Libro getLibro() {
-        return libro;
-    }
-
     public LibroFacadeLocal getLibroEJB() {
         return libroEJB;
     }
@@ -167,5 +201,34 @@ public class LibroControl implements Serializable {
     public void setEditorial(Editorial editorial) {
         this.editorial = editorial;
     }
-       
+
+    public List<Editorial> getListaEditoriales() {
+        return listaEditoriales;
+    }
+
+    public List<Autor> getListaAutores() {
+        return listaAutores;
+    }
+
+    public void setListaEditoriales(List<Editorial> listaEditoriales) {
+        this.listaEditoriales = listaEditoriales;
+    }
+
+    public void setListaAutores(List<Autor> listaAutores) {
+        this.listaAutores = listaAutores;
+    }
+      
+    //Para mostrar los libros pertenecientes a la biblioteca en la que trabaja el trabajador
+    public List <Libro> getLibrosBiblioteca () {
+        Trabajador t =(Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+        List <Libro> lista = new ArrayList ();
+        for (Libro l:listaLibros) {
+            if (l.getBiblioteca().getIdBiblioteca() == t.getBiblioteca().getIdBiblioteca()) {
+                lista.add(l);
+            }
+        }
+        
+        return lista;
+    }
+    
 }

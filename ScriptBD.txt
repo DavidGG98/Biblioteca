@@ -1,125 +1,240 @@
-Updatecheck<|||>3<|||>1
-DoUsageStatistics<|||>3<|||>1
-Theme<|||>1<|||>Windows
-SQL Attr Comment Foreground<|||>3<|||>8421504
-SQL Attr ConditionalComment Foreground<|||>3<|||>8421504
-SQL Attr DataType Foreground<|||>3<|||>128
-SQL Attr DelimitedIdentifier Foreground<|||>3<|||>32896
-SQL Attr Function Foreground<|||>3<|||>8388608
-SQL Attr Identifier Foreground<|||>3<|||>32896
-SQL Attr Key Foreground<|||>3<|||>16711680
-SQL Attr Number Foreground<|||>3<|||>8388736
-SQL Attr String Foreground<|||>3<|||>32768
-SQL Attr Symbol Foreground<|||>3<|||>16711680
-SQL Attr TableName Foreground<|||>3<|||>16711935
-SQL Attr Variable Foreground<|||>3<|||>8388736
-FieldColor_Binary<|||>3<|||>8388736
-FieldColor_Datetime<|||>3<|||>128
-FieldColor_Numeric<|||>3<|||>16711680
-FieldColor_Other<|||>3<|||>32896
-FieldColor_Real<|||>3<|||>16711752
-FieldColor_Spatial<|||>3<|||>8421376
-FieldColor_Text<|||>3<|||>32768
-UpdatecheckLastrun<|||>1<|||>2020-05-08 22:02:55
-LastUsageStatisticCall<|||>1<|||>2020-04-18 09:45:54
-SessionManager_ListWidth<|||>3<|||>200
-SessionManager_WindowWidth<|||>3<|||>1028
-SessionManager_WindowHeight<|||>3<|||>683
-ColWidths_connform.ListSessions<|||>1<|||>163,50,50,50,50,50,33
-ColsVisible_connform.ListSessions<|||>1<|||>0
-ColPositions_connform.ListSessions<|||>1<|||>0,1,2,3,4,5,6
-ColSort_connform.ListSessions<|||>1<|||>0,0
-MainWinOnMonitor<|||>3<|||>0
-ColWidths_MainForm.ListDatabases<|||>1<|||>188,100,63,63,63,63,63,63,63,63,150
-ColsVisible_MainForm.ListDatabases<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10
-ColPositions_MainForm.ListDatabases<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10
-ColSort_MainForm.ListDatabases<|||>1<|||>10,0
-ColWidths_MainForm.ListVariables<|||>1<|||>200,250,338
-ColsVisible_MainForm.ListVariables<|||>1<|||>0,1,2
-ColPositions_MainForm.ListVariables<|||>1<|||>0,1,2
-ColSort_MainForm.ListVariables<|||>1<|||>0,0
-ColWidths_MainForm.ListStatus<|||>1<|||>200,338,125,125
-ColsVisible_MainForm.ListStatus<|||>1<|||>0,1,2,3
-ColPositions_MainForm.ListStatus<|||>1<|||>0,1,2,3
-ColSort_MainForm.ListStatus<|||>1<|||>0,0
-ColWidths_MainForm.ListProcesses<|||>1<|||>88,100,100,100,100,63,63,30
-ColsVisible_MainForm.ListProcesses<|||>1<|||>0,1,2,3,4,5,6,7
-ColPositions_MainForm.ListProcesses<|||>1<|||>0,1,2,3,4,5,6,7
-ColSort_MainForm.ListProcesses<|||>1<|||>0,1
-ColWidths_MainForm.ListCommandStats<|||>1<|||>150,125,125,125,263
-ColsVisible_MainForm.ListCommandStats<|||>1<|||>0,1,2,3,4
-ColPositions_MainForm.ListCommandStats<|||>1<|||>0,1,2,3,4
-ColSort_MainForm.ListCommandStats<|||>1<|||>1,1
-ColWidths_MainForm.ListTables<|||>1<|||>150,88,88,150,150,88,125,63,88,88,88,88,88,113,150,88,88,88,63
-ColsVisible_MainForm.ListTables<|||>1<|||>0,1,2,3,4,5,6,18
-ColPositions_MainForm.ListTables<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18
-ColSort_MainForm.ListTables<|||>1<|||>0,0
-SessionManager_WindowLeft<|||>3<|||>287
-SessionManager_WindowTop<|||>3<|||>0
-LastSessions<|||>1<|||>Unnamed
-LastActiveSession<|||>1<|||>Unnamed
-sqloutheight<|||>3<|||>68
-MainWinMaximized<|||>3<|||>0
-FileDialogEncoding_MainForm<|||>3<|||>0
-ColWidths_frmTableEditor.listColumns<|||>1<|||>54,109,184,186,60,123,148,142,130,168,100,100
-ColsVisible_frmTableEditor.listColumns<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11
-ColPositions_frmTableEditor.listColumns<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11
-ColSort_frmTableEditor.listColumns<|||>1<|||>-1,0
-ColWidths_frmTableEditor.treeIndexes<|||>1<|||>434,100,80
-ColsVisible_frmTableEditor.treeIndexes<|||>1<|||>0,1,2
-ColPositions_frmTableEditor.treeIndexes<|||>1<|||>0,1,2
-ColSort_frmTableEditor.treeIndexes<|||>1<|||>-1,0
-ColWidths_frmTableEditor.listForeignKeys<|||>1<|||>10,227,250,170,80,80
-ColsVisible_frmTableEditor.listForeignKeys<|||>1<|||>0,1,2,3,4,5
-ColPositions_frmTableEditor.listForeignKeys<|||>1<|||>0,1,2,3,4,5
-ColSort_frmTableEditor.listForeignKeys<|||>1<|||>-1,0
-querymemoheight<|||>3<|||>59
-MemoEditorWidth<|||>3<|||>136
-ExportSQL_Filenames<|||>1<|||>C:\Users\alex1\Desktop\Base InSo2.sql<{{{><}}}>
-ExportSQL_DataHow<|||>3<|||>1
-ExportSQL_CreateDatabases<|||>3<|||>1
-ExportSQL_CreateTables<|||>3<|||>1
-SingleQueries<|||>3<|||>0
-MainWinLeft<|||>3<|||>593
-MainWinTop<|||>3<|||>0
-MainWinHeight<|||>3<|||>738
-SQLFile0<|||>1<|||>C:\Users\alex1\Downloads\SQL (1).txt
-SQLFile1<|||>1<|||>C:\Users\alex1\Downloads\SQL.txt
-SQLFile2<|||>1<|||>C:\Users\alex1\Documents\GitHub\Biblioteca\ScriptBD.txt
-SQLFile3<|||>1<|||>C:\Users\alex1\Desktop\Base InSo2.sql
-SQLFile4<|||>1<|||>C:\Users\alex1\Desktop\Diagramas aplicación publicaciones y script creación base de datos-20200227\ScriptBaseDatos.sql
-Servers\Unnamed\SessionCreated<|||>1<|||>2019-03-09 20:23:56
-Servers\Unnamed\Host<|||>1<|||>127.0.0.1
-Servers\Unnamed\WindowsAuth<|||>3<|||>0
-Servers\Unnamed\User<|||>1<|||>root
-Servers\Unnamed\Password<|||>1<|||>737070751
-Servers\Unnamed\LoginPrompt<|||>3<|||>0
-Servers\Unnamed\Port<|||>1<|||>3306
-Servers\Unnamed\NetType<|||>3<|||>0
-Servers\Unnamed\Compressed<|||>3<|||>0
-Servers\Unnamed\LocalTimeZone<|||>3<|||>0
-Servers\Unnamed\QueryTimeout<|||>3<|||>30
-Servers\Unnamed\KeepAlive<|||>3<|||>20
-Servers\Unnamed\FullTableStatus<|||>3<|||>1
-Servers\Unnamed\Databases<|||>1<|||>
-Servers\Unnamed\Comment<|||>1<|||>
-Servers\Unnamed\StartupScriptFilename<|||>1<|||>
-Servers\Unnamed\TreeBackground<|||>3<|||>536870911
-Servers\Unnamed\SSHtunnelHost<|||>1<|||>
-Servers\Unnamed\SSHtunnelHostPort<|||>3<|||>22
-Servers\Unnamed\SSHtunnelUser<|||>1<|||>
-Servers\Unnamed\SSHtunnelPassword<|||>1<|||>5
-Servers\Unnamed\SSHtunnelTimeout<|||>3<|||>4
-Servers\Unnamed\SSHtunnelPrivateKey<|||>1<|||>
-Servers\Unnamed\SSHtunnelPort<|||>3<|||>3307
-Servers\Unnamed\SSL_Active<|||>3<|||>0
-Servers\Unnamed\SSL_Key<|||>1<|||>
-Servers\Unnamed\SSL_Cert<|||>1<|||>
-Servers\Unnamed\SSL_CA<|||>1<|||>
-Servers\Unnamed\SSL_Cipher<|||>1<|||>
-Servers\Unnamed\RefusedCount<|||>3<|||>22
-Servers\Unnamed\ServerVersionFull<|||>1<|||>5.5.62 - MySQL Community Server (GPL)
-Servers\Unnamed\ConnectCount<|||>3<|||>11
-Servers\Unnamed\ServerVersion<|||>3<|||>50562
-Servers\Unnamed\LastConnect<|||>1<|||>2020-05-08 22:03:07
-Servers\Unnamed\lastUsedDB<|||>1<|||>bibliotecas
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Versión del servidor:         8.0.19 - MySQL Community Server - GPL
+-- SO del servidor:              Win64
+-- HeidiSQL Versión:             10.3.0.5771
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+-- Volcando estructura de base de datos para bibliotecas
+CREATE DATABASE IF NOT EXISTS `bibliotecas` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `bibliotecas`;
+
+-- Volcando estructura para tabla bibliotecas.autores
+CREATE TABLE IF NOT EXISTS `autores` (
+  `IdAutor` int NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(30) NOT NULL,
+  `Apellidos` varchar(50) DEFAULT NULL,
+  `Nacionalidad` varchar(50) DEFAULT NULL,
+  `FechaNacimiento` int DEFAULT NULL,
+  PRIMARY KEY (`IdAutor`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla bibliotecas.autores: ~3 rows (aproximadamente)
+DELETE FROM `autores`;
+/*!40000 ALTER TABLE `autores` DISABLE KEYS */;
+INSERT INTO `autores` (`IdAutor`, `Nombre`, `Apellidos`, `Nacionalidad`, `FechaNacimiento`) VALUES
+	(1, 'Anonimo', '', '', NULL),
+	(2, 'Anonimo2', 'Gonzalez', '', NULL),
+	(9, 'Santiago', 'Posteguillo Gómez', 'España', 1967);
+/*!40000 ALTER TABLE `autores` ENABLE KEYS */;
+
+-- Volcando estructura para tabla bibliotecas.bibliotecas
+CREATE TABLE IF NOT EXISTS `bibliotecas` (
+  `IdBiblioteca` int NOT NULL AUTO_INCREMENT,
+  `NombreBiblio` varchar(50) NOT NULL,
+  `Direccion` varchar(100) NOT NULL,
+  `Localidad` varchar(50) NOT NULL,
+  PRIMARY KEY (`IdBiblioteca`),
+  UNIQUE KEY `Direccion` (`Direccion`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla bibliotecas.bibliotecas: ~1 rows (aproximadamente)
+DELETE FROM `bibliotecas`;
+/*!40000 ALTER TABLE `bibliotecas` DISABLE KEYS */;
+INSERT INTO `bibliotecas` (`IdBiblioteca`, `NombreBiblio`, `Direccion`, `Localidad`) VALUES
+	(1, 'Biblioteca publica de Leon', 'Calle Sta. Nonia, 5, 24003 Leon', 'Leon'),
+	(2, 'Biblioteca Universitaria " San isidoro "', 'Campus de Vegazana, s/n, 24071 León', 'Leon');
+/*!40000 ALTER TABLE `bibliotecas` ENABLE KEYS */;
+
+-- Volcando estructura para tabla bibliotecas.editoriales
+CREATE TABLE IF NOT EXISTS `editoriales` (
+  `IdEditorial` int NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
+  `Telefono` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `CIF` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`IdEditorial`),
+  UNIQUE KEY `Nombre` (`Nombre`),
+  UNIQUE KEY `CIF` (`CIF`),
+  UNIQUE KEY `Email` (`Email`),
+  UNIQUE KEY `Telefono` (`Telefono`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla bibliotecas.editoriales: ~3 rows (aproximadamente)
+DELETE FROM `editoriales`;
+/*!40000 ALTER TABLE `editoriales` DISABLE KEYS */;
+INSERT INTO `editoriales` (`IdEditorial`, `Nombre`, `Telefono`, `Email`, `CIF`) VALUES
+	(1, 'Editorial de prueba', '987101013', 'editoria@prueba.es', '123456'),
+	(7, 'El Barco de Papel', '910102030', 'elBarcoDePapel@editorial.com', '0000000001'),
+	(16, 'Edelvives', '910102031', 'Edelvives@editorial.com', '1234542312');
+/*!40000 ALTER TABLE `editoriales` ENABLE KEYS */;
+
+-- Volcando estructura para tabla bibliotecas.libros
+CREATE TABLE IF NOT EXISTS `libros` (
+  `IdLibro` int NOT NULL AUTO_INCREMENT,
+  `Titulo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Genero` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Estado` int NOT NULL DEFAULT '0' COMMENT '0=Libre/1=Alquilado/-1=Dado de baja',
+  `Resumen` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Imagen` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `TiempoPrestamo` int NOT NULL DEFAULT '30',
+  `Idioma` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Español',
+  `IdAutor` int NOT NULL,
+  `IdBiblioteca` int NOT NULL,
+  `IdEditorial` int NOT NULL,
+  PRIMARY KEY (`IdLibro`),
+  KEY `autor` (`IdAutor`),
+  KEY `biblioteca` (`IdBiblioteca`),
+  KEY `editorial` (`IdEditorial`),
+  CONSTRAINT `autor` FOREIGN KEY (`IdAutor`) REFERENCES `autores` (`IdAutor`) ON UPDATE CASCADE,
+  CONSTRAINT `biblioteca` FOREIGN KEY (`IdBiblioteca`) REFERENCES `bibliotecas` (`IdBiblioteca`) ON UPDATE CASCADE,
+  CONSTRAINT `editorial` FOREIGN KEY (`IdEditorial`) REFERENCES `editoriales` (`IdEditorial`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla bibliotecas.libros: ~4 rows (aproximadamente)
+DELETE FROM `libros`;
+/*!40000 ALTER TABLE `libros` DISABLE KEYS */;
+INSERT INTO `libros` (`IdLibro`, `Titulo`, `Genero`, `Estado`, `Resumen`, `Imagen`, `TiempoPrestamo`, `Idioma`, `IdAutor`, `IdBiblioteca`, `IdEditorial`) VALUES
+	(1, 'La vida de Lazarillo de Tormes 2', 'Novela Picaresca', 0, NULL, NULL, 30, 'Espanol2', 2, 1, 1),
+	(2, 'La vida de Lazarillo de Tormes', 'Novela Picaresca', 0, NULL, NULL, 30, 'Español', 1, 1, 1),
+	(3, 'El señor de los anillos', 'Fantasia', 1, NULL, NULL, 30, 'Español', 1, 1, 1),
+	(13, 'Los asesinos del emperador', 'Novela Historica', 1, NULL, NULL, 15, 'Español', 1, 2, 1),
+	(14, 'Lo que el viento se llevo', '', 0, NULL, NULL, 15, 'Espanol', 2, 2, 7);
+/*!40000 ALTER TABLE `libros` ENABLE KEYS */;
+
+-- Volcando estructura para tabla bibliotecas.prestamos
+CREATE TABLE IF NOT EXISTS `prestamos` (
+  `IdPrestamo` int NOT NULL AUTO_INCREMENT,
+  `IdLibro` int NOT NULL,
+  `IdUsuario` int NOT NULL,
+  `FechaInicio` date NOT NULL,
+  `FechaFin` date NOT NULL,
+  `FechaDevolucion` date DEFAULT NULL,
+  `Comentario` varchar(500) DEFAULT NULL,
+  `Estado` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`IdPrestamo`),
+  KEY `libro` (`IdLibro`),
+  KEY `usuario` (`IdUsuario`),
+  CONSTRAINT `libro` FOREIGN KEY (`IdLibro`) REFERENCES `libros` (`IdLibro`) ON UPDATE CASCADE,
+  CONSTRAINT `usuario` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla bibliotecas.prestamos: ~4 rows (aproximadamente)
+DELETE FROM `prestamos`;
+/*!40000 ALTER TABLE `prestamos` DISABLE KEYS */;
+INSERT INTO `prestamos` (`IdPrestamo`, `IdLibro`, `IdUsuario`, `FechaInicio`, `FechaFin`, `FechaDevolucion`, `Comentario`, `Estado`) VALUES
+	(3, 13, 9, '2020-05-24', '2020-06-08', '2020-05-26', '', 1),
+	(4, 2, 1, '2020-05-24', '2020-06-23', NULL, '', 0),
+	(5, 3, 1, '2020-06-23', '2020-06-23', NULL, NULL, 0),
+	(6, 2, 11, '2020-05-26', '2020-06-25', NULL, '', 0);
+/*!40000 ALTER TABLE `prestamos` ENABLE KEYS */;
+
+-- Volcando estructura para tabla bibliotecas.reservas
+CREATE TABLE IF NOT EXISTS `reservas` (
+  `idReserva` int NOT NULL AUTO_INCREMENT,
+  `idUsuario` int NOT NULL,
+  `idLibro` int NOT NULL,
+  `fechaInicio` date NOT NULL,
+  `fechaRecogida` date DEFAULT NULL,
+  `fechaFin` date NOT NULL,
+  `comentario` varchar(500) DEFAULT NULL,
+  `estado` int NOT NULL DEFAULT '0' COMMENT '0 => Activa\r\n1=>recogida\r\n-1=> cancelado',
+  PRIMARY KEY (`idReserva`),
+  KEY `idUsuario` (`idUsuario`),
+  KEY `idLibro` (`idLibro`),
+  CONSTRAINT `FK_reservas_libros` FOREIGN KEY (`idLibro`) REFERENCES `libros` (`IdLibro`),
+  CONSTRAINT `FK_reservas_usuarios` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`IdUsuario`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla bibliotecas.reservas: ~10 rows (aproximadamente)
+DELETE FROM `reservas`;
+/*!40000 ALTER TABLE `reservas` DISABLE KEYS */;
+INSERT INTO `reservas` (`idReserva`, `idUsuario`, `idLibro`, `fechaInicio`, `fechaRecogida`, `fechaFin`, `comentario`, `estado`) VALUES
+	(34, 1, 2, '2020-05-23', NULL, '2020-05-26', NULL, -1),
+	(35, 1, 2, '2020-05-23', NULL, '2020-05-26', NULL, -1),
+	(36, 1, 1, '2020-05-23', NULL, '2020-05-26', NULL, -1),
+	(37, 11, 2, '2020-05-24', NULL, '2020-05-27', NULL, -1),
+	(38, 11, 1, '2020-05-24', NULL, '2020-05-27', NULL, -1),
+	(39, 11, 3, '2020-05-24', NULL, '2020-05-27', NULL, -1),
+	(40, 11, 1, '2020-05-24', NULL, '2020-05-27', NULL, -1),
+	(41, 11, 2, '2020-05-24', NULL, '2020-05-27', NULL, -1),
+	(42, 1, 3, '2020-05-24', '2020-05-24', '2020-05-27', NULL, 1),
+	(43, 15, 13, '2020-05-29', NULL, '2020-06-01', NULL, 0);
+/*!40000 ALTER TABLE `reservas` ENABLE KEYS */;
+
+-- Volcando estructura para tabla bibliotecas.roles
+CREATE TABLE IF NOT EXISTS `roles` (
+  `IdRol` int NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Descripcion` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`IdRol`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla bibliotecas.roles: ~2 rows (aproximadamente)
+DELETE FROM `roles`;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` (`IdRol`, `Nombre`, `Descripcion`) VALUES
+	(1, 'Administrador', 'asd'),
+	(5, 'ad', 'asd');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+
+-- Volcando estructura para tabla bibliotecas.trabajadores
+CREATE TABLE IF NOT EXISTS `trabajadores` (
+  `IdTrabajador` int NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(20) NOT NULL,
+  `Apellidos` varchar(50) NOT NULL,
+  `Dni` varchar(9) NOT NULL,
+  `Contrasena` varchar(20) NOT NULL,
+  `IdBiblioteca` int NOT NULL,
+  `IdRol` int NOT NULL,
+  PRIMARY KEY (`IdTrabajador`),
+  UNIQUE KEY `Dni` (`Dni`),
+  KEY `bibliotecaTrabajador` (`IdBiblioteca`),
+  KEY `rol` (`IdRol`),
+  CONSTRAINT `bibliotecaTrabajador` FOREIGN KEY (`IdBiblioteca`) REFERENCES `bibliotecas` (`IdBiblioteca`) ON UPDATE CASCADE,
+  CONSTRAINT `rol` FOREIGN KEY (`IdRol`) REFERENCES `roles` (`IdRol`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla bibliotecas.trabajadores: ~2 rows (aproximadamente)
+DELETE FROM `trabajadores`;
+/*!40000 ALTER TABLE `trabajadores` DISABLE KEYS */;
+INSERT INTO `trabajadores` (`IdTrabajador`, `Nombre`, `Apellidos`, `Dni`, `Contrasena`, `IdBiblioteca`, `IdRol`) VALUES
+	(1, 'David', 'Gonzalez Garcia', '71464871F', '12345', 2, 1),
+	(3, 'Alberto', 'Rivero', '72464871F', '12345', 1, 1);
+/*!40000 ALTER TABLE `trabajadores` ENABLE KEYS */;
+
+-- Volcando estructura para tabla bibliotecas.usuarios
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `IdUsuario` int NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Apellidos` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `NumeroCarnet` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Contrasena` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`IdUsuario`),
+  UNIQUE KEY `NumeroCarnet` (`NumeroCarnet`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla bibliotecas.usuarios: ~6 rows (aproximadamente)
+DELETE FROM `usuarios`;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` (`IdUsuario`, `Nombre`, `Apellidos`, `NumeroCarnet`, `Contrasena`, `Email`) VALUES
+	(1, 'David', 'Gonzalez Garcia', 'AA0000', '12345', 'davidgleon@gmail.com'),
+	(2, 'Cayetano', 'de Guzmán', 'AB0001', '1234', 'CayetanoG@gmail.com'),
+	(9, 'Albert', 'Rivera', 'AA0002', '12345', ''),
+	(11, 'Albert', 'Rivera', 'AA0003', '12345', ''),
+	(13, 'Alejandro', 'Alvarez', 'AC0002', '12345', ''),
+	(15, 'Pablo', 'Iglesias', 'AA0005', '12346', '');
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+

@@ -50,11 +50,11 @@ public class Trabajador implements Serializable {
     private String contrasena;
     
     @JoinColumn (name="idBiblioteca")
-    @ManyToOne (cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Biblioteca biblioteca;
     
     @JoinColumn (name="idRol")
-    @ManyToOne (cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Rol rol;
 
     public int getIdTrabajador() {

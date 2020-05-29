@@ -52,22 +52,22 @@ public class Libro implements Serializable {
     
     @Column (name="tiempoPrestamo")
     @NotNull
-    private int tiempoPrestamo;
+    private int tiempoPrestamo=30;
     
     @Column (name="estado")
     @NotNull
-    private int estado;
+    private int estado=0;
     
     @JoinColumn(name="idAutor")
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Autor autor;
     
     @JoinColumn(name="idBiblioteca")
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Biblioteca biblioteca;
     
     @JoinColumn(name="idEditorial")
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Editorial editorial;
 
     public int getIdLibro() {
@@ -156,6 +156,15 @@ public class Libro implements Serializable {
     
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+    
+    public String getEstadoString () {
+        switch (estado){
+            case 0: return "libre";
+            case 1: return  "alquilado";
+            case -1: return "Dado de baja";
+            default: return "Error con el estado";
+        }
     }
     
     @Override

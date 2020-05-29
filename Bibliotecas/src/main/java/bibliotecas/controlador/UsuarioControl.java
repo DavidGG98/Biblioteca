@@ -7,10 +7,15 @@ package bibliotecas.controlador;
 
 import bibliotecas.EJB.UsuarioFacadeLocal;
 import bibliotecas.modelo.Usuario;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -21,12 +26,103 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class UsuarioControl implements Serializable {
-    private Usuario usuario;
     
+    private Usuario usuario;
     @EJB
     UsuarioFacadeLocal usuarioEJB;
     List<Usuario> listaUsuarios;
-    public Usuario getUsuario(int id){
+    String context;
+
+    @PostConstruct
+    public void reserva(){
+        if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario") != null) {
+            usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        } else {
+            usuario= new Usuario();
+        }
+        listaUsuarios= usuarioEJB.findAll();
+        context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
+    }
+    public void registrar () {
+         try{
+            usuarioEJB.create(usuario);
+            System.out.println("Anadiendo usuario...");
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/user/home.xhtml");
+        } catch (Exception e) {
+            try {
+                System.out.println("Error al anadir el Usuario "+ e.getMessage());
+                FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/unexpectedError.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(UsuarioControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void insertar(){
+        try{
+            usuarioEJB.create(usuario);
+            System.out.println("Anadiendo usuario...");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaUsuarios/listaUsuarios.xhtml");
+        } catch (Exception e) {
+            try {
+                System.out.println("Error al anadir el Usuario "+ e.getMessage());
+                FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/error.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(UsuarioControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    public void eliminar(int id){
+        try{
+            System.out.println("");
+            for(Usuario t:listaUsuarios){
+                if(id==t.getIdUsuario()){
+                    usuario=t;
+                    break;
+                }            
+            }
+            usuarioEJB.remove(usuario);
+            System.out.println("Usuario eliminado con exito");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaUsuarios/listaUsuarios.xhtml");
+        } catch (Exception e) {
+            try {
+                System.out.println("Error al anadir el Usuario "+ e.getMessage());
+                FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/error.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(UsuarioControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    public void modificar(Usuario u, int i) { // indica si lo llama un admin o un usuario
+        try {
+            usuarioEJB.edit(usuario);
+            System.out.println("Usuario modificado");
+            if (i==0) { //Admin
+                FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaUsuarios/listaUsuarios.xhtml");
+            } else if (i==1) {
+                addMessage("Los datos se han actualizado con exito");
+            }
+        } catch (Exception e) {
+            try {
+                System.out.println("Error al anadir el Usuario "+ e.getMessage());
+                FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/error.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(UsuarioControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+        public Usuario getUsuario(int id){
         
         try{
             System.out.println(id);
@@ -44,52 +140,7 @@ public class UsuarioControl implements Serializable {
         }
         return null;
     }
-    @PostConstruct
-    public void reserva(){
-        usuario= new Usuario();
-        listaUsuarios= usuarioEJB.findAll();
-    }
-     public void insertar(){
-        try{
-          usuarioEJB.create(usuario);
-            System.out.println("Anadiendo usuario...");
-        } catch (Exception e) {
-            System.out.println("Error al anadir el Usuario "+ e.getMessage());
-        }
-    }
-    public void eliminar(int id){
-        try{
-            System.out.println("");
-            for(Usuario t:listaUsuarios){
-                if(id==t.getIdUsuario()){
-                    usuario=t;
-                    break;
-                }
-            usuarioEJB.remove(usuario);
-            }
-        } catch (Exception e) {
-            System.out.println("Error al eliminar el usuario "+ e.getMessage());
-        }
-    }
-    public void modificar(int id) {
-        try {
-            String n=usuario.getNombre();
-            for (Usuario c:listaUsuarios) {
-                if(id== c.getIdUsuario()) {
-                    usuario=c; //Recupideramos el objeto al completo, no solo su id
-                    break; //Sale del bucle
-                }
-            }
-            usuario.setNombre(n); //Actualizamos el nombre que hemos puesto y lo guardamos
-            usuarioEJB.edit(usuario);
-        } catch (Exception e) {
-            System.out.println("Error al modificar el usuario"+ e.getMessage());
-        }
-    }
-    public Usuario getUsuarios() {
-        return usuario;
-    }
-
+    
     public UsuarioFacadeLocal getUsuariosEJB() {
         return usuarioEJB;
     }
@@ -98,7 +149,7 @@ public class UsuarioControl implements Serializable {
         return listaUsuarios;
     }
 
-    public void setUsuarios(Usuario usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 

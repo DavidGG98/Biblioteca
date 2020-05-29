@@ -42,11 +42,13 @@ public class LoginTrabajadorControl implements Serializable{
         if (trabajador == null) {
             return "loginError.xhtml?faces-redirect=true";
         } else {
+            //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("trabajador", trabajador);
             return "private/worker/workerHome.xhtml?faces-redirect=true";
         }
     }
 
+    
     public TrabajadorFacadeLocal getTrabajadorEJB() {
         return trabajadorEJB;
     }
