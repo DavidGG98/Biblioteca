@@ -4,10 +4,31 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
+        <link rel="stylesheet" type="text/css" href="login.css"> </link>
         <title> Login Usuario </title>
+        <style>
+            * {
+              box-sizing: border-box;
+            }
+            
+            .caja {
+              float: center;
+              width: 100%;
+              padding: 10px;
+              height: 250px; 
+              
+            }
+        </style>
     </h:head>
+
     <h:body>
-        <h1> Log in as User </h1>
+        <div class="caja">
+            <h1> Ingreso como Usuario/a </h1>
+            <p>Usuario</p>
+            <input type="text" name="usuario" v-model="usuario" > </input>
+            <p>Password</p>
+            <input type="text" name="contraseña" v-model="contraseña"> </input>
+        </div>
         <h:form>
             <p:panelGrid columns="2">
                 <p:outputLabel value="Número de carnet " /> 
