@@ -11,23 +11,26 @@
               box-sizing: border-box;
             }
             
-            .caja {
-              float: center;
-              width: 100%;
-              padding: 10px;
-              height: 250px; 
-              
-            }
         </style>
     </h:head>
 
     <h:body>
+        <img class="foto1" src="https://sso.unileon.es/themes/unileon-metronic/img/main-title.png" id="tituloi"> </img>
         <div class="caja">
+            
             <h1> Ingreso como Usuario/a </h1>
-            <p>Usuario</p>
-            <input type="text" name="usuario" v-model="usuario" > </input>
-            <p>Password</p>
+            
+            <p>Usuario
+            <input type="text" name="usuario" v-model="usuario"  > </input>
+            </p>
+            <p>Password
             <input type="text" name="contraseña" v-model="contraseña"> </input>
+            </p>
+
+        </div>
+        <div class="boton">
+            <input class="boton2" type="submit" value="Volver" > </input>
+            <input class="boton2" type="submit" value="Enviar" > </input>
         </div>
         <h:form>
             <p:panelGrid columns="2">
