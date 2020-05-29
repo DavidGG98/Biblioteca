@@ -75,34 +75,40 @@ public class ReservaControl implements Serializable {
     }
 
     public void cancelaReserva(int id, int i) { //i = 0 => Admin i=1 => User
+        Trabajador t = (Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+
         System.out.println("Cancelando reserva " + id);
         Reserva r = reservaEJB.find(id);
-        if (r.getEstado() == 0) {
-            r.setEstado(-1); //Estado cancelado
-            Libro l = r.getLibro();
-            l.setEstado(0); //estado libre
-            try {
-                libroEJB.edit(l);
+        if (t.getBiblioteca().getIdBiblioteca() == r.getLibro().getBiblioteca().getIdBiblioteca()) {
+
+            if (r.getEstado() == 0) {
+                r.setEstado(-1); //Estado cancelado
+                Libro l = r.getLibro();
+                l.setEstado(0); //estado libre
                 try {
-                    reservaEJB.edit(r);
-                    if (i == 1) {
-                        FacesContext.getCurrentInstance().getExternalContext()
-                                .redirect(context + "/faces/private/user/reservas/lista.xhtml");
-                    } else if (i == 0) {
-                        FacesContext.getCurrentInstance().getExternalContext()
-                                .redirect(context + "/faces/private/worker/vistaReservas/listaReservas.xhtml");
+                    libroEJB.edit(l);
+                    try {
+                        reservaEJB.edit(r);
+                        if (i == 1) {
+                            FacesContext.getCurrentInstance().getExternalContext()
+                                    .redirect(context + "/faces/private/user/reservas/lista.xhtml");
+                        } else if (i == 0) {
+                            FacesContext.getCurrentInstance().getExternalContext()
+                                    .redirect(context + "/faces/private/worker/vistaReservas/listaReservas.xhtml");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Error al editar la reserva");
                     }
                 } catch (Exception e) {
-                    System.out.println("Error al editar la reserva");
+                    System.out.println("Error al liberar el libro");
                 }
-            } catch (Exception e) {
-                System.out.println("Error al liberar el libro");
+
+            } else {
+                addMessage("La reserva ya ha sido recogida o cancelada");
             }
-
         } else {
-            addMessage("La reserva ya ha sido recogida o cancelada");
+            addMessage("No tienes privilegios para editar esta reserva: No perteneces a la biblioteca");
         }
-
     }
 
     public void nuevaReserva(int idLibro) throws IOException {
@@ -191,17 +197,23 @@ public class ReservaControl implements Serializable {
     }
 
     public void eliminar(int id) {
-        reserva=reservaEJB.find(id);
-        libro = reserva.getLibro();
-        libro.setEstado(0);
-        libroEJB.edit(libro);
-        
-        reservaEJB.remove(reserva);
-        try {
-            FacesContext.getCurrentInstance().getExternalContext()        
-                    .redirect(context + "/faces/private/worker/vistaReservas/listaReserva.xhtml");
-        } catch (IOException ex) {
-            Logger.getLogger(ReservaControl.class.getName()).log(Level.SEVERE, null, ex);
+
+        reserva = reservaEJB.find(id);
+        Trabajador t = (Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+        if (t.getBiblioteca().getIdBiblioteca() == reserva.getLibro().getBiblioteca().getIdBiblioteca()) {
+            libro = reserva.getLibro();
+            libro.setEstado(0);
+            libroEJB.edit(libro);
+
+            reservaEJB.remove(reserva);
+            try {
+                FacesContext.getCurrentInstance().getExternalContext()
+                        .redirect(context + "/faces/private/worker/vistaReservas/listaReserva.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(ReservaControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            addMessage("No se puede eliminar la reserva. No perteneces a la misma biblitoeca");
         }
     }
 
@@ -302,42 +314,48 @@ public class ReservaControl implements Serializable {
     public void nuevoPrestamo(int id) {
         System.out.println("Creando un prestamo a partir de la reserva nº" + id);
         Reserva r = reservaEJB.find(id);
-        if (r.getEstado() == 0) {
+        Trabajador t = (Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+        if (t.getBiblioteca().getIdBiblioteca() == r.getLibro().getBiblioteca().getIdBiblioteca()) {
+            if (r.getEstado() == 0) {
 
-            Prestamo p = new Prestamo();
-            p.setLibro(r.getLibro());
-            p.setUsuario(r.getUsuario());
-            p.setEstado(0);
-            d = new Date();
-            p.setFechaInicio(d);
-            c.add(Calendar.DAY_OF_MONTH, libro.getTiempoPrestamo());
-            d.setDate(c.get(Calendar.DAY_OF_MONTH));
-            d.setMonth(c.get(Calendar.MONTH));
-            d.setYear(c.get(Calendar.YEAR) - 1900);
-            p.setFechaFin(d); //Fecha final reserva
-            try {
-                //p.setIdPrestamo(prestamoEJB.getLastId()+1);
-                System.out.println(p.toString());                
-                prestamoEJB.create(p);
+                Prestamo p = new Prestamo();
+                p.setLibro(r.getLibro());
+                p.setUsuario(r.getUsuario());
+                p.setEstado(0);
+                d = new Date();
+                p.setFechaInicio(d);
+                c.add(Calendar.DAY_OF_MONTH, libro.getTiempoPrestamo());
+                d.setDate(c.get(Calendar.DAY_OF_MONTH));
+                d.setMonth(c.get(Calendar.MONTH));
+                d.setYear(c.get(Calendar.YEAR) - 1900);
+                p.setFechaFin(d); //Fecha final reserva
                 try {
-                r.setEstado(1);
-                r.setFechaRecogida(new Date());
-                reservaEJB.edit(r);
+                    //p.setIdPrestamo(prestamoEJB.getLastId()+1);
+                    System.out.println(p.toString());
+                    prestamoEJB.create(p);
+                    try {
+                        r.setEstado(1);
+                        r.setFechaRecogida(new Date());
+                        reservaEJB.edit(r);
+                    } catch (Exception e) {
+                        System.out.println("Error e");
+                    }
                 } catch (Exception e) {
-                    System.out.println("Error e");
+                    System.out.println("Error al crear el prestamo " + e.getMessage());
                 }
-            } catch (Exception e) {
-                System.out.println("Error al crear el prestamo " + e.getMessage());
-            }
-            
-            try {
-                FacesContext.getCurrentInstance().getExternalContext()
-                        .redirect(context + "/faces/private/worker/vistaReservas/listaReservas.xhtml?id=" + getNuevaReserva().getIdReserva());
-            } catch (IOException ex) {
-                Logger.getLogger(ReservaControl.class.getName()).log(Level.SEVERE, null, ex);
+
+                try {
+                    FacesContext.getCurrentInstance().getExternalContext()
+                            .redirect(context + "/faces/private/worker/vistaReservas/listaReservas.xhtml?id=" + getNuevaReserva().getIdReserva());
+                } catch (IOException ex) {
+                    Logger.getLogger(ReservaControl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                addMessage("La reserva ya ha sido recogida o cancelada");
             }
         } else {
-            addMessage("La reserva ya ha sido recogida o cancelada");
+            System.out.println("Biblioteca libro " + r.getLibro().getBiblioteca().getIdBiblioteca() + " biblioteca usuario " + t.getBiblioteca().getIdBiblioteca());
+            addMessage("No tienes los privilegios para editar esta reserva: No perteneces a la biblioteca del libro");
         }
     }
 

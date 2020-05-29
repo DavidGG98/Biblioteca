@@ -74,6 +74,8 @@ public class PrestamoControl implements Serializable {
     }
 
     public void cancelaPrestamo(int idPrestamo) {
+        Trabajador t = (Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+        if (t.getBiblioteca().getIdBiblioteca() == prestamo.getLibro().getBiblioteca().getIdBiblioteca()) {
         try {
             prestamo = getPrestamo(idPrestamo);
             libro = prestamo.getLibro();
@@ -91,9 +93,15 @@ public class PrestamoControl implements Serializable {
         } catch (IOException ex) {
             Logger.getLogger(PrestamoControl.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }else{
+            addMessage("no tienes los permisos para interactuar con este préstamo");
+        }
     }
 
     public void finPrestamo(int idPrestamo) {
+        //Verificamos que el trabajador y el libro sean de la misma biblioteca
+        Trabajador t = (Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+        if (t.getBiblioteca().getIdBiblioteca() == prestamo.getLibro().getBiblioteca().getIdBiblioteca()) {
         try {
             prestamo = getPrestamo(idPrestamo);
             libro = prestamo.getLibro();
@@ -106,6 +114,9 @@ public class PrestamoControl implements Serializable {
 
         } catch (Exception e) {
             System.out.println("Error al finalizar el prestamo " + e.getMessage());
+        }
+        } else {
+            addMessage("No tienes los permisos para interactuar con este prestamo");
         }
     }
 
@@ -177,22 +188,28 @@ public class PrestamoControl implements Serializable {
 
     //Metodo que amplia la fecha de devolución del prestamo por 15 dias
     public void amplia() {
-        c.setTime(prestamo.getFechaFin());
-        c.add(Calendar.DAY_OF_YEAR, 15); //Ampliamos el prestamo por 15 dias
-        Date d = new Date();
-        d.setDate(c.get(Calendar.DAY_OF_MONTH));
-        d.setMonth(c.get(Calendar.MONTH));
-        d.setYear(c.get(Calendar.YEAR) - 1900);
-        prestamo.setFechaFin(d);
-        try {
-            prestamoEJB.edit(prestamo);
-            FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/faces/private/worker/vistaPrestamos/editarPrestamo.xhtml?id=" + prestamo.getIdPrestamo());
-            addMessage("Fecha ampliada con éxito");
+        Trabajador t = (Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+        if (t.getBiblioteca().getIdBiblioteca() == prestamo.getLibro().getBiblioteca().getIdBiblioteca()) {
+            c.setTime(prestamo.getFechaFin());
+            c.add(Calendar.DAY_OF_YEAR, 15); //Ampliamos el prestamo por 15 dias
+            Date d = new Date();
+            d.setDate(c.get(Calendar.DAY_OF_MONTH));
+            d.setMonth(c.get(Calendar.MONTH));
+            d.setYear(c.get(Calendar.YEAR) - 1900);
+            prestamo.setFechaFin(d);
+            try {
+                prestamoEJB.edit(prestamo);
+                FacesContext.getCurrentInstance().getExternalContext().redirect(context + "/faces/private/worker/vistaPrestamos/editarPrestamo.xhtml?id=" + prestamo.getIdPrestamo());
+                addMessage("Fecha ampliada con éxito");
 
-        } catch (Exception e) {
-            System.out.println("Error al ampliar la fecha de devolucion del prestamo " + e.getMessage());
-            addMessage("Error al ampliar la fecha de devolucion");
+            } catch (Exception e) {
+                System.out.println("Error al ampliar la fecha de devolucion del prestamo " + e.getMessage());
+                addMessage("Error al ampliar la fecha de devolucion");
 
+            }
+        } else {
+            //EL libro no es de la misma biblioteca que el trabajador
+            addMessage("No tienes privilegios para modificar este prestamo.");
         }
     }
 
@@ -206,9 +223,13 @@ public class PrestamoControl implements Serializable {
 
     public List<Libro> getLibrosLibres() {
         List<Libro> lista = new ArrayList();
+        Trabajador t = (Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+        int id = t.getBiblioteca().getIdBiblioteca();
         for (Libro l : listaLibros) {
-            if (l.getEstado() == 0) {
-                lista.add(l);
+            if (l.getBiblioteca().getIdBiblioteca()==id) {
+                if (l.getEstado() == 0) {
+                    lista.add(l);
+                }
             }
         }
         return lista;
@@ -367,4 +388,6 @@ public class PrestamoControl implements Serializable {
         }
         return lista;
     }
+    
+
 }

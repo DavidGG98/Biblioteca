@@ -17,7 +17,7 @@ and open the template in the editor.
             <ui:define name="content">
                 <h:link outcome="altaPrestamo" value="Nuevo prestamo" />
                 <h:form id="acc">
-                    <p:dataTable id="datos" widgetVar="dtVar"  var="prestamo" value="#{prestamoControl.listaPrestamos}">
+                    <p:dataTable id="datos" widgetVar="dtVar"  var="prestamo" value="#{prestamoControl.prestamosBiblioteca}">
                         <f:facet name="header">
                             Prestamos
                         </f:facet>

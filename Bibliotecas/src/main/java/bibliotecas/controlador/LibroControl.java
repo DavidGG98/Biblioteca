@@ -102,6 +102,8 @@ public class LibroControl implements Serializable {
     }
     
     public void eliminar(int id) {
+        Trabajador t = (Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+        if (t.getBiblioteca().getIdBiblioteca()==libro.getBiblioteca().getIdBiblioteca()) {
         try {
             System.out.println();
             for (Libro l:listaLibros) {
@@ -117,19 +119,27 @@ public class LibroControl implements Serializable {
         } catch (Exception e) {
             System.out.println("Erroooooor al eliminar el libro "+ e.getMessage());
         }
+        }else{
+            //NO HACE NADA
+        }
     }
     
     public void modificar(Libro l) {
-        //String context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();       
-        try {
-            libro.setAutor(autor);
-            libro.setEditorial(editorial);
-            //libro.setTitulo(n); //Actualizamos el nombre que hemos puesto y lo guardamos
-            libroEJB.edit(l);
-            FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaLibros/tablaLibros.xhtml");
+        //String context = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();    
+        Trabajador t = (Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
+        if (t.getBiblioteca().getIdBiblioteca()==libro.getBiblioteca().getIdBiblioteca()) {
+            try {
+                libro.setAutor(autor);
+                libro.setEditorial(editorial);
+                //libro.setTitulo(n); //Actualizamos el nombre que hemos puesto y lo guardamos
+                libroEJB.edit(l);
+                FacesContext.getCurrentInstance().getExternalContext().redirect(context+"/faces/private/worker/vistaLibros/tablaLibros.xhtml");
 
-        } catch (Exception e) {
-            System.out.println("Erroooooor al modificarl el libro"+ e.getMessage());
+            } catch (Exception e) {
+                System.out.println("Erroooooor al modificarl el libro"+ e.getMessage());
+            }
+        } else {
+            //NO HACE NADA
         }
     }
 
@@ -140,11 +150,11 @@ public class LibroControl implements Serializable {
        public Libro getLibro(int id){
         
         try{
-            System.out.println(id);
-            System.out.println("Seleccionado "+ id);
+            //System.out.println(id);
+            //System.out.println("Seleccionado "+ id);
             for(Libro b:listaLibros){
                 if(b.getIdLibro()==id){
-                    System.out.println("Libro "+ b.getTitulo()+" tiene el mismo id");
+                    //System.out.println("Libro "+ b.getTitulo()+" tiene el mismo id");
                     libro=b;
                     break;
                 }
