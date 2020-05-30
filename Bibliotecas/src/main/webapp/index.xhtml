@@ -12,8 +12,22 @@
     .boton2{
         
         margin: 30px;
-        margin-top: 47px;
+        margin-top: 20px;
         width: 35%;
+    }
+    p {
+        margin-top: 3%;
+    }
+    .boton3{
+        margin: 15px;
+        margin-top: 0px;
+        width: 35%;
+        background-color:darkslategrey;
+        color: white ;
+        text-align: center;
+    }
+    .caja{
+        height: 320px; 
     }
 </style>
 <h:body>
@@ -22,10 +36,29 @@
             
             <h1> Elige un Registro </h1>
             
+            <p>Nombre: *
+            <input type="text" name="usuario" v-model="usuario"  > </input>
+            </p>
+            <p>Apellido: *
+            <input type="text" name="contraseña" v-model="contraseña"> </input>
+            </p>
+            <p>Carnet: *
+            <input type="text" name="usuario" v-model="usuario"  > </input>
+            </p>
+            <p>Contraseña: *
+            <input type="text" name="contraseña" v-model="contraseña"> </input>
+            </p>
+            <p>Email:
+            <input type="text" name="usuario" v-model="usuario"  > </input>
+            </p>
             
+            <input class="boton3" type="submit" value="Registrarse"  > </input>
+            
+            
+            <p>
             <input class="boton2" type="submit" value="Usuario" > </input>
             <input class="boton2" type="submit" value="Trabajador" > </input>
-            
+            </p>
 
         </div>
         
