@@ -2,62 +2,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <link rel="stylesheet" type="text/css" href="../resources/Index.css "> </link>
     <title> BiblioWeb - Bienvenido </title>
+    <h:outputStylesheet library="css" name="Index.css"/>
 </h:head>
-<h:body>
-
-    <!--Aqui empieza el codigo HTML-->
-    <img class="foto1" src="https://sso.unileon.es/themes/unileon-metronic/img/main-title.png" id="tituloi"> </img>
+<h:body class="principal">
+<img class="foto1" src="https://sso.unileon.es/themes/unileon-metronic/img/main-title.png" id="tituloi"> </img>
+      
+    
         <div class="caja">
-            
-            <h1> Elige un Registro </h1>
-            
-            <table>
-                <tr>
-                    <td><strong>Nombre: *</strong></td>
-                    <td><input type="text" name="usuario" v-model="usuario"  > </input></td>
-                </tr>
-                <tr>
-                    <td><strong>Apellido: *</strong></td>
-                    <td><input type="text" name="Apellido" v-model="Apellido"> </input></td>
-                </tr>
-                <tr>
-                    <td><strong>Carnet: *</strong></td>
-                    <td><input type="text" name="Carnet" v-model="Carnet"  > </input></td>
-                </tr>
-                <tr>
-                    <td><strong>Contraseña: *</strong></td>
-                    <td><input type="text" name="contraseña" v-model="contraseña"> </input></td>
-                </tr>
-                <tr>
-                    <td><strong>Email</strong></td>
-                    <td><input type="text" name="Email" v-model="Email"  > </input></td>
-                </tr>
-                
-                  
-
-            </table>
-            
-    
-            <input class="boton3" type="submit" value="Registrarse"  > </input>
-    
-            
-            <p>
-            <input class="boton2" type="submit" value="Usuario" > </input>
-            <input class="boton2" type="submit" value="Trabajador" > </input>
-            </p>
-
-        </div>
-        
-        <!-- Aqui Acaba mi codigo html -->
-        <!-- Aqui empieza mi codigo Primeface -->
-        
-        <!-- Aqui acaba mi codigo Primeface -->
-    
+          
+      <p:outputLabel class="h1" value="Elige un registro" style="margin-bottom: 25px" />
+  
     <h:form id="grid">
-        <p:fieldset legend="Registrate como usuario" style="margin-bottom: 25px">
-            <p:panelGrid columns="3" styleClass="ui-noborder">
+        <p:fieldset   style="margin-bottom: 25px">
+        
+            <p:panelGrid columns="3" styleClass="ui-noborder" class="p">
                 <p:outputLabel for="txtNombre" value="Nombre: " />
                 <p:inputText value="#{usuarioControl.usuario.nombre}" required="true" id="txtNombre" requiredMessage="Es obligatorio introducir un nombre" />
                 <p:message for="txtNombre" />
@@ -79,18 +38,18 @@
                 <p:outputLabel value="" />
             </p:panelGrid>
             <p:separator/>
-            <p:commandButton value="Registrarme" actionListener="#{usuarioControl.registrar()}" update="grid" />
+            <p:commandButton class="boton3" value="Registrarme" actionListener="#{usuarioControl.registrar()}" update="grid"  />
 
         </p:fieldset>
     </h:form>
 
     <p:separator/>
-    <p:panelGrid columns="2">
-        <h:link outcome="loginUsuario" value="Login Usuarios" />
-        <h:link outcome="loginTrabajador" value="Login Trabajadores" />
+    <p:panelGrid columns="2" styleClass="ui-noborder" >
+        <h:link class="boton2" outcome="loginUsuario" value="Usuarios" style="color: gainsboro"/>
+        <h:link class="boton2" outcome="loginTrabajador" value="Trabajadores" style="color: gainsboro" />
     </p:panelGrid>
     <br />
-
+</div>
 </h:body>
 
 </html>

@@ -4,8 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <link rel="stylesheet" type="text/css" href="../resources/login.css "> </link>
         <title> Login Trabajador </title>
+    <h:outputStylesheet library="css" name="login.css"/>
 
 
 
@@ -18,30 +18,12 @@
         <!-- Aqui empieza mi codigo html -->
 
         <img class="foto1" src="https://sso.unileon.es/themes/unileon-metronic/img/main-title.png" id="tituloi"> </img>
-        <div class="caja">
-            
-            <h1> Ingreso como Trabajador/a </h1>
-            
-            <p>Usuario
-            <input type="text" name="usuario" v-model="usuario"  > </input>
-            </p>
-            <p>Password
-            <input type="text" name="contraseña" v-model="contraseña"> </input>
-            </p>
-
-        </div>
-        <div class="boton">
-            <input class="boton2" type="submit" value="Enviar" > </input>
-            <input class="boton2" type="submit" value="Volver" > </input>
-        </div>
-
-        <!-- Aqui Acaba mi codigo html -->
-        <!-- Aqui empieza mi codigo Primeface -->
         
-        <!-- Aqui acaba mi codigo Primeface -->
+        <div class="caja">
 
         <h:form>
-            <p:panelGrid columns="2">
+            <p:outputLabel value="Ingreso como Trabajador" class="h1" /> 
+            <p:panelGrid columns="2" class="p" >
                 <p:outputLabel value="DNI: " /> 
                 <p:inputText value="#{loginTrabajadorControl.trabajador.dni}" />
                 
@@ -49,11 +31,12 @@
                 <p:password value="#{loginTrabajadorControl.trabajador.contrasena}" />
 
             </p:panelGrid>
+            
             <p:commandButton value="Ingresar" action="#{loginTrabajadorControl.verificarTrabajador()}"/>
             <p:linkButton value="Volver al principio" outcome="index.xhtml" style="margin-left: 30px"/>
           
         </h:form>
         <br />
-
+ </div>
     </h:body>
 </html>

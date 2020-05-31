@@ -1,0 +1,85 @@
+.principal {
+    box-sizing: border-box;
+  }
+.caja{
+    color: black;
+    background-color: white;
+    text-align: center;
+    -moz-box-align: center;
+    border-style: solid;
+    border-width: 8px;
+    border-color: darkslategrey;
+}
+.h1{
+    color: gainsboro;
+    text-align: center;
+    background-color: darkslategrey;
+    border-color: darkslategrey;
+    margin: 0px;
+    margin-top: 0px;
+    border-style: solid;
+    border-width: 10px;
+    border-radius: 0px;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+img{
+    text-align: center;
+}
+.foto1 { 
+    padding: 1px; 
+    margin: 10px;
+    display: inline;
+    margin:auto;
+    height: 100px;
+}
+.p {
+    margin-top: 1%;
+    text-align: left;
+}
+.caja {
+  margin-left: 30%;
+  margin-top: 3%;
+  float: center;
+  width: 40%;
+  padding: 10px; 
+  height: 320px; 
+  
+}
+.boton {
+  -moz-box-align: center;
+  margin-left: 40%;
+  float: center;
+  width: 50%;
+  padding: 10px;
+  height: 250px; 
+}
+.boton2{
+  padding: 10px;
+  height: 50px;
+  background-color:darkslategrey;
+  color: white ;
+  margin: 30px;
+  margin-top: 55px;
+  width: 35%;
+}
+.column1 {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 1000px; 
+}
+.column2{
+    float: right;
+    width: 50%;
+    padding: 20px;
+    height: 1000px;
+}
+.boton3{
+    margin: 15px;
+    margin-top: 15px;
+    width: 35%;
+    background-color:darkslategrey;
+    color: white ;
+    text-align: center;
+}

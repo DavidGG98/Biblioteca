@@ -3,12 +3,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title> BiblioWeb - Bienvenido </title>
+    <h:outputStylesheet library="css" name="Index.css"/>
 </h:head>
-<h:body>
+<h:body class="principal">
+<img class="foto1" src="https://sso.unileon.es/themes/unileon-metronic/img/main-title.png" id="tituloi"> </img>
+      
     
+        <div class="caja">
+          
+      <p:outputLabel class="h1" value="Elige un registro" style="margin-bottom: 25px" />
+  
     <h:form id="grid">
-        <p:fieldset legend="Registrate como usuario" style="margin-bottom: 25px">
-            <p:panelGrid columns="3" styleClass="ui-noborder">
+        <p:fieldset   style="margin-bottom: 25px">
+        
+            <p:panelGrid columns="3" styleClass="ui-noborder" class="p">
                 <p:outputLabel for="txtNombre" value="Nombre: " />
                 <p:inputText value="#{usuarioControl.usuario.nombre}" required="true" id="txtNombre" requiredMessage="Es obligatorio introducir un nombre" />
                 <p:message for="txtNombre" />
@@ -30,18 +38,18 @@
                 <p:outputLabel value="" />
             </p:panelGrid>
             <p:separator/>
-            <p:commandButton value="Registrarme" actionListener="#{usuarioControl.registrar()}" update="grid" />
+            <p:commandButton class="boton3" value="Registrarme" actionListener="#{usuarioControl.registrar()}" update="grid"  />
 
         </p:fieldset>
     </h:form>
 
     <p:separator/>
-    <p:panelGrid columns="2">
-        <h:link outcome="loginUsuario" value="Login Usuarios" />
-        <h:link outcome="loginTrabajador" value="Login Trabajadores" />
+    <p:panelGrid columns="2" styleClass="ui-noborder" >
+        <h:link class="boton2" outcome="loginUsuario" value="Usuarios" style="color: gainsboro"/>
+        <h:link class="boton2" outcome="loginTrabajador" value="Trabajadores" style="color: gainsboro" />
     </p:panelGrid>
     <br />
-
+</div>
 </h:body>
 
 </html>

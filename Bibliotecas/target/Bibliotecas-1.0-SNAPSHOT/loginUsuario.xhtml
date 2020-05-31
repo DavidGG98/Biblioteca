@@ -4,12 +4,21 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title> Index </title>
+        <title> Login Usuario </title>
+            <h:outputStylesheet library="css" name="login.css"/>
+
     </h:head>
+
     <h:body>
-        <h1> Log in as User </h1>
+
+        <!-- Aqui empieza mi codigo html -->
+        <img class="foto1" src="https://sso.unileon.es/themes/unileon-metronic/img/main-title.png" id="tituloi"> </img>
+        
+<div class="caja">
         <h:form>
-            <p:panelGrid columns="2">
+<p:outputLabel value="Ingreso como Usuario" class="h1" /> 
+
+            <p:panelGrid columns="2" class="p">
                 <p:outputLabel value="Número de carnet " /> 
                 <p:inputText value="#{loginUsuarioControl.usuario.numeroCarnet}" />
                 
@@ -17,10 +26,11 @@
                 <p:password value="#{loginUsuarioControl.usuario.contrasena}" />
 
             </p:panelGrid>
+
             <p:commandButton value="Ingresar" action="#{loginUsuarioControl.verificarUsuario()}"/>
             <p:linkButton value="Volver al principio" outcome="index.xhtml" style="margin-left: 30px"/>
         </h:form>
         <br />
-
+   </div>
     </h:body>
 </html>
