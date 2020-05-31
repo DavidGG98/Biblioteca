@@ -22,7 +22,8 @@
         <div class="caja">
 
         <h:form>
-            <p:outputLabel value="Ingreso como Trabajador" class="h1" /> 
+            <p:outputLabel value="Ingreso como Trabajador" class="h1" />
+            <div align="center">
             <p:panelGrid columns="2" class="p" >
                 <p:outputLabel value="DNI: " /> 
                 <p:inputText value="#{loginTrabajadorControl.trabajador.dni}" />
@@ -31,7 +32,7 @@
                 <p:password value="#{loginTrabajadorControl.trabajador.contrasena}" />
 
             </p:panelGrid>
-            
+                </div>
             <p:commandButton value="Ingresar" action="#{loginTrabajadorControl.verificarTrabajador()}"/>
             <p:linkButton value="Volver al principio" outcome="index.xhtml" style="margin-left: 30px"/>
           

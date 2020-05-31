@@ -15,8 +15,8 @@
   
     <h:form id="grid">
         <p:fieldset   style="margin-bottom: 25px">
-        
-            <p:panelGrid columns="3" styleClass="ui-noborder" class="p">
+        <div align="center">
+            <p:panelGrid columns="3" styleClass="ui-noborder" style=" margin-top: 1%;">
                 <p:outputLabel for="txtNombre" value="Nombre: " />
                 <p:inputText value="#{usuarioControl.usuario.nombre}" required="true" id="txtNombre" requiredMessage="Es obligatorio introducir un nombre" />
                 <p:message for="txtNombre" />
@@ -39,15 +39,18 @@
             </p:panelGrid>
             <p:separator/>
             <p:commandButton class="boton3" value="Registrarme" actionListener="#{usuarioControl.registrar()}" update="grid"  />
-
+    </div>
         </p:fieldset>
     </h:form>
 
     <p:separator/>
-    <p:panelGrid columns="2" styleClass="ui-noborder" >
+    <div align="center">
+        <p:panelGrid columns="2" styleClass="ui-noborder" >
         <h:link class="boton2" outcome="loginUsuario" value="Usuarios" style="color: gainsboro"/>
         <h:link class="boton2" outcome="loginTrabajador" value="Trabajadores" style="color: gainsboro" />
     </p:panelGrid>
+    </div>
+    
     <br />
 </div>
 </h:body>

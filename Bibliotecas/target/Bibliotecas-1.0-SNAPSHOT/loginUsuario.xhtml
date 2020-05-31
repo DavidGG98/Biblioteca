@@ -17,7 +17,7 @@
 <div class="caja">
         <h:form>
 <p:outputLabel value="Ingreso como Usuario" class="h1" /> 
-
+<div align="center">
             <p:panelGrid columns="2" class="p">
                 <p:outputLabel value="Número de carnet " /> 
                 <p:inputText value="#{loginUsuarioControl.usuario.numeroCarnet}" />
@@ -26,7 +26,7 @@
                 <p:password value="#{loginUsuarioControl.usuario.contrasena}" />
 
             </p:panelGrid>
-
+</div>
             <p:commandButton value="Ingresar" action="#{loginUsuarioControl.verificarUsuario()}"/>
             <p:linkButton value="Volver al principio" outcome="index.xhtml" style="margin-left: 30px"/>
         </h:form>
